@@ -1,15 +1,148 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/HHA%20Margins%20Landing.dc.html" },
-    { "source": "/services", "destination": "/HHA%20Margins%20Services.dc.html" },
-    { "source": "/pricing", "destination": "/HHA%20Margins%20Pricing.dc.html" },
-    { "source": "/about", "destination": "/HHA%20Margins%20About.dc.html" },
-    { "source": "/resources", "destination": "/HHA%20Margins%20Resources.dc.html" },
-    { "source": "/contact", "destination": "/HHA%20Margins%20Contact.dc.html" },
-    { "source": "/tour", "destination": "/HHA%20Margins%20Tour.dc.html" },
-    { "source": "/hipaa", "destination": "/HHA%20Margins%20HIPAA.dc.html" },
-    { "source": "/legal", "destination": "/HHA%20Margins%20Legal.dc.html" },
-    { "source": "/404", "destination": "/HHA%20Margins%20404.dc.html" },
-    { "source": "/dashboard", "destination": "/HHAMargins%20Dashboard.dc.html" }
+    {
+      "source": "/",
+      "destination": "/HHA%20Margins%20Landing.dc.html"
+    },
+    {
+      "source": "/services",
+      "destination": "/HHA%20Margins%20Services.dc.html"
+    },
+    {
+      "source": "/pricing",
+      "destination": "/HHA%20Margins%20Pricing.dc.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/HHA%20Margins%20About.dc.html"
+    },
+    {
+      "source": "/resources",
+      "destination": "/HHA%20Margins%20Resources.dc.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/HHA%20Margins%20Contact.dc.html"
+    },
+    {
+      "source": "/tour",
+      "destination": "/HHA%20Margins%20Tour.dc.html"
+    },
+    {
+      "source": "/hipaa",
+      "destination": "/HHA%20Margins%20HIPAA.dc.html"
+    },
+    {
+      "source": "/legal",
+      "destination": "/HHA%20Margins%20Legal.dc.html"
+    },
+    {
+      "source": "/404",
+      "destination": "/HHA%20Margins%20404.dc.html"
+    },
+    {
+      "source": "/dashboard",
+      "destination": "/HHAMargins%20Dashboard.dc.html"
+    },
+    {
+      "source": "/resources/payer-mix-margin-teardown",
+      "destination": "/article-payer-mix-margin-teardown.dc.html"
+    },
+    {
+      "source": "/resources/what-medicaid-waiver-really-pays",
+      "destination": "/article-what-medicaid-waiver-really-pays.dc.html"
+    },
+    {
+      "source": "/resources/margin-check-new-referral",
+      "destination": "/article-margin-check-new-referral.dc.html"
+    },
+    {
+      "source": "/resources/private-pay-vs-medicaid-waiver-margin-gap",
+      "destination": "/article-private-pay-vs-medicaid-waiver-margin-gap.dc.html"
+    },
+    {
+      "source": "/resources/medicare-skilled-per-visit-billing",
+      "destination": "/article-medicare-skilled-per-visit-billing.dc.html"
+    },
+    {
+      "source": "/resources/claim-denials-erode-margin",
+      "destination": "/article-claim-denials-erode-margin.dc.html"
+    },
+    {
+      "source": "/resources/blended-margin-vanity-number",
+      "destination": "/article-blended-margin-vanity-number.dc.html"
+    },
+    {
+      "source": "/resources/third-pay-period-planning",
+      "destination": "/article-third-pay-period-planning.dc.html"
+    },
+    {
+      "source": "/resources/overtime-above-8-percent",
+      "destination": "/article-overtime-above-8-percent.dc.html"
+    },
+    {
+      "source": "/resources/fully-loaded-caregiver-cost",
+      "destination": "/article-fully-loaded-caregiver-cost.dc.html"
+    },
+    {
+      "source": "/resources/mileage-reimbursement-margin-cost",
+      "destination": "/article-mileage-reimbursement-margin-cost.dc.html"
+    },
+    {
+      "source": "/resources/caregiver-turnover-true-cost",
+      "destination": "/article-caregiver-turnover-true-cost.dc.html"
+    },
+    {
+      "source": "/resources/per-visit-vs-hourly-pay",
+      "destination": "/article-per-visit-vs-hourly-pay.dc.html"
+    },
+    {
+      "source": "/resources/payroll-burden-rate-explained",
+      "destination": "/article-payroll-burden-rate-explained.dc.html"
+    },
+    {
+      "source": "/resources/days-to-pay-by-payer",
+      "destination": "/article-days-to-pay-by-payer.dc.html"
+    },
+    {
+      "source": "/resources/sizing-a-line-of-credit",
+      "destination": "/article-sizing-a-line-of-credit.dc.html"
+    },
+    {
+      "source": "/resources/cash-flow-forecasting-payer-lag",
+      "destination": "/article-cash-flow-forecasting-payer-lag.dc.html"
+    },
+    {
+      "source": "/resources/net-income-vs-cash-in-bank",
+      "destination": "/article-net-income-vs-cash-in-bank.dc.html"
+    },
+    {
+      "source": "/resources/13-week-cash-forecast",
+      "destination": "/article-13-week-cash-forecast.dc.html"
+    },
+    {
+      "source": "/resources/when-to-draw-on-line-of-credit",
+      "destination": "/article-when-to-draw-on-line-of-credit.dc.html"
+    },
+    {
+      "source": "/resources/expired-credentials-revenue-problem",
+      "destination": "/article-expired-credentials-revenue-problem.dc.html"
+    },
+    {
+      "source": "/resources/authorizations-running-out",
+      "destination": "/article-authorizations-running-out.dc.html"
+    },
+    {
+      "source": "/resources/evv-compliance-and-billing",
+      "destination": "/article-evv-compliance-and-billing.dc.html"
+    },
+    {
+      "source": "/resources/background-check-license-tracking",
+      "destination": "/article-background-check-license-tracking.dc.html"
+    },
+    {
+      "source": "/resources/what-auditors-look-for",
+      "destination": "/article-what-auditors-look-for.dc.html"
+    }
   ]
 }
