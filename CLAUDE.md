@@ -34,7 +34,7 @@ If we move to a framework (Next.js, Astro, etc.), each `.dc.html` maps cleanly t
 ├─ README.md                        short owner notes
 └─ CLAUDE.md                        this file
 ```
-Pages link to each other by exact filename (with spaces, e.g. `href="HHA Margins Pricing.dc.html"`). Renaming a file means updating every link to it.
+Files stay named `*.dc.html` on disk - `support.js` requires that exact extension to boot a page (`/\.dc\.html?$/i` check), so the files cannot be renamed. Internal links instead use clean paths (`href="/pricing"`, not the raw filename) that `vercel.json` rewrites to the real file. `vercel.json` is the single source of truth for the path-to-file mapping; adding a page means adding both the file and a rewrite entry, then linking to the clean path everywhere (including inside `renderVals()`/data objects, not just template `href=` attributes - grep for `.dc.html` across the repo to catch every reference before committing).
 
 ## Brand and styling
 - Colors: ink/navy `#0c1b31`, navy 2 `#1d2b40`, brand blue `#1e3a5f`, accent red `#c0392b`, deep red text `#98301f`, green `#1e7a55`, light green `#7fd1a8`, salmon `#f0a595`, bright blue `#4a9eff`. Text greys `#465569`, `#6c7a8c`, `#9aa5b4`. Borders `#dde2ea`, `#e6eaf1`, `#eceff5`. Surfaces: page `#ffffff`, card tint `#f7f9fc`, dashboard ground `#f4f6fa`.

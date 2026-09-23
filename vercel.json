@@ -1,5 +1,15 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/HHA%20Margins%20Landing.dc.html" }
+    { "source": "/", "destination": "/HHA%20Margins%20Landing.dc.html" },
+    { "source": "/services", "destination": "/HHA%20Margins%20Services.dc.html" },
+    { "source": "/pricing", "destination": "/HHA%20Margins%20Pricing.dc.html" },
+    { "source": "/about", "destination": "/HHA%20Margins%20About.dc.html" },
+    { "source": "/resources", "destination": "/HHA%20Margins%20Resources.dc.html" },
+    { "source": "/contact", "destination": "/HHA%20Margins%20Contact.dc.html" },
+    { "source": "/tour", "destination": "/HHA%20Margins%20Tour.dc.html" },
+    { "source": "/hipaa", "destination": "/HHA%20Margins%20HIPAA.dc.html" },
+    { "source": "/legal", "destination": "/HHA%20Margins%20Legal.dc.html" },
+    { "source": "/404", "destination": "/HHA%20Margins%20404.dc.html" },
+    { "source": "/dashboard", "destination": "/HHAMargins%20Dashboard.dc.html" }
   ]
 }
