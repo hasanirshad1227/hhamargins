@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231e3a5f'/%3E%3Cpath d='M12 32h9.5l5.5-13 9.5 29 8-16h7.5' fill='none' stroke='%23ffffff' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#0c1b31">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"AccountingService","name":"HHA Margins","description":"Bookkeeping, monthly close and CFO reporting built only for home care and home health agencies. Payer and client margin reporting, AR and denial tracking, payroll and overtime control, cash forecasting and a live dashboard.","url":"https://hhamargins.com","email":"hello@hhamargins.com","telephone":"+1-512-555-0137","address":{"@type":"PostalAddress","addressLocality":"Austin","addressRegion":"TX","addressCountry":"US"},"areaServed":{"@type":"Country","name":"United States"},"priceRange":"From $499 per month","knowsAbout":["Home care accounting","Home health bookkeeping","Medicaid Waiver billing","Payer margin analysis","HIPAA-compliant bookkeeping"],"sameAs":["https://www.linkedin.com/company/hhamargins","https://www.instagram.com/hhamargins"],"makesOffer":[{"@type":"Offer","name":"Essentials","price":"499","priceCurrency":"USD","description":"Monthly close, financial statements, live dashboard updated weekly, margin by payer and client, AR and payroll tracking."},{"@type":"Offer","name":"Custom","description":"Multi-location consolidation, daily dashboard updates, cash forecasting, budget versus actual and lender reporting."}]}</script>
+  <meta property="og:site_name" content="HHA Margins">
+  <title>HHA Margins - Bookkeeping and CFO reporting for home care agencies</title>
+  <meta name="description" content="HHA Margins is a bookkeeping and CFO reporting firm for home care and home health agencies. Monthly close by the 10th, margin by payer and client, AR and denial tracking, payroll control and a live dashboard. From $499 a month.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="HHA Margins - finance built only for home care agencies">
+  <meta property="og:description" content="Monthly close, payer margin reporting, AR recovery and a live dashboard. Know exactly where your agency makes money.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
+  <style>
+    .hm-mnav { display: none }
+    .hm-mnav > summary { list-style: none } .hm-mnav > summary::-webkit-details-marker { display: none }
+    .hm-mnav[open] .hm-burger-open { display: none } .hm-mnav:not([open]) .hm-burger-close { display: none }
+    @media (max-width: 900px) {
+      .hm-dnav { display: none !important } .hm-mnav { display: block }
+      section { padding-left: 18px !important; padding-right: 18px !important }
+      header > div, footer > div { padding-left: 18px !important; padding-right: 18px !important }
+      h1 { font-size: clamp(30px, 8.4vw, 42px) !important }
+      h2 { font-size: clamp(24px, 6.6vw, 32px) !important }
+      [data-pad] { padding: 26px 22px !important }
+    }
+    body { margin: 0; background: #ffffff; color: #0c1b31; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased }
+    h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 800; letter-spacing: -0.03em; margin: 0; text-wrap: balance }
+    p { margin: 0; text-wrap: pretty }
+    a { color: #1e3a5f; text-decoration: none } a:hover { color: #c0392b }
+    .num { font-family: 'Archivo', sans-serif; font-variant-numeric: tabular-nums; letter-spacing: -0.02em }
+    :focus-visible { outline: 2px solid #c0392b; outline-offset: 3px }
+    @keyframes rise { from { opacity: 0; transform: translateY(18px) } to { opacity: 1; transform: none } }
+    @keyframes fadein { from { opacity: 0 } to { opacity: 1 } }
+    @keyframes grow { from { transform: scaleY(0) } to { transform: scaleY(1) } }
+    @keyframes draw { from { stroke-dashoffset: 1200 } to { stroke-dashoffset: 0 } }
+    @keyframes drift { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-9px) } }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(127,209,168,0.6) } 70% { box-shadow: 0 0 0 8px rgba(127,209,168,0) } 100% { box-shadow: 0 0 0 0 rgba(127,209,168,0) } }
+    input.hm-range { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 8px; background: linear-gradient(90deg, #1e3a5f 0%, #0c1b31 var(--p), #e3e8f0 var(--p)); outline: none; cursor: pointer; margin: 0 }
+    input.hm-range::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 24px; background: #ffffff; border: 2px solid #0c1b31; box-shadow: 0 4px 12px rgba(12,27,49,0.22); transition: transform 0.15s ease, box-shadow 0.15s ease }
+    input.hm-range::-moz-range-thumb { width: 22px; height: 22px; border-radius: 22px; background: #ffffff; border: 2px solid #0c1b31; box-shadow: 0 4px 12px rgba(12,27,49,0.22) }
+    input.hm-range:hover::-webkit-slider-thumb { transform: scale(1.12); box-shadow: 0 0 0 7px rgba(30,58,95,0.12), 0 4px 12px rgba(12,27,49,0.22) }
+    input.hm-range:active::-webkit-slider-thumb { transform: scale(1.18); box-shadow: 0 0 0 9px rgba(30,58,95,0.16), 0 4px 12px rgba(12,27,49,0.22) }
+    input.hm-range:focus-visible { outline: 2px solid #c0392b; outline-offset: 6px }
+    @keyframes marquee { from { transform: translateX(0) } to { transform: translateX(calc(-50% - 9px)) } }
+    @keyframes sheen { from { transform: translateX(-120%) } to { transform: translateX(220%) } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important } }
+  </style>
+</helmet>
+
+<div style="min-height: 100vh; background: #ffffff">
+
+  <header style="position: sticky; top: 0; z-index: 50; height: 66px; box-sizing: border-box; background: rgba(255,255,255,0.94); backdrop-filter: blur(10px); border-bottom: 1px solid #dde2ea">
+    <div style="max-width: 1180px; height: 100%; margin: 0 auto; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px">
+      <a href="HHA Margins Landing.dc.html" style="display: flex; align-items: center; gap: 11px">
+        <span style="width: 36px; height: 36px; border-radius: 10px; background: #1e3a5f; display: flex; align-items: center; justify-content: center; flex: 0 0 36px">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3.5l2-5 3.5 11 3-6h5.5"></path></svg>
+        </span>
+        <span style="font-weight: 800; font-size: 16px; color: #0c1b31; letter-spacing: -0.02em; white-space: nowrap">HHA Margins</span>
+      </a>
+      <nav class="hm-dnav" style="display: flex; align-items: center; gap: 24px">
+        <a href="HHA Margins Services.dc.html" style="font-size: 14px; white-space: nowrap; padding: 4px 0; color: #465569; font-weight: 500; border-bottom: 2px solid transparent" style-hover="color: #0c1b31">Services</a>
+        <a href="HHA Margins Pricing.dc.html" style="font-size: 14px; white-space: nowrap; padding: 4px 0; color: #465569; font-weight: 500; border-bottom: 2px solid transparent" style-hover="color: #0c1b31">Pricing</a>
+        <a href="HHA Margins About.dc.html" style="font-size: 14px; white-space: nowrap; padding: 4px 0; color: #465569; font-weight: 500; border-bottom: 2px solid transparent" style-hover="color: #0c1b31">About</a>
+        <a href="HHA Margins Resources.dc.html" style="font-size: 14px; white-space: nowrap; padding: 4px 0; color: #465569; font-weight: 500; border-bottom: 2px solid transparent" style-hover="color: #0c1b31">Resources</a>
+        <a href="HHA Margins Contact.dc.html" style="font-size: 14px; white-space: nowrap; padding: 4px 0; color: #465569; font-weight: 500; border-bottom: 2px solid transparent" style-hover="color: #0c1b31">Contact</a>
+        <a href="HHA Margins Tour.dc.html" style="display: inline-flex; align-items: center; white-space: nowrap; background: #0c1b31; color: #ffffff; border-radius: 999px; padding: 11px 20px; font-size: 14px; font-weight: 700; transition: background 0.16s ease" style-hover="background: #c0392b; color: #ffffff">Product tour</a>
+      </nav>
+      <details class="hm-mnav">
+        <summary aria-label="Menu" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; border: 1px solid #dde2ea; background: #ffffff; cursor: pointer">
+          <svg class="hm-burger-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0c1b31" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+          <svg class="hm-burger-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0c1b31" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+        </summary>
+        <div style="position: absolute; left: 0; right: 0; top: 66px; background: #ffffff; border-bottom: 1px solid #dde2ea; box-shadow: 0 24px 40px rgba(12,27,49,0.12); padding: 10px 18px 20px; display: flex; flex-direction: column">
+          <a href="HHA Margins Landing.dc.html" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 4px; border-bottom: 1px solid #eceff5; font-size: 16px; font-weight: 700; color: #0c1b31">Home<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa5b4" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"></path></svg></a>
+          <a href="HHA Margins Services.dc.html" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 4px; border-bottom: 1px solid #eceff5; font-size: 16px; font-weight: 700; color: #0c1b31">Services<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa5b4" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"></path></svg></a>
+          <a href="HHA Margins Pricing.dc.html" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 4px; border-bottom: 1px solid #eceff5; font-size: 16px; font-weight: 700; color: #0c1b31">Pricing<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa5b4" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"></path></svg></a>
+          <a href="HHA Margins About.dc.html" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 4px; border-bottom: 1px solid #eceff5; font-size: 16px; font-weight: 700; color: #0c1b31">About<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa5b4" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"></path></svg></a>
+          <a href="HHA Margins Resources.dc.html" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 4px; border-bottom: 1px solid #eceff5; font-size: 16px; font-weight: 700; color: #0c1b31">Resources<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa5b4" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"></path></svg></a>
+          <a href="HHA Margins HIPAA.dc.html" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 4px; border-bottom: 1px solid #eceff5; font-size: 16px; font-weight: 700; color: #0c1b31">HIPAA<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa5b4" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"></path></svg></a>
+          <a href="HHA Margins Contact.dc.html" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 4px; border-bottom: 1px solid #eceff5; font-size: 16px; font-weight: 700; color: #0c1b31">Contact<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa5b4" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"></path></svg></a>
+          <a href="HHA Margins Tour.dc.html" style="margin-top: 14px; display: flex; align-items: center; justify-content: center; background: #0c1b31; color: #ffffff; border-radius: 12px; padding: 15px; font-size: 15px; font-weight: 700">Product tour</a>
+          <a href="HHA Margins Contact.dc.html" style="margin-top: 10px; display: flex; align-items: center; justify-content: center; border: 1px solid #dde2ea; color: #0c1b31; border-radius: 12px; padding: 15px; font-size: 15px; font-weight: 700">Book a margin review</a>
+        </div>
+      </details>
+    </div>
+  </header>
+
+  <section id="top" style="max-width: 1180px; margin: 0 auto; padding: 72px 28px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 54px; align-items: center">
+    <div style="min-width: 0; animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both">
+      <span style="display: inline-flex; align-items: center; gap: 9px; background: #ffffff; border: 1px solid #dde2ea; border-radius: 999px; padding: 7px 15px; font-size: 12.5px; font-weight: 700; color: #465569">
+        <span style="width: 7px; height: 7px; border-radius: 7px; background: #1e7a55"></span>
+        <span style="white-space: nowrap">Home care agencies only</span>
+      </span>
+      <h1 style="font-size: clamp(34px, 4.6vw, 58px); line-height: 1.04; margin-top: 22px">Know exactly which clients, payers and caregivers make you money.</h1>
+      <p style="font-size: 18px; line-height: 1.6; color: #465569; margin-top: 22px; max-width: 58ch">Most home care owners find out the margin was thin a year too late. We close your books every month, break profit down by payer, client and caregiver, and put the whole picture in a dashboard you can read in ninety seconds.</p>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px">
+        <a href="#call" style="position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; background: #0c1b31; color: #ffffff; border-radius: 12px; padding: 16px 26px; font-size: 15px; font-weight: 700; transition: transform 0.16s ease, background 0.16s ease" style-hover="background: #1d2b40; color: #ffffff; transform: translateY(-2px)">
+          Book a free margin review
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+        <a href="#dashboard" style="display: inline-flex; align-items: center; gap: 10px; background: #ffffff; border: 1px solid #dde2ea; color: #0c1b31; border-radius: 12px; padding: 16px 26px; font-size: 15px; font-weight: 700; transition: border-color 0.16s ease" style-hover="border-color: #0c1b31; color: #0c1b31">See the dashboard</a>
+      </div>
+      <div style="display: flex; gap: 26px; flex-wrap: wrap; margin-top: 30px; font-size: 13.5px; color: #6c7a8c">
+        <span>Medicaid Waiver · Private Pay · Medicare · Private Insurance</span>
+        <span>Books closed by the 10th</span>
+      </div>
+    </div>
+
+    <div style="min-width: 0; animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both">
+      <a href="HHAMargins Dashboard.dc.html" style="display: block; background: #0c1b31; border-radius: 18px; padding: 0 14px 14px; box-shadow: 0 30px 70px rgba(12, 27, 49, 0.24); transition: transform 0.2s ease" style-hover="transform: translateY(-3px)">
+        <div style="display: flex; align-items: center; gap: 7px; padding: 13px 4px">
+          <span style="width: 9px; height: 9px; border-radius: 9px; background: #c0392b"></span>
+          <span style="width: 9px; height: 9px; border-radius: 9px; background: #f0a595"></span>
+          <span style="width: 9px; height: 9px; border-radius: 9px; background: #1e7a55"></span>
+          <span style="flex: 1; display: flex; justify-content: center"><span style="background: #1d2b40; border-radius: 7px; padding: 4px 14px; font-size: 11.5px; color: rgba(255,255,255,0.6)">app.hhamargins.com/overview</span></span><span style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #7fd1a8; font-weight: 700; display: flex; align-items: center; gap: 6px"><span style="width: 7px; height: 7px; border-radius: 7px; background: #7fd1a8; animation: pulse 1.8s ease-out infinite"></span>Live</span>
+        </div>
+        <div style="position: relative; width: 100%; aspect-ratio: 1440 / 900; overflow: hidden; border-radius: 10px; background: #f4f6fa; box-shadow: 0 0 0 1px #0c1b31, 0 0 0 4px rgba(255,255,255,0.22), 0 0 0 5px rgba(255,255,255,0.08)">
+          <iframe data-src="HHAMargins Dashboard.dc.html?embed=1" title="HHA Margins live dashboard" tabindex="-1" style="position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; pointer-events: none"></iframe>
+        </div>
+      </a>
+      <div style="display: flex; gap: 10px; margin-top: 14px; font-size: 12.5px; color: #6c7a8c">The real dashboard, running live - click to open it</div>
+    </div>
+  </section>
+
+  <section data-reveal style="max-width: 1180px; margin: 0 auto; padding: 40px 28px 10px">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); gap: 18px">
+      <sc-for list="{{ pains }}" as="p" hint-placeholder-count="3">
+        <div data-reveal style="background: #f7f9fc; border: 1px solid #e6eaf1; border-radius: 14px; padding: 26px 26px 24px; transition: transform 0.18s ease, box-shadow 0.18s ease" style-hover="transform: translateY(-3px); box-shadow: 0 16px 36px rgba(12,27,49,0.10)">
+          <div class="num" style="font-size: 12px; font-weight: 700; color: #c0392b">{{ p.tag }}</div>
+          <h3 style="font-size: 19px; margin-top: 12px">{{ p.title }}</h3>
+          <p style="font-size: 14.5px; line-height: 1.6; color: #465569; margin-top: 10px">{{ p.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="calculator" data-reveal style="max-width: 1180px; margin: 0 auto; padding: 66px 28px 0">
+    <div style="border: 1px solid #e6eaf1; border-radius: 20px; overflow: hidden; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr))">
+      <div style="padding: 38px 36px; background: #f7f9fc">
+        <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6c7a8c; font-weight: 700">Margin calculator</span>
+        <h2 style="font-size: 32px; margin-top: 14px">What should your agency be keeping?</h2>
+        <p style="font-size: 15px; line-height: 1.6; color: #465569; margin-top: 12px">Move the sliders to match your agency. The estimate uses typical home care burden and overhead ratios.</p>
+        <div style="display: flex; flex-direction: column; gap: 24px; margin-top: 28px">
+          <sc-for list="{{ sliders }}" as="sl" hint-placeholder-count="4">
+            <label style="display: block">
+              <span style="display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 13.5px; font-weight: 700; color: #0c1b31">
+                <span>{{ sl.label }}</span>
+                <span class="num" style="font-size: 14px; font-weight: 700; color: #0c1b31; background: #ffffff; border: 1px solid #dde2ea; border-radius: 8px; padding: 5px 11px; min-width: 52px; text-align: center">{{ sl.display }}</span>
+              </span>
+              <input class="hm-range" type="range" min="{{ sl.min }}" max="{{ sl.max }}" step="{{ sl.step }}" value="{{ sl.value }}" onChange="{{ sl.onChange }}" style="{{ sl.fill }}; margin-top: 14px">
+              <span style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 11.5px; color: #9aa5b4" class="num">
+                <span>{{ sl.minLabel }}</span><span>{{ sl.maxLabel }}</span>
+              </span>
+            </label>
+          </sc-for>
+        </div>
+      </div>
+      <div style="padding: 38px 36px; background: #0c1b31; color: #ffffff; display: flex; flex-direction: column">
+        <div style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55); font-weight: 700">Estimated annual picture</div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px">
+          <sc-for list="{{ calcOut }}" as="o" hint-placeholder-count="4">
+            <div style="background: #1d2b40; border-radius: 12px; padding: 16px 18px">
+              <div style="font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.55); font-weight: 700">{{ o.label }}</div>
+              <div class="num" style="font-size: 26px; font-weight: 700; margin-top: 8px; color: {{ o.color }}">{{ o.value }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top: 22px">
+          <div style="display: flex; height: 14px; border-radius: 7px; overflow: hidden; background: #1d2b40">
+            <sc-for list="{{ calcBar }}" as="b" hint-placeholder-count="3">
+              <span style="{{ b.style }}"></span>
+            </sc-for>
+          </div>
+          <div style="display: flex; gap: 18px; flex-wrap: wrap; margin-top: 12px">
+            <sc-for list="{{ calcBar }}" as="b" hint-placeholder-count="3">
+              <span style="display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: rgba(255,255,255,0.72)"><span style="{{ b.dot }}"></span>{{ b.label }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <p style="font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.72); margin-top: 22px">{{ calcNote }}</p>
+        <div style="flex: 1; min-height: 16px"></div>
+        <a href="HHA Margins Contact.dc.html" style="display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; background: #ffffff; color: #0c1b31; border-radius: 12px; padding: 14px 22px; font-size: 14.5px; font-weight: 700; transition: transform 0.16s ease" style-hover="transform: translateY(-2px); color: #0c1b31">Get my real numbers</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" style="max-width: 1180px; margin: 0 auto; padding: 66px 28px 20px">
+    <div data-reveal style="max-width: 62ch">
+      <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6c7a8c; font-weight: 700">What we do</span>
+      <h2 style="font-size: 40px; margin-top: 14px">A finance department that already understands EVV, authorizations and payer lag.</h2>
+      <p style="font-size: 16.5px; line-height: 1.65; color: #465569; margin-top: 16px">You do not have to explain what a unit is, why a claim was denied, or how a third pay period wrecks a month. We work with home care agencies and nothing else.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 18px; margin-top: 34px">
+      <sc-for list="{{ services }}" as="s" hint-placeholder-count="6">
+        <div data-reveal style="background: #f7f9fc; border: 1px solid #e6eaf1; border-radius: 14px; padding: 26px; transition: transform 0.18s ease, box-shadow 0.18s ease" style-hover="transform: translateY(-3px); box-shadow: 0 16px 36px rgba(12,27,49,0.10)">
+          <span style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 11px; background: #eef3fa">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#1e3a5f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" dangerouslySetInnerHTML="{{ s.icon }}"></svg>
+          </span>
+          <h3 style="font-size: 18px; margin-top: 16px">{{ s.title }}</h3>
+          <p style="font-size: 14.5px; line-height: 1.6; color: #465569; margin-top: 9px">{{ s.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="dashboard" data-reveal style="max-width: 1180px; margin: 66px auto 0; padding: 0 28px">
+    <div data-pad style="background: #0c1b31; border-radius: 20px; padding: 48px 44px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 44px; align-items: center; overflow: hidden; position: relative">
+      <div style="position: absolute; inset: 0; pointer-events: none; overflow: hidden">
+        <div style="position: absolute; top: 0; bottom: 0; width: 140px; background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 100%); animation: sheen 5.5s ease-in-out infinite"></div>
+      </div>
+      <div style="min-width: 0; position: relative">
+        <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #f0a595; font-weight: 700">The dashboard</span>
+        <h2 style="font-size: 38px; color: #ffffff; margin-top: 14px">Your whole agency on one screen, updated every month.</h2>
+        <p style="font-size: 16px; line-height: 1.65; color: rgba(255,255,255,0.72); margin-top: 16px">Revenue and margin by month, cash and AR, payer mix, client and caregiver profitability, overtime pressure, and the compliance lapses that quietly make visits unbillable. Click any number and the detail is underneath it.</p>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 26px">
+          <sc-for list="{{ dashPoints }}" as="d" hint-placeholder-count="4">
+            <div style="display: flex; align-items: flex-start; gap: 12px">
+              <span style="width: 7px; height: 7px; border-radius: 7px; background: #4a9eff; margin-top: 8px; flex: 0 0 7px"></span>
+              <span style="font-size: 15px; color: rgba(255,255,255,0.88); line-height: 1.5">{{ d }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="position: relative; display: flex; flex-direction: column; gap: 14px">
+        <sc-for list="{{ dashCards }}" as="c" hint-placeholder-count="3">
+          <div style="background: #1d2b40; border-radius: 12px; padding: 18px 20px; animation: drift 6s ease-in-out infinite">
+            <div style="font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); font-weight: 700">{{ c.label }}</div>
+            <div class="num" data-count style="font-size: 30px; font-weight: 800; color: {{ c.color }}; margin-top: 8px">{{ c.value }}</div>
+            <div style="font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 6px">{{ c.sub }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="demo" data-reveal style="max-width: 1180px; margin: 0 auto; padding: 66px 28px 0">
+    <div style="border: 2px solid #0c1b31; border-radius: 20px; padding: 38px 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 34px; align-items: center">
+      <div>
+        <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #c0392b; font-weight: 700">Live demo</span>
+        <h2 style="font-size: 32px; margin-top: 14px">Log in to a real agency dashboard.</h2>
+        <p style="font-size: 15.5px; line-height: 1.6; color: #465569; margin-top: 12px">A full year of sample data for a 48-client agency: financials, payroll, AR, payers and compliance. Click around exactly as a client would.</p>
+        <a href="HHAMargins Dashboard.dc.html" style="display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; background: #0c1b31; color: #ffffff; border-radius: 12px; padding: 15px 24px; font-size: 15px; font-weight: 700; transition: background 0.16s ease, transform 0.16s ease" style-hover="background: #c0392b; color: #ffffff; transform: translateY(-2px)">
+          Open the demo
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+        <a href="HHA Margins Tour.dc.html" style="display: inline-flex; align-items: center; gap: 10px; margin: 24px 0 0 10px; border: 1px solid #dde2ea; color: #0c1b31; border-radius: 12px; padding: 15px 22px; font-size: 15px; font-weight: 700; transition: border-color 0.16s ease" style-hover="border-color: #0c1b31; color: #0c1b31">Take the tour</a>
+      </div>
+      <div style="background: #f7f9fc; border: 1px solid #e6eaf1; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+        <sc-for list="{{ demoCreds }}" as="c" hint-placeholder-count="2">
+          <div style="display: flex; align-items: center; gap: 14px; background: #ffffff; border: 1px solid #e6eaf1; border-radius: 10px; padding: 12px 12px 12px 16px">
+            <div style="flex: 1; min-width: 0">
+              <div style="font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #6c7a8c; font-weight: 700">{{ c.label }}</div>
+              <div class="num" style="font-size: 16px; font-weight: 700; margin-top: 5px; color: #0c1b31">{{ c.value }}</div>
+            </div>
+            <button type="button" onClick="{{ c.copy }}" style="{{ c.btnStyle }}">{{ c.btn }}</button>
+          </div>
+        </sc-for>
+        <div style="font-size: 12.5px; color: #6c7a8c">Sample data only. Nothing you change is saved.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal style="max-width: 1180px; margin: 0 auto; padding: 66px 28px 0">
+    <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6c7a8c; font-weight: 700">How it works</span>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 18px; margin-top: 20px">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+        <div data-reveal style="background: #f7f9fc; border: 1px solid #e6eaf1; border-radius: 14px; padding: 26px">
+          <div class="num" style="font-size: 30px; font-weight: 700; color: #dde2ea">{{ s.n }}</div>
+          <h3 style="font-size: 18px; margin-top: 10px">{{ s.title }}</h3>
+          <p style="font-size: 14.5px; line-height: 1.6; color: #465569; margin-top: 9px">{{ s.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section data-reveal style="max-width: 1180px; margin: 0 auto; padding: 46px 28px 0">
+    <div style="background: #f7f9fc; border: 1px solid #e6eaf1; border-radius: 16px; padding: 34px; display: grid; grid-template-columns: repeat(auto-fit, minmax(max(180px, calc((100% - 72px) / 4)), 1fr)); gap: 24px">
+      <sc-for list="{{ proof }}" as="p" hint-placeholder-count="4">
+        <div>
+          <div class="num" data-count style="font-size: 36px; font-weight: 700; color: #0c1b31">{{ p.value }}</div>
+          <div style="font-size: 14px; color: #465569; margin-top: 8px; line-height: 1.5">{{ p.label }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section data-reveal style="max-width: 1180px; margin: 0 auto; padding: 66px 28px 0">
+    <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6c7a8c; font-weight: 700">Month end, before and after</span>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 18px; margin-top: 20px">
+      <sc-for list="{{ beforeAfter }}" as="col" hint-placeholder-count="2">
+        <div style="{{ col.box }}">
+          <div style="font-size: 18px; font-weight: 800; letter-spacing: -0.02em; color: {{ col.ink }}">{{ col.title }}</div>
+          <div style="position: relative; margin-top: 20px; padding-left: 26px">
+            <span style="position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px; background: {{ col.line }}"></span>
+            <sc-for list="{{ col.steps }}" as="st" hint-placeholder-count="4">
+              <div style="position: relative; padding-bottom: 18px">
+                <span style="position: absolute; left: -25px; top: 4px; width: 12px; height: 12px; border-radius: 12px; background: {{ col.dot }}; box-shadow: 0 0 0 4px {{ col.halo }}"></span>
+                <div class="num" style="font-size: 12px; font-weight: 700; color: {{ col.day }}">{{ st.d }}</div>
+                <div style="font-size: 14.5px; line-height: 1.5; color: {{ col.body }}; margin-top: 3px">{{ st.t }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="fit" data-reveal style="max-width: 1180px; margin: 0 auto; padding: 66px 28px 0">
+    <div style="max-width: 60ch">
+      <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6c7a8c; font-weight: 700">Is it a fit</span>
+      <h2 style="font-size: 36px; margin-top: 14px">Built for owners who want the numbers behind the decisions.</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 18px; margin-top: 28px">
+      <sc-for list="{{ fitCards }}" as="card" hint-placeholder-count="2">
+        <div style="{{ card.boxStyle }}">
+          <div style="display: flex; align-items: center; gap: 14px">
+            <span style="{{ card.badgeStyle }}">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" dangerouslySetInnerHTML="{{ card.icon }}"></svg>
+            </span>
+            <div>
+              <div style="font-size: 18px; font-weight: 800; letter-spacing: -0.02em; color: #0c1b31">{{ card.title }}</div>
+              <div style="font-size: 13px; color: #6c7a8c; margin-top: 3px">{{ card.sub }}</div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; margin-top: 20px">
+            <sc-for list="{{ card.items }}" as="i" hint-placeholder-count="4">
+              <div style="display: flex; align-items: center; gap: 14px; padding: 13px 0; border-top: 1px solid {{ card.rule }}; transition: transform 0.18s ease" style-hover="transform: translateX(4px)">
+                <span style="{{ card.dotStyle }}">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" dangerouslySetInnerHTML="{{ card.icon }}"></svg>
+                </span>
+                <span style="font-size: 15px; line-height: 1.5; color: #0c1b31; font-weight: 500">{{ i }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section data-reveal style="padding: 66px 0 0; overflow: hidden">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 0 28px">
+      <span style="display: block; font-size: 11px; line-height: 1; letter-spacing: 0.18em; text-transform: uppercase; color: #6c7a8c; font-weight: 700">In their words</span>
+      <h2 style="font-size: 32px; margin-top: 14px">What agency founders say after a few months.</h2>
+    </div>
+    <div style="position: relative; margin-top: 28px; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%)">
+      <div style="display: flex; gap: 18px; width: max-content; padding: 6px 0 12px; animation: marquee 60s linear infinite" style-hover="animation-play-state: paused">
+        <sc-for list="{{ loopQuotes }}" as="q" hint-placeholder-count="6">
+          <figure style="margin: 0; width: min(360px, 82vw); flex: 0 0 min(360px, 82vw); box-sizing: border-box; background: #f7f9fc; border: 1px solid #e6eaf1; border-radius: 16px; padding: 26px; display: flex; flex-direction: column; transition: transform 0.18s ease, box-shadow 0.18s ease" style-hover="transform: translateY(-3px); box-shadow: 0 16px 36px rgba(12,27,49,0.10)">
+            <div style="display: flex; gap: 3px">
+              <sc-for list="{{ stars }}" as="st" hint-placeholder-count="5">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#c0392b"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"></path></svg>
+              </sc-for>
+            </div>
+            <blockquote style="margin: 16px 0 0; font-size: 15.5px; line-height: 1.6; color: #0c1b31; flex: 1">{{ q.text }}</blockquote>
+            <figcaption style="display: flex; align-items: center; gap: 12px; margin-top: 20px; padding-top: 16px; border-top: 1px solid #e6eaf1">
+              <span style="display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 38px; background: #0c1b31; color: #ffffff; font-size: 13px; font-weight: 800; flex: 0 0 38px">{{ q.initials }}</span>
+              <span>
+                <span style="display: block; font-size: 14.5px; font-weight: 800">{{ q.name }}</span>
+                <span style="display: block; font-size: 12.5px; color: #6c7a8c; margin-top: 2px">{{ q.role }}</span>
+              </span>
+            </figcaption>
+          </figure>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal style="max-width: 1180px; margin: 0 auto; padding: 56px 28px 0">
+    <div style="border-top: 1px solid #e6eaf1; border-bottom: 1px solid #e6eaf1; padding: 26px 0; display: flex; align-items: center; gap: 26px; flex-wrap: wrap; justify-content: space-between">
+      <span style="font-size: 13px; color: #6c7a8c; font-weight: 600">We work inside the systems you already run</span>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap">
+        <sc-for list="{{ tools }}" as="t" hint-placeholder-count="6">
+          <span style="border: 1px solid #e6eaf1; border-radius: 999px; padding: 8px 16px; font-size: 13.5px; color: #465569; background: #f7f9fc">{{ t }}</span>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" style="max-width: 1180px; margin: 0 auto; padding: 66px 28px 0">
+    <div data-reveal style="max-width: 60ch; margin: 0 auto; text-align: center">
+      <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6c7a8c; font-weight: 700">Pricing</span>
+      <h2 style="font-size: 40px; margin-top: 14px">Flat monthly fee. No hourly billing, no surprises.</h2>
+      <p style="font-size: 16.5px; line-height: 1.65; color: #465569; margin-top: 14px">Two plans. Essentials starts at $499 a month and scales with client count; larger agencies get a custom quote.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 20px; margin: 36px auto 0; align-items: stretch; max-width: 920px">
+      <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
+        <div data-reveal style="{{ t.cardStyle }}">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+            <h3 style="font-size: 20px; color: {{ t.ink }}">{{ t.name }}</h3>
+            <sc-if value="{{ t.badge }}" hint-placeholder-val="{{ false }}">
+              <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: #c0392b; color: #ffffff; border-radius: 999px; padding: 5px 11px">{{ t.badge }}</span>
+            </sc-if>
+          </div>
+          <div style="font-size: 13.5px; color: {{ t.muted }}; margin-top: 8px">{{ t.who }}</div>
+          <div style="display: flex; align-items: baseline; gap: 7px; margin-top: 20px">
+            <span class="num" data-count style="font-size: 38px; font-weight: 700; color: {{ t.ink }}">{{ t.price }}</span>
+            <span style="font-size: 14px; color: {{ t.muted }}">{{ t.per }}</span>
+          </div>
+          <div style="height: 1px; background: {{ t.rule }}; margin: 22px 0 18px"></div>
+          <div style="display: flex; flex-direction: column; gap: 11px">
+            <sc-for list="{{ t.items }}" as="i" hint-placeholder-count="5">
+              <div style="display: flex; align-items: flex-start; gap: 10px; flex: 0 0 auto">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="{{ t.check }}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 3px; flex: 0 0 15px"><path d="M20 6 9 17l-5-5"></path></svg>
+                <span style="font-size: 14.5px; line-height: 1.5; color: {{ t.body }}">{{ i }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="flex: 1; min-height: 12px"></div>
+          <a href="#call" style="{{ t.ctaStyle }}">{{ t.cta }}</a>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="security" data-reveal style="max-width: 1180px; margin: 0 auto; padding: 66px 28px 0">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 40px; align-items: start">
+      <div>
+        <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6c7a8c; font-weight: 700">Security and data</span>
+        <h2 style="font-size: 32px; margin-top: 14px">Payroll and client data handled like it matters.</h2>
+        <p style="font-size: 15.5px; line-height: 1.6; color: #465569; margin-top: 12px">We see caregiver pay and client billing every month. That access is limited, logged and removable in one step.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+        <sc-for list="{{ security }}" as="x" hint-placeholder-count="4">
+          <div style="background: #f7f9fc; border: 1px solid #e6eaf1; border-radius: 14px; padding: 20px">
+            <span style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 10px; background: #0c1b31">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" dangerouslySetInnerHTML="{{ x.icon }}"></svg>
+            </span>
+            <div style="font-size: 15.5px; font-weight: 800; margin-top: 14px">{{ x.t }}</div>
+            <div style="font-size: 13.5px; line-height: 1.55; color: #465569; margin-top: 6px">{{ x.b }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" data-reveal style="max-width: 1180px; margin: 0 auto; padding: 66px 28px 0">
+    <div style="background: #f7f9fc; border: 1px solid #e6eaf1; border-radius: 20px; padding: 36px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; align-items: center">
+      <div>
+        <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6c7a8c; font-weight: 700">Who does the work</span>
+        <h2 style="font-size: 30px; margin-top: 14px">A dedicated team that knows your agency, not a rotating queue.</h2>
+        <p style="font-size: 15.5px; line-height: 1.65; color: #465569; margin-top: 14px">HHA Margins was started to give home care owners the finance function large agencies pay a full-time controller for. Every agency gets the same small team each month: a lead accountant, a bookkeeper, a margin analyst and an AR and compliance specialist.</p>
+        <a href="HHA Margins About.dc.html" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; font-size: 14.5px; font-weight: 700; color: #0c1b31; border-bottom: 2px solid #c0392b; padding-bottom: 3px">Meet the team</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="resources" data-reveal style="max-width: 1180px; margin: 0 auto; padding: 66px 28px 0">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap">
+      <div>
+        <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6c7a8c; font-weight: 700">Resources</span>
+        <h2 style="font-size: 32px; margin-top: 14px">Notes for home care owners.</h2>
+      </div>
+      <a href="HHA Margins Resources.dc.html" style="font-size: 14.5px; font-weight: 700; color: #0c1b31; border-bottom: 2px solid #c0392b; padding-bottom: 3px">All articles</a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 18px; margin-top: 26px">
+      <sc-for list="{{ articles }}" as="a" hint-placeholder-count="3">
+        <a href="HHA Margins Resources.dc.html" data-reveal style="display: flex; flex-direction: column; background: #f7f9fc; border: 1px solid #e6eaf1; border-radius: 14px; padding: 24px; color: #0c1b31; transition: transform 0.18s ease, box-shadow 0.18s ease" style-hover="transform: translateY(-3px); box-shadow: 0 16px 36px rgba(12,27,49,0.10); color: #0c1b31">
+          <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #c0392b">{{ a.cat }}</span>
+          <span style="font-size: 18px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.3; margin-top: 12px">{{ a.title }}</span>
+          <span style="font-size: 14px; line-height: 1.55; color: #465569; margin-top: 10px">{{ a.blurb }}</span>
+          <span style="font-size: 12.5px; color: #9aa5b4; margin-top: 16px">{{ a.read }}</span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="faq" style="max-width: 860px; margin: 0 auto; padding: 66px 28px 0">
+    <div data-reveal>
+      <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6c7a8c; font-weight: 700">Questions</span>
+      <h2 style="font-size: 38px; margin-top: 14px">Answers before you get on a call.</h2>
+    </div>
+    <div style="margin-top: 26px; background: #f7f9fc; border: 1px solid #e6eaf1; border-radius: 16px; overflow: hidden">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+        <div style="border-bottom: 1px solid #eceff5">
+          <button type="button" onClick="{{ f.toggle }}" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; text-align: left; background: transparent; border: 0; padding: 20px 24px; cursor: pointer; font-family: inherit; transition: background 0.15s ease" style-hover="background: #eef2f8">
+            <span style="font-size: 16px; font-weight: 700; color: #0c1b31">{{ f.q }}</span>
+            <span style="{{ f.iconStyle }}">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#465569" stroke-width="2.6" stroke-linecap="round"><path d="m6 9 6 6 6-6"></path></svg>
+            </span>
+          </button>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+            <p style="font-size: 15px; line-height: 1.65; color: #465569; padding: 0 24px 22px; animation: fadein 0.25s ease both">{{ f.a }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="call" data-reveal style="max-width: 1180px; margin: 66px auto 0; padding: 0 28px">
+    <div data-pad style="background: #0c1b31; border-radius: 20px; padding: 56px 44px; text-align: center">
+      <h2 style="font-size: 42px; color: #ffffff; max-width: 22ch; margin: 0 auto">Find out what your agency actually earns per client.</h2>
+      <p style="font-size: 16.5px; line-height: 1.6; color: rgba(255,255,255,0.72); margin: 18px auto 0; max-width: 62ch">Send us twelve months of payroll, billing and bank activity. We come back with a margin review by payer and by client, and you keep it whether or not you hire us.</p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 30px">
+        <a href="mailto:hello@hhamargins.com" style="display: inline-flex; align-items: center; gap: 10px; background: #ffffff; color: #0c1b31; border-radius: 12px; padding: 16px 28px; font-size: 15px; font-weight: 700; transition: transform 0.16s ease" style-hover="transform: translateY(-2px); color: #0c1b31">Book a free margin review</a>
+        <a href="tel:+15125550137" style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.28); color: #ffffff; border-radius: 12px; padding: 16px 28px; font-size: 15px; font-weight: 700; transition: border-color 0.16s ease" style-hover="border-color: #ffffff; color: #ffffff">(512) 555-0137</a>
+      </div>
+      <div style="font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 20px">No long-term contract. Thirty days' notice to stop.</div>
+    </div>
+  </section>
+
+  <footer style="border-top: 1px solid #e6eaf1; margin-top: 66px">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 64px 28px 48px; display: flex; flex-wrap: wrap; gap: 48px 72px; align-items: flex-start">
+      <div style="flex: 1 1 260px; max-width: 340px">
+        <div style="display: flex; align-items: center; gap: 11px">
+          <span style="width: 34px; height: 34px; border-radius: 10px; background: #1e3a5f; display: flex; align-items: center; justify-content: center; flex: 0 0 34px">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3.5l2-5 3.5 11 3-6h5.5"></path></svg>
+        </span>
+          <span style="font-weight: 800; font-size: 15.5px; letter-spacing: -0.02em; color: #0c1b31">HHA Margins</span>
+        </div>
+        <p style="font-size: 13.5px; line-height: 1.6; color: #6c7a8c; margin: 12px 0 0; max-width: 30ch">Bookkeeping and CFO reporting for home care agencies. Austin, Texas - serving agencies nationwide.</p>
+        <div style="display: flex; gap: 10px; margin-top: 20px">
+          <a href="https://www.linkedin.com/company/hhamargins" target="_blank" rel="noopener" aria-label="HHA Margins on LinkedIn" style="display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; border: 1px solid #dde2ea; background: #ffffff; transition: border-color 0.16s ease, transform 0.16s ease" style-hover="border-color: #0c1b31; transform: translateY(-2px)"><svg width="17" height="17" viewBox="0 0 24 24" fill="#1e3a5f"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4v11H3zM9.5 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1v5.35h-4v-4.75c0-1.13-.02-2.59-1.58-2.59-1.58 0-1.82 1.23-1.82 2.5v4.84h-4z"></path></svg></a>
+          <a href="https://www.instagram.com/hhamargins" target="_blank" rel="noopener" aria-label="HHA Margins on Instagram" style="display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; border: 1px solid #dde2ea; background: #ffffff; transition: border-color 0.16s ease, transform 0.16s ease" style-hover="border-color: #0c1b31; transform: translateY(-2px)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1e3a5f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="0.6" fill="#1e3a5f"></circle></svg></a>
+        </div>
+      </div>
+      <div style="flex: 2 1 520px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 40px 48px">
+        <div>
+          <div style="font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #9aa5b4; font-weight: 700; line-height: 34px">Services</div>
+          <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 14px">
+            <a href="HHA Margins Services.dc.html" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">Monthly close</a>
+            <a href="HHA Margins Services.dc.html" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">Margin reporting</a>
+            <a href="HHA Margins Services.dc.html" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">AR and denials</a>
+            <a href="HHA Margins Landing.dc.html#calculator" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">Margin calculator</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #9aa5b4; font-weight: 700; line-height: 34px">Company</div>
+          <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 14px">
+            <a href="HHA Margins About.dc.html" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">About</a>
+            <a href="HHA Margins Pricing.dc.html" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">Pricing</a>
+            <a href="HHA Margins Resources.dc.html" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">Resources</a>
+            <a href="HHA Margins Tour.dc.html" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">Product tour</a>
+            <a href="HHA Margins HIPAA.dc.html" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">HIPAA compliance</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #9aa5b4; font-weight: 700; line-height: 34px">Get in touch</div>
+          <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 14px">
+            <a href="mailto:hello@hhamargins.com" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">hello@hhamargins.com</a>
+            <a href="tel:+15125550137" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">(512) 555-0137</a>
+            <a href="HHA Margins Contact.dc.html" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">Book a margin review</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="max-width: 1180px; margin: 0 auto; padding: 0 28px 48px">
+      <div style="border-top: 1px solid #eceff5; padding-top: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: #9aa5b4; font-size: 12.5px">
+        <span>© 2026 HHA Margins. All rights reserved.</span>
+        <span style="display: flex; gap: 18px; flex-wrap: wrap">
+          <a href="HHA Margins Legal.dc.html" style="color: #9aa5b4">Privacy</a>
+          <a href="HHA Margins Legal.dc.html?terms" style="color: #9aa5b4">Terms</a>
+          <a href="HHA Margins HIPAA.dc.html" style="color: #9aa5b4">HIPAA</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { clients: 40, hours: 20, rate: 32, wage: 16, copied: "", open: 0 };
+
+  componentDidMount() {
+    const loadFrame = () => { const f = document.querySelector('iframe[title="HHA Margins live dashboard"]'); if (f && !f.src && f.dataset.src) { f.addEventListener("load", this.fitFrame); f.src = f.dataset.src; this.fitFrame(); } };
+    if (document.readyState === "complete") setTimeout(loadFrame, 300); else window.addEventListener("load", () => setTimeout(loadFrame, 300), { once: true });
+    if (typeof ResizeObserver !== "undefined") this._ro = new ResizeObserver(this.fitFrame);
+    window.addEventListener("resize", this.fitFrame); window.addEventListener("load", this.fitFrame);
+    this._ft = [0, 150, 600, 1500].map(t => setTimeout(this.fitFrame, t));
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const countUp = el => {
+      const orig = el.textContent, m = orig.match(/-?[\d,]*\.?\d+/);
+      if (!m || reduce) return;
+      const raw = m[0], target = parseFloat(raw.replace(/,/g, "")), dec = (raw.split(".")[1] || "").length, commas = raw.includes(",");
+      const t0 = performance.now(), dur = 1300;
+      const step = now => {
+        const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+        let v = (target * e).toFixed(dec);
+        if (commas) v = Number(v).toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+        el.textContent = p < 1 ? orig.replace(raw, v) : orig;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    if (typeof IntersectionObserver !== "undefined") {
+      this._cio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { this._cio.unobserve(e.target); countUp(e.target); } }), { threshold: 0.5 });
+      const hook = () => document.querySelectorAll("[data-count]:not([data-counted])").forEach(el => { el.setAttribute("data-counted", ""); this._cio.observe(el); });
+      this._ft.push(setTimeout(hook, 50), setTimeout(hook, 800));
+    }
+    const els = Array.from(document.querySelectorAll("[data-reveal]"));
+    if (!els.length) return;
+    const show = el => { el.style.animation = "rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both"; el.style.opacity = ""; el.dataset.shown = "1"; };
+    els.forEach(el => { el.style.opacity = "0"; });
+    this._pending = els;
+    this._check = () => {
+      const h = window.innerHeight || 800;
+      this._pending = this._pending.filter(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < h * 0.92 && r.bottom > 0) { show(el); return false; }
+        return true;
+      });
+      if (!this._pending.length) this._teardown();
+    };
+    this._teardown = () => {
+      window.removeEventListener("scroll", this._check, true);
+      window.removeEventListener("resize", this._check);
+      clearTimeout(this._safety);
+    };
+    window.addEventListener("scroll", this._check, true);
+    window.addEventListener("resize", this._check);
+    this._check();
+    // safety net: nothing may stay hidden if scroll events never reach us
+    this._safety = setTimeout(() => { els.forEach(el => { if (!el.dataset.shown) show(el); }); this._teardown(); }, 2500);
+  }
+  componentWillUnmount() { if (this._teardown) this._teardown(); if (this._ro) this._ro.disconnect(); if (this._cio) this._cio.disconnect(); window.removeEventListener("resize", this.fitFrame); window.removeEventListener("load", this.fitFrame); (this._ft || []).forEach(clearTimeout); }
+  componentDidUpdate() { this.fitFrame(); }
+  fitFrame = () => {
+    const f = document.querySelector('iframe[title="HHA Margins live dashboard"]');
+    if (!f || !f.parentElement) return;
+    const w = f.parentElement.clientWidth;
+    if (w > 0) f.style.transform = "scale(" + (w / 1440) + ")";
+    if (this._ro && this._obs !== f.parentElement) { this._ro.disconnect(); this._ro.observe(f.parentElement); this._obs = f.parentElement; }
+  };
+
+  extraVals() {
+    const st = this.state;
+    const ico = d => ({ __html: d });
+    const usd = n => (n < 0 ? "-$" : "$") + Math.abs(Math.round(n)).toLocaleString("en-US");
+    const hrs = st.clients * st.hours * 52;
+    const rev = hrs * st.rate, labor = hrs * st.wage * 1.16, oh = rev * 0.2, net = rev - labor - oh;
+    const pct = v => (v / rev * 100).toFixed(1) + "%";
+    const slider = (key, label, min, max, step, fmt) => ({ label, min, max, step, value: st[key], display: fmt(st[key]), minLabel: fmt(min), maxLabel: fmt(max), fill: "--p:" + ((st[key] - min) / (max - min) * 100).toFixed(1) + "%", onChange: e => this.setState({ [key]: Number(e.target.value) }) });
+    const seg = (label, v, color) => ({ label: label + " " + pct(v), style: `width:${Math.max(0, v / rev * 100)}%;background:${color};transition:width 0.35s ease`, dot: `width:9px;height:9px;border-radius:3px;background:${color}` });
+    const copy = (key, val) => () => { try { navigator.clipboard && navigator.clipboard.writeText(val); } catch (e) {} this.setState({ copied: key }); clearTimeout(this._cp); this._cp = setTimeout(() => this.setState({ copied: "" }), 1600); };
+    const cred = (key, label, value) => { const on = st.copied === key; return { label, value, copy: copy(key, value), btn: on ? "Copied" : "Copy",
+      btnStyle: `flex:0 0 auto;border:1px solid ${on ? "#1e7a55" : "#dde2ea"};background:${on ? "#e6f3ec" : "#ffffff"};color:${on ? "#1e7a55" : "#0c1b31"};border-radius:8px;padding:8px 14px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.15s ease` }; };
+    const page = (i, kicker, title, lines) => ({ kicker, title, lines,
+      style: `position:absolute;width:54%;height:74%;left:${i * 23}%;top:${i * 13}%;box-sizing:border-box;background:#ffffff;border:1px solid #e6eaf1;border-radius:12px;padding:18px;box-shadow:0 18px 40px rgba(12,27,49,${0.08 + i * 0.04});transform:rotate(${(i - 1) * 3}deg);transition:transform 0.3s ease;animation:drift ${6 + i}s ease-in-out ${i * 0.4}s infinite` });
+    return {
+      sliders: [
+        slider("clients", "Active clients", 10, 150, 1, v => v),
+        slider("hours", "Hours per client, weekly", 5, 50, 1, v => v + " h"),
+        slider("rate", "Average bill rate", 20, 45, 0.5, v => "$" + v.toFixed(2)),
+        slider("wage", "Average caregiver wage", 11, 25, 0.25, v => "$" + v.toFixed(2))
+      ],
+      calcOut: [
+        { label: "Annual revenue", value: usd(rev), color: "#ffffff" },
+        { label: "Loaded labor", value: usd(labor), color: "#ffffff" },
+        { label: "Net income", value: usd(net), color: net < 0 ? "#f0a595" : "#7fd1a8" },
+        { label: "Net margin", value: pct(net), color: net < 0 ? "#f0a595" : "#7fd1a8" }
+      ],
+      calcBar: [seg("Labor", labor, "#4a9eff"), seg("Overhead", oh, "#9aa5b4"), seg("Net", Math.max(net, 0), "#7fd1a8")],
+      calcNote: net < 0 ? "At these inputs the agency loses money on every hour. A bill-rate or wage-ratio review usually comes first."
+        : "Every dollar of bill rate adds " + usd(hrs) + " a year. Every dollar of overtime premium you avoid is worth about " + usd(hrs * 0.05) + ".",
+      demoCreds: [cred("u", "Demo email", "demo@hhamargins.com"), cred("p", "Password", "homecare2026")],
+      reportPages: [
+        page(0, "Page 1", "Profit and loss", [{ k: "Revenue", v: "$99,400" }, { k: "Cost of services", v: "$68,600" }, { k: "Gross profit", v: "$30,800" }, { k: "Operating expenses", v: "$21,700" }, { k: "Net income", v: "$9,100" }]),
+        page(1, "Page 4", "Margin by payer", [{ k: "Private pay", v: "18.4%" }, { k: "Private insurance", v: "11.2%" }, { k: "Medicare", v: "7.9%" }, { k: "Medicaid Waiver", v: "3.1%" }, { k: "Blended", v: "9.1%" }]),
+        page(2, "Page 2", "What changed this month", [{ k: "Overtime share", v: "4.3%" }, { k: "Days to pay", v: "33.5" }, { k: "Denials", v: "2.8%" }, { k: "Cash on hand", v: "$78,900" }, { k: "Action items", v: "3" }])
+      ],
+      packItems: [{ n: "01", t: "P&L, balance sheet, owner's equity, cash flow" }, { n: "02", t: "Margin by payer, client and caregiver" }, { n: "03", t: "AR aging, denials and days to pay" }, { n: "04", t: "Payroll tie-out and overtime" }, { n: "05", t: "One-page note: what moved and what to do" }],
+      beforeAfter: [
+        { title: "Without a home care finance team", box: "background:#f7f9fc;border:1px solid #e6eaf1;border-radius:16px;padding:28px", ink: "#0c1b31", body: "#465569", day: "#98301f", line: "#e6eaf1", dot: "#c0392b", halo: "#fbe7e3",
+          steps: [{ d: "Day 1-20", t: "Bank feeds pile up. Payroll and billing live in separate systems." }, { d: "Day 35", t: "Bookkeeper sends a P&L with no payer or client split." }, { d: "Day 50", t: "Denied claims found while chasing a cash shortfall." }, { d: "Year end", t: "The accountant tells you what the margin was, twelve months late." }] },
+        { title: "With HHA Margins", box: "background:#0c1b31;border:1px solid #0c1b31;border-radius:16px;padding:28px", ink: "#ffffff", body: "rgba(255,255,255,0.8)", day: "#7fd1a8", line: "rgba(255,255,255,0.14)", dot: "#1e7a55", halo: "rgba(30,122,85,0.3)",
+          steps: [{ d: "Day 1-5", t: "Payroll, billing and remittances reconciled against the bank." }, { d: "Day 10", t: "Books closed. Dashboard and monthly pack updated." }, { d: "Day 12", t: "Thirty-minute call on margin by payer and the three things to act on." }, { d: "Every day", t: "Aging claims and expiring credentials flagged before they cost money." }] }
+      ],
+      security: [
+        { t: "Read-only access", b: "We connect to bank, payroll and EVV with view-only roles wherever the system allows.", icon: ico('<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>') },
+        { t: "Encrypted at rest", b: "Files and the dashboard live in encrypted storage with multi-factor sign-in.", icon: ico('<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>') },
+        { t: "HIPAA-aware handling", b: "We work from billing totals, not clinical records, and sign a BAA where needed.", icon: ico('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>') },
+        { t: "Yours to take back", b: "Revoke access in one step. Every file we build stays in your accounts.", icon: ico('<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/>') }
+      ],
+      articles: [
+        { cat: "Payers", title: "What Medicaid Waiver really pays after burden and lag", blurb: "A worked example of contribution per hour across four payer types.", read: "6 min read" },
+        { cat: "Payroll", title: "The third pay period: planning for the two months that hurt", blurb: "How to see the cash squeeze coming and size a line of credit for it.", read: "4 min read" },
+        { cat: "Compliance", title: "Expired credentials are a revenue problem", blurb: "Why certification tracking belongs in the finance review, not only HR.", read: "5 min read" }
+      ],
+      fitCards: [
+        { title: "A good fit if", sub: "Most of our clients tick three or more", ink: "#1e7a55", rule: "#e3eee8", icon: ico('<path d="M20 6 9 17l-5-5"/>'),
+          boxStyle: "background:linear-gradient(180deg,#eef7f2 0,#ffffff 128px);border:1px solid #d5e9de;border-radius:16px;padding:28px",
+          badgeStyle: "display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:#1e7a55;flex:0 0 44px",
+          dotStyle: "display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:24px;background:#1e7a55;flex:0 0 24px",
+          items: ["You run 15 or more clients and payroll is your largest cost", "You bill Medicaid Waiver, private pay, Medicare or private insurance", "You want profitability by payer and client, not just a tax return", "You are planning to add a location, a payer or a service line"] },
+        { title: "Probably not if", sub: "We will tell you on the first call", ink: "#c0392b", rule: "#f3e4e0", icon: ico('<path d="M18 6 6 18M6 6l12 12"/>'),
+          boxStyle: "background:linear-gradient(180deg,#fcf1ee 0,#ffffff 128px);border:1px solid #f1d9d3;border-radius:16px;padding:28px",
+          badgeStyle: "display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:#c0392b;flex:0 0 44px",
+          dotStyle: "display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:24px;background:#c0392b;flex:0 0 24px",
+          items: ["You need a one-off tax filing and nothing else", "You are pre-revenue and have not taken a first client", "You want the cheapest possible data entry, with no review"] }
+      ]
+    };
+  }
+  renderVals() {
+    const REV = [58, 61, 66, 70, 75, 80, 83, 87, 90, 94, 96, 99];
+    const MG = [-1.8, -0.4, 1.5, 3.2, 4.6, 5.6, 6.4, 7.0, 7.6, 8.2, 8.7, 9.1];
+    const max = Math.max(...REV);
+    const heroBars = REV.map((v, i) => {
+      const h = Math.round(v / max * 76) + 6;
+      return { x: 6 + i * 26, y: 104 - h, h, fill: i > 8 ? "#0c1b31" : "#9aa5b4" };
+    });
+    const heroLine = MG.map((m, i) => `${13 + i * 26},${(96 - (m + 2) / 11.5 * 74).toFixed(1)}`).join(" ");
+
+    const icon = d => ({ __html: d });
+    const faqData = [
+      ["Do you replace my current bookkeeper?", "Usually yes. Most agencies move the whole function to us - day-to-day bookkeeping, monthly close and reporting - so nothing falls between two parties. If you have an internal clerk doing intake and billing, we work alongside them and own the close."],
+      ["Which software do you work in?", "We work in your existing stack. Scheduling and EVV, your payroll processor, your accounting file. We do not force a migration in month one; if something is genuinely holding the books back, we will tell you and price the change separately."],
+      ["How long until I see the dashboard?", "First close and dashboard within thirty days of getting access. The twelve-month history behind it is rebuilt during onboarding so you start with trend, not a blank slate."],
+      ["Can you help with claim denials and AR?", "We track denial rate and days to pay by payer, flag claims aging past the bucket where they usually get written off, and reconcile remittances back to what was billed. Appeals stay with your billing team; we make sure nothing sits unnoticed."],
+      ["What if my books are a mess right now?", "That is the normal starting point. Cleanup is quoted once, up front, before the monthly fee begins - no open-ended hourly work."]
+    ];
+
+    return {
+      fitFrame: this.fitFrame,
+      heroStats: [
+        { label: "Revenue, FY", value: "$994,000", color: "#0c1b31" },
+        { label: "Net margin", value: "5.9%", color: "#1e7a55" },
+        { label: "Cash on hand", value: "$78,900", color: "#0c1b31" },
+        { label: "AR outstanding", value: "$91,200", color: "#98301f" }
+      ],
+      heroBars, heroLine,
+      pains: [
+        { tag: "01", title: "Revenue grows, cash does not", body: "You add clients every month and the bank balance stays flat. Usually it is payer lag, overtime creep or a third pay period nobody planned for - all visible a month before it hurts." },
+        { tag: "02", title: "No idea which payer is worth it", body: "Medicaid Waiver pays less and pays slower than private pay, but by how much after burden, mileage and denials? Without that number, you cannot choose which referrals to chase." },
+        { tag: "03", title: "Compliance lapses become write-offs", body: "An expired certification or a lapsed authorization turns delivered visits into unbillable ones. Nobody finds out until the claim comes back." }
+      ],
+      services: [
+        { title: "Monthly close by the 10th", body: "Full close on your ledgers: P&L, balance sheet, owner's equity and cash flow, tied out and reconciled to the bank, with a written note on what moved.", icon: icon('<path d="M3 5h18v16H3zM3 10h18M8 3v4M16 3v4"/>') },
+        { title: "Margin by payer and client", body: "Revenue, fully-loaded labor and contribution per payer, per client and per caregiver, so pricing and staffing decisions rest on numbers.", icon: icon('<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>') },
+        { title: "AR, denials and collections", body: "Aging by payer, DSO, denial rate and remittance reconciliation. We tell you which claims are about to age out of recovery.", icon: icon('<path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>') },
+        { title: "Payroll and overtime control", body: "Fully-loaded cost per caregiver, overtime as a share of payroll, the payroll-to-GL tie-out, and the months where a third pay period squeezes cash.", icon: icon('<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.87"/>') },
+        { title: "Cash forecasting", body: "Ninety-day cash view across operating and payroll accounts, line-of-credit utilization and interest, so a draw is a decision instead of a scramble.", icon: icon('<path d="M3 17l6-6 4 4 7-7M14 8h7v7"/>') },
+        { title: "Compliance-linked revenue risk", body: "Certification and authorization expiry tracked against active clients, because a lapse is not a compliance problem, it is a revenue problem.", icon: icon('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>') }
+      ],
+      dashPoints: [
+        "Twelve-month trend on every figure, not just this month",
+        "Client and caregiver profitability ranked, worst to best",
+        "Aging, denial rate and days-to-pay split by payer",
+        "Every roster, register and ledger searchable underneath the summary"
+      ],
+      dashCards: [
+        { label: "License compliance", value: "75.2%", color: "#f0a595", sub: "11 expired, 9 expiring soon" },
+        { label: "Overtime share", value: "4.3%", color: "#ffffff", sub: "Target 8.0% or less" },
+        { label: "Days to pay", value: "33.5", color: "#ffffff", sub: "Medicaid 38.6 · Private pay 17.4" }
+      ],
+      steps: [
+        { n: "01", title: "Margin review", body: "We take twelve months of payroll, billing and bank activity and rebuild your real margin by payer and client. Free, and yours to keep." },
+        { n: "02", title: "Cleanup and onboarding", body: "Books brought current, chart of accounts rebuilt for home care, history loaded into the dashboard. Quoted once, up front." },
+        { n: "03", title: "Monthly rhythm", body: "Close by the 10th, dashboard updated, thirty-minute review call. You spend the call on decisions, not on finding the numbers." }
+      ],
+      proof: [
+        { value: "100%", label: "Home care agencies - we work in no other industry" },
+        { value: "10th", label: "Books closed and dashboard updated by this day, every month" },
+        { value: "4", label: "Payer types modelled: Waiver, private pay, Medicare, private insurance" },
+        { value: "30 days", label: "From first access to your first full close" }
+      ],
+      tiers: [
+        {
+          name: "Essentials", who: "Single-location agencies", price: "$499", per: "/ month, starting", badge: "Most agencies",
+          items: ["Monthly close and reconciliation by the 10th", "P&L, balance sheet, owner's equity and cash flow", "Live dashboard, updated weekly", "Margin by payer and client", "AR aging, denials and days to pay", "Payroll tie-out and overtime tracking", "Monthly thirty-minute review call"],
+          cardStyle: "background:#0c1b31;border:1px solid #0c1b31;border-radius:16px;padding:30px;display:flex;flex-direction:column;box-shadow:0 24px 54px rgba(12,27,49,0.24)",
+          ink: "#ffffff", muted: "rgba(255,255,255,0.6)", body: "rgba(255,255,255,0.86)", rule: "rgba(255,255,255,0.14)", check: "#4a9eff",
+          cta: "Book a margin review", ctaStyle: "margin-top:24px;display:block;text-align:center;background:#ffffff;border-radius:12px;padding:14px;font-size:14.5px;font-weight:700;color:#0c1b31"
+        },
+        {
+          name: "Custom", who: "Larger or multi-location agencies", price: "Let's talk", per: "", badge: "",
+          items: ["Everything in Essentials", "Dashboard updated daily", "Per-location P&L and consolidation", "Caregiver-level profitability", "Ninety-day cash forecast", "Budget versus actual", "Board and lender reporting pack", "Priority support"],
+          cardStyle: "background:#f7f9fc;border:1px solid #e6eaf1;border-radius:16px;padding:30px;display:flex;flex-direction:column",
+          ink: "#0c1b31", muted: "#6c7a8c", body: "#465569", rule: "#eceff5", check: "#1e7a55",
+          cta: "Talk to us", ctaStyle: "margin-top:24px;display:block;text-align:center;border:1px solid #dde2ea;background:#ffffff;border-radius:12px;padding:14px;font-size:14.5px;font-weight:700;color:#0c1b31"
+        }
+      ],
+      stars: [1, 2, 3, 4, 5],
+      loopQuotes: (() => { const q = [
+        ["We found out one payer was costing us money on every visit once travel and burden were loaded in. We renegotiated within the quarter.", "Maria G.", "Founder"],
+        ["Close used to land six weeks late. Now the dashboard is updated by the 10th and our lender stopped asking for interim statements.", "D. Okafor", "Founder and administrator"],
+        ["The certification tracking paid for the service. We caught two lapses before the visits were billed and denied.", "Priya S.", "Founder"],
+        ["I finally know what a caregiver costs me per hour, all in. That changed how I price private pay.", "James R.", "Co-founder"],
+        ["Overtime was at eleven percent and nobody noticed. Three months later it is under six.", "L. Hernandez", "Founder"],
+        ["The monthly call is thirty minutes and I leave with three things to do. That is all I wanted from an accountant.", "Angela T.", "Founder and owner"]
+      ].map(([text, name, role]) => ({ text, name, role, initials: name.replace(/[^A-Za-z ]/g, "").split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase() })); return q.concat(q); })(),
+      footerCols: [
+        { title: "Services", links: [
+          { label: "Monthly close", href: "HHA Margins Services.dc.html" },
+          { label: "Margin reporting", href: "HHA Margins Services.dc.html" },
+          { label: "AR and denials", href: "HHA Margins Services.dc.html" },
+          { label: "Margin calculator", href: "#calculator" }] },
+        { title: "Company", links: [
+          { label: "About", href: "HHA Margins About.dc.html" },
+          { label: "Pricing", href: "HHA Margins Pricing.dc.html" },
+          { label: "Resources", href: "HHA Margins Resources.dc.html" },
+          { label: "Live demo", href: "#demo" },
+          { label: "Contact", href: "HHA Margins Contact.dc.html" }] },
+        { title: "Get in touch", links: [
+          { label: "hello@hhamargins.com", href: "mailto:hello@hhamargins.com" },
+          { label: "(512) 555-0137", href: "tel:+15125550137" },
+          { label: "Book a margin review", href: "HHA Margins Contact.dc.html" }] }
+      ],
+...this.extraVals(),
+      fitYes: [
+        "You run 15 or more clients and payroll is your largest cost",
+        "You bill Medicaid Waiver, private pay, Medicare or private insurance",
+        "You want profitability by payer and client, not just a tax return",
+        "You are planning to add a location, a payer or a service line"
+      ],
+      fitNo: [
+        "You need a one-off tax filing and nothing else",
+        "You are pre-revenue and have not taken a first client",
+        "You want the cheapest possible data entry, with no review"
+      ],
+      quotes: [
+        { text: "We found out one payer was costing us money on every visit once travel and burden were loaded in. We renegotiated within the quarter.", who: "Owner, 48-client agency" },
+        { text: "Close used to land six weeks late. Now the dashboard is updated by the 10th and our lender stopped asking for interim statements.", who: "Administrator, two locations" },
+        { text: "The certification tracking alone paid for the service - we caught two lapses before the visits were billed and denied.", who: "Director of operations" }
+      ],
+      tools: ["CareBridge EVV", "Sandata", "HHAeXchange", "QuickBooks", "Gusto", "ADP", "Paychex"],
+      faqs: faqData.map(([q, a], i) => ({
+        q, a, open: this.state.open === i,
+        toggle: () => this.setState(s => ({ open: s.open === i ? -1 : i })),
+        iconStyle: `display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;background:#f4f6fa;flex:0 0 26px;transition:transform 0.2s ease;transform:rotate(${this.state.open === i ? 180 : 0}deg)`
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

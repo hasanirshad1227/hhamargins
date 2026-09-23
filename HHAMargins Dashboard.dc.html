@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231e3a5f'/%3E%3Cpath d='M12 32h9.5l5.5-13 9.5 29 8-16h7.5' fill='none' stroke='%23ffffff' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#0c1b31">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
+  <link rel="stylesheet" href="_ds/modernist-b1a68593-4254-4d77-87b6-de9e4b5b5a98/styles.css">
+  <script src="_ds/modernist-b1a68593-4254-4d77-87b6-de9e4b5b5a98/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; background: #f4f6fa }
+    .hm-mbar, .hm-scrim { display: none }
+    @media (max-width: 900px) {
+      .hm-mbar { display: flex }
+      .hm-side { position: fixed !important; top: 0 !important; right: 0; bottom: 0; z-index: 120; width: min(300px, 86vw) !important; height: 100vh !important; transform: translateX(105%); transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1); box-shadow: -24px 0 60px rgba(4,12,24,0.35); animation: none !important }
+      .hm-side.hm-open { transform: none }
+      .hm-scrim.hm-open { display: block }
+      .hm-pad { padding-left: 16px !important; padding-right: 16px !important }
+      .hm-main h1 { font-size: 28px !important }
+      .hm-main [style*="grid-template-columns"] { grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)) !important }
+      .hm-main table { font-size: 13px }
+    }
+    a { color: #98301f } a:hover { color: #c0392b }
+    body { font-size: 14.5px }
+    .num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' }
+    .fig { font-family: 'Archivo', sans-serif; font-variant-numeric: tabular-nums; letter-spacing: -0.02em }
+    .mono { font-family: 'Archivo', sans-serif }
+    h1, h2, h3, th { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 800; letter-spacing: -0.025em }
+    body { font-weight: 500 }
+    * { scrollbar-width: thin; scrollbar-color: #dde2ea transparent }
+    ::-webkit-scrollbar { width: 9px; height: 9px }
+    ::-webkit-scrollbar-track { background: transparent }
+    ::-webkit-scrollbar-thumb { background: #dde2ea; border-radius: 12px; border: 2px solid transparent; background-clip: content-box }
+    ::-webkit-scrollbar-thumb:hover { background: #8b95a5; background-clip: content-box }
+    ::-webkit-scrollbar-corner { background: transparent }
+    aside::-webkit-scrollbar-thumb { background: #6c7a8c; background-clip: content-box }
+    select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23605d5d' stroke-width='2.4' stroke-linecap='round'><path d='m6 9 6 6 6-6'/></svg>"); background-repeat: no-repeat; background-position: right center; padding-right: 17px; cursor: pointer }
+    select:focus-visible, input:focus-visible, button:focus-visible { outline: 2px solid #c0392b; outline-offset: 2px }
+    option { color: #0c1b31; background: #ffffff }
+    h1, h3, .nosel { user-select: none }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
+    @keyframes fadein { from { opacity: 0 } to { opacity: 1 } }
+    @keyframes splashout { to { opacity: 0; visibility: hidden } }
+    @keyframes sweep { from { transform: translateX(-100%) } to { transform: translateX(0) } }
+    @keyframes pulsedot { 0%, 100% { opacity: 1 } 50% { opacity: 0.35 } }
+    @keyframes grow { from { transform: scaleY(0) } to { transform: scaleY(1) } }
+    @keyframes draw { from { stroke-dashoffset: 2400 } to { stroke-dashoffset: 0 } }
+    @keyframes wipe { from { clip-path: inset(0 100% 0 0) } to { clip-path: inset(0 0 0 0) } }
+    @keyframes popin { from { opacity: 0; transform: scale(0.4) } to { opacity: 1; transform: scale(1) } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important } }
+  </style>
+</helmet>
+
+<div style="display: flex; min-height: 100vh; background: #f4f6fa; color: #0c1b31; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 14.5px">
+
+  <sc-if value="{{ locked }}" hint-placeholder-val="{{ true }}">
+    <div style="position: fixed; inset: 0; z-index: 80; background: #0c1b31; display: flex; align-items: center; justify-content: center; padding: 32px">
+      <div style="width: min(380px, 100%); box-sizing: border-box; background: #ffffff; border-radius: 16px; padding: 34px 34px 30px; box-shadow: 0 24px 60px rgba(4, 12, 24, 0.45); animation: fadein 0.35s ease both">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <span style="width: 40px; height: 40px; border-radius: 11px; background: #1e3a5f; display: flex; align-items: center; justify-content: center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3.5l2-5 3.5 11 3-6h5.5"></path></svg>
+          </span>
+          <div>
+            <div style="font-weight: 700; font-size: 14.5px; color: #0c1b31">Meridian Home Care Services</div>
+            <div style="font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: #9aa5b4; margin-top: 3px">HHA Margins</div>
+          </div>
+        </div>
+        <h2 style="font-size: 23px; margin: 26px 0 6px">Sign in</h2>
+        <div style="font-size: 13.5px; color: #6c7a8c; margin-bottom: 22px">Finance workspace for the 2025 fiscal year.</div>
+        <label style="display: block; margin-bottom: 14px">
+          <span style="display: block; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #6c7a8c; font-weight: 700; margin-bottom: 7px">User name</span>
+          <input type="text" value="{{ user }}" onChange="{{ onUser }}" placeholder="dana.whitfield" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 14px; padding: 11px 14px; border: 1px solid #dde2ea; border-radius: 10px; background: #ffffff; color: #0c1b31; outline: none">
+        </label>
+        <label style="display: block; margin-bottom: 22px">
+          <span style="display: block; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #6c7a8c; font-weight: 700; margin-bottom: 7px">Password</span>
+          <input type="password" value="{{ pass }}" onChange="{{ onPass }}" placeholder="••••••••" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 14px; padding: 11px 14px; border: 1px solid #dde2ea; border-radius: 10px; background: #ffffff; color: #0c1b31; outline: none">
+        </label>
+        <button type="button" onClick="{{ signIn }}" style="width: 100%; border: 0; border-radius: 10px; padding: 13px; background: #0c1b31; color: #ffffff; font-family: inherit; font-size: 14.5px; font-weight: 700; cursor: pointer; transition: background 0.15s ease" style-hover="background: #1d2b40">Sign in</button>
+        <div style="margin-top: 16px; text-align: center; font-size: 12.5px">
+          <a href="#" style="color: #6c7a8c; text-decoration: none; white-space: nowrap">Forgot password</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ booting }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; z-index: 90; background: #0c1b31; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; animation: splashout 0.3s ease 0.45s both">
+      <div style="display: flex; align-items: center; gap: 14px; animation: rise 0.5s ease both">
+        <span style="width: 46px; height: 46px; border-radius: 12px; background: #1e3a5f; display: flex; align-items: center; justify-content: center">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3.5l2-5 3.5 11 3-6h5.5"></path></svg>
+        </span>
+        <div style="text-align: left">
+          <div style="color: #ffffff; font-weight: 600; font-size: 16px">Meridian Home Care Services</div>
+          <div style="color: rgba(255,255,255,0.5); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; margin-top: 4px">HHA Margins</div>
+        </div>
+      </div>
+      <div style="width: 220px; height: 3px; background: rgba(255,255,255,0.14); border-radius: 3px; overflow: hidden">
+        <div style="height: 100%; background: #4a9eff; animation: sweep 0.6s cubic-bezier(0.4, 0, 0.2, 1) both"></div>
+      </div>
+      <div style="color: rgba(255,255,255,0.5); font-size: 12.5px; animation: fadein 0.3s ease 0.1s both">Reconciling twelve months of ledgers…</div>
+    </div>
+  </sc-if>
+
+
+  <aside class="sc hm-side {{ menuCls }}" style="animation: fadein 0.5s ease both; width: 258px; flex: 0 0 258px; background: #0c1b31; color: #ffffff; position: sticky; top: 0; align-self: flex-start; height: 100vh; overflow-y: auto; display: flex; flex-direction: column">
+    <div style="display: flex; align-items: center; gap: 13px; padding: 20px 18px 18px">
+      <span style="width: 42px; height: 42px; flex: 0 0 42px; border-radius: 12px; background: #1e3a5f; display: flex; align-items: center; justify-content: center">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3.5l2-5 3.5 11 3-6h5.5"></path></svg>
+      </span>
+      <div>
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 14.5px; line-height: 1.25">Meridian Home Care Services</div>
+        <div style="font-size: 9.5px; letter-spacing: 0.17em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-top: 4px">HHA Margins</div>
+      </div>
+      <button type="button" class="hm-mbar" onClick="{{ closeMenu }}" aria-label="Close menu" style="margin-left: auto; width: 36px; height: 36px; flex: 0 0 36px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: transparent; align-items: center; justify-content: center; cursor: pointer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+      </button>
+    </div>
+
+    <nav style="padding: 4px 12px 16px; display: flex; flex-direction: column; flex: 1">
+      <sc-for list="{{ navGroups }}" as="g" hint-placeholder-count="4">
+        <div style="padding: 16px 10px 8px; font-size: 9.5px; letter-spacing: 0.17em; text-transform: uppercase; color: rgba(255,255,255,0.42)">{{ g.label }}</div>
+        <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="5">
+          <button type="button" onClick="{{ it.go }}" style="{{ it.style }}" style-hover="background: rgba(255,255,255,0.08)">
+            <span style="{{ it.dotStyle }}"></span>
+            <span>{{ it.label }}</span>
+          </button>
+        </sc-for>
+      </sc-for>
+    </nav>
+
+    <div style="margin: 0 14px 18px; padding: 14px 16px; background: #1d2b40; border-radius: 12px">
+      <div style="font-size: 12px; color: rgba(255,255,255,0.62)">Reconciled through</div>
+      <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px">
+        <span style="width: 7px; height: 7px; border-radius: 12px; background: #c0392b"></span>
+        <span style="font-size: 15px; font-weight: 600">Dec 31, 2025</span>
+      </div>
+    </div>
+  </aside>
+
+  <div class="hm-scrim {{ menuCls }}" onClick="{{ closeMenu }}" style="position: fixed; inset: 0; z-index: 110; background: rgba(4,12,24,0.45)"></div>
+
+  <main class="hm-main" style="flex: 1; min-width: 0">
+    <div class="hm-mbar" style="position: sticky; top: 0; z-index: 60; background: #0c1b31; color: #ffffff; padding: 12px 16px; align-items: center; justify-content: space-between; gap: 12px">
+      <div style="display: flex; align-items: center; gap: 11px; min-width: 0">
+        <span style="width: 36px; height: 36px; flex: 0 0 36px; border-radius: 10px; background: #1e3a5f; display: flex; align-items: center; justify-content: center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3.5l2-5 3.5 11 3-6h5.5"></path></svg>
+        </span>
+        <div style="min-width: 0">
+          <div style="font-weight: 700; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Meridian Home Care Services</div>
+          <div style="font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 2px">{{ title }}</div>
+        </div>
+      </div>
+      <button type="button" onClick="{{ openMenu }}" aria-label="Open menu" style="flex: 0 0 44px; width: 44px; height: 44px; border-radius: 11px; border: 1px solid rgba(255,255,255,0.2); background: #1d2b40; display: flex; align-items: center; justify-content: center; cursor: pointer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+      </button>
+    </div>
+    <div class="hm-pad" style="position: relative; z-index: 50; background: #ffffff; padding: 22px 36px 26px; border-bottom: 1px solid #dde2ea; animation: rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) both">
+      <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap">
+        <div>
+          <div style="font-size: 10px; letter-spacing: 0.17em; text-transform: uppercase; color: #6c7a8c">{{ crumb }}</div>
+          <h1 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 40px; letter-spacing: -0.03em; margin: 10px 0 0">{{ title }}</h1>
+          <div style="font-size: 15px; color: #465569; margin-top: 10px; max-width: 86ch; text-wrap: pretty">{{ blurb }}</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+          <div class="nosel" style="position: relative">
+            <button type="button" onClick="{{ periodMenu.toggle }}" style="display: flex; align-items: center; gap: 10px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06); border-radius: 12px; padding: 10px 18px; background: #ffffff; cursor: pointer; font-family: inherit; white-space: nowrap" style-hover="border-color: #9aa5b4">
+              <span style="font-size: 13px; color: #6c7a8c">Period</span>
+              <span style="font-weight: 700; font-size: 14px; color: #0c1b31; white-space: nowrap">{{ periodMenu.value }}</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6c7a8c" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"></path></svg>
+            </button>
+            <sc-if value="{{ periodMenu.open }}" hint-placeholder-val="{{ false }}">
+              <div onClick="{{ periodMenu.close }}" style="position: fixed; inset: 0; z-index: 30"></div>
+              <div style="position: absolute; top: calc(100% + 8px); right: 0; min-width: 210px; background: #ffffff; border: 1px solid #e6eaf1; border-radius: 12px; box-shadow: 0 14px 34px rgba(12,27,49,0.16); padding: 6px; z-index: 40">
+                <sc-for list="{{ periodMenu.items }}" as="o" hint-placeholder-count="5">
+                  <button type="button" onClick="{{ o.pick }}" style="{{ o.style }}" style-hover="background: #f4f6fa">{{ o.label }}</button>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+          <button type="button" onClick="{{ goAlerts }}" style="display: flex; align-items: center; gap: 10px; border: 1px solid #f4d5cd; background: #fbece8; border-radius: 12px; padding: 10px 18px; cursor: pointer; font-family: inherit" style-hover="background: #f4d5cd">
+            <span style="width: 7px; height: 7px; border-radius: 12px; background: #c0392b"></span>
+            <span style="font-weight: 700; font-size: 14px; color: #98301f; white-space: nowrap">11 need attention</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="hm-pad" style="padding: 26px 36px 80px; display: flex; flex-direction: column; gap: 22px; animation: rise 0.4s cubic-bezier(0.22, 1, 0.36, 1) both" key="{{ screenKey }}">
+
+      <sc-if value="{{ isOverview }}" hint-placeholder-val="{{ true }}">
+        <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); gap: 18px">
+          <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+            <div style="background: #ffffff; border-radius: 12px; padding: 24px 26px 22px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06); transition: box-shadow 0.18s ease, transform 0.18s ease" style-hover="box-shadow: 0 10px 26px rgba(12,27,49,0.10); transform: translateY(-2px)">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 22px">
+                <div style="font-size: 10.5px; letter-spacing: 0.15em; text-transform: uppercase; color: #6c7a8c; font-weight: 600">{{ k.label }}</div>
+                <span class="num" style="{{ k.chipStyle }}">{{ k.chip }}</span>
+              </div>
+              <div class="num" style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 34px; letter-spacing: -0.03em; margin-top: 12px; color: {{ k.color }}">{{ k.value }}</div>
+              <div style="font-size: 13.5px; color: #465569; margin-top: 10px">{{ k.sub }}</div>
+              <div style="border-top: 1px solid #eceff5; margin-top: 16px; padding-top: 12px; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px">
+                <span style="font-size: 12.5px; color: #6c7a8c">{{ k.foot }}</span>
+                <svg viewBox="0 0 70 22" width="70" height="22"><polyline points="{{ k.spark }}" fill="none" stroke="#9aa5b4" stroke-width="1.8" stroke-linejoin="round" style="stroke-dasharray: 2400; animation: draw 1.2s ease 0.4s both"></polyline></svg>
+              </div>
+            </div>
+          </sc-for>
+        </section>
+
+        <section style="display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr); gap: 18px; align-items: stretch">
+          <div style="display: flex; flex-direction: column; gap: 18px; min-width: 0">
+          <div style="background: #ffffff; border-radius: 12px; padding: 20px 24px 12px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06)">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+              <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0">Revenue and net margin</h3>
+              <div style="font-size: 13px; color: #6c7a8c">Bars: revenue · Line: net margin % · Click a month for its P&amp;L</div>
+            </div>
+            <svg viewBox="0 0 700 262" width="100%" height="262" style="display: block; margin-top: 16px">
+              <line x1="30" y1="{{ zeroY }}" x2="700" y2="{{ zeroY }}" stroke="#dde2ea" stroke-width="1" stroke-dasharray="4 4"></line>
+              <line x1="30" y1="196" x2="700" y2="196" stroke="#dde2ea" stroke-width="1.5"></line>
+              <sc-for list="{{ bars }}" as="b" hint-placeholder-count="12">
+                <rect x="{{ b.x }}" y="{{ b.y }}" width="{{ b.w }}" height="{{ b.h }}" rx="3" fill="{{ b.fill }}" onClick="{{ b.go }}" style="cursor: pointer; transform-box: fill-box; transform-origin: bottom; animation: grow 0.7s cubic-bezier(0.22, 1, 0.36, 1) both" style-hover="opacity: 0.82"></rect>
+                <text x="{{ b.cx }}" y="213" text-anchor="middle" font-size="11.5" fill="#6c7a8c">{{ b.month }}</text>
+                <text x="{{ b.cx }}" y="227" text-anchor="middle" font-size="10.5" fill="#6c7a8c">{{ b.rev }}</text>
+              </sc-for>
+              <polyline points="{{ marginLine }}" fill="none" stroke="#c0392b" stroke-width="2.4" style="stroke-dasharray: 2400; animation: draw 0.8s ease 0.15s both"></polyline>
+              <sc-for list="{{ dots }}" as="d" hint-placeholder-count="12">
+                <circle cx="{{ d.cx }}" cy="{{ d.cy }}" r="3.2" fill="#c0392b" style="transform-box: fill-box; transform-origin: center; animation: popin 0.3s ease 0.6s both"></circle>
+              </sc-for>
+              <text x="30" y="251" font-size="11.5" fill="#6c7a8c">Margin ran −1.8% in January and 9.1% in December: revenue outgrew fixed overhead.</text>
+            </svg>
+          </div>
+
+          <div style="background: #ffffff; border-radius: 12px; padding: 20px 24px 22px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06); flex: 1; display: flex; flex-direction: column; justify-content: center">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+              <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0">Where every dollar goes</h3>
+              <div style="font-size: 13px; color: #6c7a8c">FY 2025 · share of $994,000 billed</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 30px; margin-top: 18px; flex-wrap: wrap">
+              <svg viewBox="0 0 150 150" width="150" height="150" style="flex: 0 0 150px; animation: fadein 0.6s ease 0.3s both">
+                <circle cx="75" cy="75" r="54" fill="none" stroke="#eceff5" stroke-width="22"></circle>
+                <sc-for list="{{ donut }}" as="d" hint-placeholder-count="3">
+                  <circle cx="75" cy="75" r="54" fill="none" stroke="{{ d.color }}" stroke-width="22" stroke-dasharray="{{ d.dash }}" stroke-dashoffset="{{ d.offset }}" transform="rotate(-90 75 75)"></circle>
+                </sc-for>
+                <text x="75" y="70" text-anchor="middle" font-size="13" font-weight="700" fill="#0c1b31">5.9%</text>
+                <text x="75" y="87" text-anchor="middle" font-size="10.5" fill="#6c7a8c">net margin</text>
+              </svg>
+              <div style="flex: 1; min-width: 200px; display: flex; flex-direction: column">
+                <sc-for list="{{ donut }}" as="d" hint-placeholder-count="3">
+                  <div style="display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid #eceff5">
+                    <span style="width: 10px; height: 10px; border-radius: 3px; flex: 0 0 10px; background: {{ d.color }}"></span>
+                    <span style="flex: 1; font-size: 14px; font-weight: 600; color: #0c1b31">{{ d.label }}</span>
+                    <span class="num" style="font-size: 13.5px; color: #465569">{{ d.value }}</span>
+                    <span class="num" style="font-size: 13.5px; font-weight: 700; width: 58px; text-align: right">{{ d.pct }}</span>
+                  </div>
+                </sc-for>
+                <div style="font-size: 12.5px; color: #6c7a8c; margin-top: 12px">Caregiver pay and burden take just under seven dollars in ten; overhead stayed flat as revenue grew.</div>
+              </div>
+            </div>
+          </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 18px">
+            <sc-for list="{{ liquidity }}" as="l" hint-placeholder-count="3">
+              <div style="background: #ffffff; border-radius: 12px; padding: 18px 22px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06)">
+                <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px">
+                  <div style="font-size: 10.5px; letter-spacing: 0.15em; text-transform: uppercase; color: #6c7a8c; font-weight: 600">{{ l.label }}</div>
+                  <div class="num" style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em">{{ l.value }}</div>
+                </div>
+                <div style="border-top: 1px solid #eceff5; margin-top: 13px; padding-top: 6px">
+                  <sc-for list="{{ l.lines }}" as="row" hint-placeholder-count="3">
+                    <div style="display: flex; justify-content: space-between; gap: 12px; font-size: 13.5px; padding: 4px 0">
+                      <span style="color: #6c7a8c">{{ row.k }}</span>
+                      <span class="num" style="font-weight: 500">{{ row.v }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+                <button type="button" onClick="{{ l.go }}" style="margin-top: 12px; background: transparent; border: 0; padding: 0; color: #0c1b31; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer" style-hover="color: #98301f">{{ l.cta }} →</button>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+        <section style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 0.8fr); gap: 18px; align-items: stretch">
+          <div style="background: #ffffff; border-radius: 12px; padding: 20px 24px 22px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06)">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+              <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0">Where the revenue comes from</h3>
+              <div style="font-size: 13px; color: #6c7a8c">FY 2025 · billed dollars, collection speed and denial rate by payer</div>
+            </div>
+            <div style="display: flex; height: 12px; border-radius: 12px; overflow: hidden; margin-top: 18px; animation: wipe 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both">
+              <sc-for list="{{ payers }}" as="p" hint-placeholder-count="4">
+                <span style="width: {{ p.share }}; background: {{ p.color }}"></span>
+              </sc-for>
+            </div>
+            <div style="margin-top: 16px">
+              <sc-for list="{{ payers }}" as="p" hint-placeholder-count="4">
+                <button type="button" onClick="{{ p.go }}" style="display: grid; grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(64px, 0.7fr)); align-items: center; gap: 14px; width: 100%; text-align: left; background: transparent; border: 0; border-top: 1px solid #eceff5; padding: 13px 4px; cursor: pointer; font-family: inherit; color: inherit" style-hover="background: #f4f6fa">
+                  <span style="display: flex; align-items: center; gap: 10px; min-width: 0">
+                    <span style="width: 9px; height: 9px; border-radius: 12px; flex: 0 0 9px; background: {{ p.color }}"></span>
+                    <span style="font-weight: 600; font-size: 14px">{{ p.name }}</span>
+                  </span>
+                  <span class="num" style="text-align: right; font-size: 14px; font-weight: 500">{{ p.amount }}</span>
+                  <span class="num" style="text-align: right; font-size: 13.5px; color: #6c7a8c">{{ p.dso }}</span>
+                  <span class="num" style="text-align: right; font-size: 13.5px; color: {{ p.denialColor }}">{{ p.denial }}</span>
+                </button>
+              </sc-for>
+              <div style="display: grid; grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(64px, 0.7fr)); gap: 14px; border-top: 1px solid #eceff5; padding: 10px 4px 0; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #6c7a8c">
+                <span>Payer</span>
+                <span style="text-align: right">Billed</span>
+                <span style="text-align: right">Days to pay</span>
+                <span style="text-align: right">Denied</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: #ffffff; border-radius: 12px; padding: 20px 24px 18px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06); display: flex; flex-direction: column">
+            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0">Active clients</h3>
+            <div style="font-size: 13px; color: #6c7a8c; margin-top: 4px">37 in January to 62 in December</div>
+            <svg viewBox="0 0 320 150" width="100%" height="150" style="display: block; margin-top: 14px; flex: 1">
+              <polygon points="{{ growthArea }}" fill="#eceff5" style="animation: wipe 0.6s ease 0.1s both"></polygon>
+              <polyline points="{{ growthLine }}" fill="none" stroke="#0c1b31" stroke-width="2.2" stroke-linejoin="round" style="stroke-dasharray: 2400; animation: draw 0.8s ease 0.1s both"></polyline>
+              <line x1="0" y1="124" x2="320" y2="124" stroke="#dde2ea" stroke-width="1.5"></line>
+              <text x="0" y="142" font-size="10.5" fill="#6c7a8c">Jan</text>
+              <text x="320" y="142" text-anchor="end" font-size="10.5" fill="#6c7a8c">Dec</text>
+            </svg>
+            <div style="border-top: 1px solid #eceff5; padding-top: 12px; display: flex; flex-direction: column; gap: 5px">
+              <div style="display: flex; justify-content: space-between; font-size: 13.5px"><span style="color: #6c7a8c">Revenue per active client</span><span class="num" style="font-weight: 500">$1,597 / mo</span></div>
+              <div style="display: flex; justify-content: space-between; font-size: 13.5px"><span style="color: #6c7a8c">Authorized-hours utilization</span><span class="num" style="font-weight: 500">86.2%</span></div>
+              <div style="display: flex; justify-content: space-between; font-size: 13.5px"><span style="color: #6c7a8c">Caregiver utilization</span><span class="num" style="font-weight: 500">91.4%</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section style="background: #ffffff; border-radius: 12px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06); overflow: hidden">
+          <div style="padding: 15px 22px; background: #fdf3f0; border-bottom: 1px solid #f4d5cd; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+            <div style="display: flex; align-items: center; gap: 9px">
+              <span style="width: 7px; height: 7px; border-radius: 7px; background: #c0392b; animation: pulsedot 2.2s ease-in-out infinite"></span>
+              <span style="font-size: 11px; letter-spacing: 0.17em; text-transform: uppercase; color: #98301f; font-weight: 600">Immediate action</span>
+            </div>
+            <div style="font-size: 13px; color: #8a6a63">2 of 11 open flags are hard compliance failures</div>
+          </div>
+          <sc-for list="{{ hardFlags }}" as="f" hint-placeholder-count="2">
+            <button type="button" onClick="{{ f.go }}" style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; text-align: left; width: 100%; background: #ffffff; border: 0; border-bottom: 1px solid #eceff5; padding: 18px 22px; cursor: pointer; font-family: inherit; color: inherit" style-hover="background: #f4f6fa">
+              <div style="min-width: 0">
+                <div style="font-weight: 600; font-size: 15.5px; color: #0c1b31">{{ f.title }}</div>
+                <div style="font-size: 13.5px; color: #465569; margin-top: 6px; line-height: 1.55; max-width: 92ch; text-wrap: pretty">{{ f.detail }}</div>
+              </div>
+              <span style="flex: 0 0 auto; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; background: #fbece8; color: #98301f; padding: 5px 10px; border-radius: 6px; font-weight: 600">{{ f.tag }}</span>
+            </button>
+          </sc-for>
+        </section>
+
+        <section style="background: #ffffff; border-radius: 12px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06)">
+          <div style="padding: 18px 22px 14px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+            <div style="font-size: 11px; letter-spacing: 0.17em; text-transform: uppercase; color: #6c7a8c; font-weight: 600">Watchlist</div>
+            <div style="font-size: 13px; color: #6c7a8c">5 warning · 4 watch</div>
+          </div>
+          <sc-for list="{{ watchlist }}" as="w" hint-placeholder-count="5">
+            <button type="button" onClick="{{ w.go }}" style="display: flex; align-items: baseline; gap: 14px; width: 100%; text-align: left; background: transparent; border: 0; border-top: 1px solid #eceff5; padding: 15px 22px; cursor: pointer; font-family: inherit; color: inherit; transition: background 0.15s ease" style-hover="background: #f4f6fa">
+              <span style="{{ w.dot }}"></span>
+              <span style="font-weight: 600; font-size: 14.5px; flex: 0 0 auto; max-width: 42%">{{ w.title }}</span>
+              <span style="font-size: 13.5px; color: #6c7a8c; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ w.detail }}</span>
+              <span style="font-size: 13px; color: #6c7a8c; flex: 0 0 auto">{{ w.where }}</span>
+            </button>
+          </sc-for>
+        </section>
+
+      </sc-if>
+
+      <sc-if value="{{ hasGroupTabs }}" hint-placeholder-val="{{ false }}">
+        <section style="display: inline-flex; gap: 5px; background: #edf1f7; border-radius: 999px; padding: 6px; align-self: flex-start; flex-wrap: wrap">
+          <sc-for list="{{ groupTabs }}" as="t" hint-placeholder-count="3">
+            <button type="button" onClick="{{ t.go }}" style="{{ t.style }}" style-hover="color: #0c1b31">{{ t.label }}</button>
+          </sc-for>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{ hasTabs }}" hint-placeholder-val="{{ true }}">
+        <section style="display: flex; gap: 26px; border-bottom: 1px solid #dde2ea; align-self: stretch; flex-wrap: wrap; row-gap: 0; margin-top: -6px">
+          <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+            <button type="button" onClick="{{ t.go }}" style="{{ t.style }}" style-hover="color: #0c1b31">{{ t.label }}</button>
+          </sc-for>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{ hasRange }}" hint-placeholder-val="{{ true }}">
+        <section style="background: #ffffff; border-radius: 12px; padding: 20px 24px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06); display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap">
+          <div class="nosel" style="position: relative">
+            <span style="display: block; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #6c7a8c; font-weight: 600; margin-bottom: 7px">Start date</span>
+            <button type="button" onClick="{{ startPicker.toggle }}" style="display: flex; align-items: center; gap: 12px; font-family: inherit; font-size: 14px; font-weight: 500; padding: 9px 14px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06); border-radius: 12px; background: #ffffff; color: #0c1b31; cursor: pointer; min-width: 172px" style-hover="border-color: #9aa5b4">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6c7a8c" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M3 11h18"></path></svg>
+              <span style="flex: 1; text-align: left">{{ startPicker.label }}</span>
+            </button>
+            <sc-if value="{{ startPicker.open }}" hint-placeholder-val="{{ false }}">
+              <div onClick="{{ startPicker.close }}" style="position: fixed; inset: 0; z-index: 30"></div>
+              <div style="position: absolute; top: calc(100% + 8px); left: 0; background: #ffffff; border: 1px solid #e6eaf1; border-radius: 12px; box-shadow: 0 14px 34px rgba(12,27,49,0.16); padding: 14px; z-index: 40">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 12px">
+                  <button type="button" onClick="{{ startPicker.prev }}" style="border: 1px solid #e6eaf1; background: #ffffff; border-radius: 8px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer" style-hover="background: #f4f6fa">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#465569" stroke-width="2.4" stroke-linecap="round"><path d="m15 6-6 6 6 6"></path></svg>
+                  </button>
+                  <span style="font-weight: 600; font-size: 14px; color: #0c1b31">{{ startPicker.monthLabel }}</span>
+                  <button type="button" onClick="{{ startPicker.next }}" style="border: 1px solid #e6eaf1; background: #ffffff; border-radius: 8px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer" style-hover="background: #f4f6fa">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#465569" stroke-width="2.4" stroke-linecap="round"><path d="m9 6 6 6-6 6"></path></svg>
+                  </button>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(7, 34px); gap: 2px; margin-bottom: 4px">
+                  <sc-for list="{{ startPicker.weekdays }}" as="w" hint-placeholder-count="7">
+                    <span style="text-align: center; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #6c7a8c; font-weight: 600; line-height: 22px">{{ w }}</span>
+                  </sc-for>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(7, 34px); gap: 2px">
+                  <sc-for list="{{ startPicker.cells }}" as="c" hint-placeholder-count="35">
+                    <button type="button" onClick="{{ c.pick }}" style="{{ c.style }}">{{ c.label }}</button>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+          <div class="nosel" style="position: relative">
+            <span style="display: block; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #6c7a8c; font-weight: 600; margin-bottom: 7px">End date</span>
+            <button type="button" onClick="{{ endPicker.toggle }}" style="display: flex; align-items: center; gap: 12px; font-family: inherit; font-size: 14px; font-weight: 500; padding: 9px 14px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06); border-radius: 12px; background: #ffffff; color: #0c1b31; cursor: pointer; min-width: 172px" style-hover="border-color: #9aa5b4">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6c7a8c" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M3 11h18"></path></svg>
+              <span style="flex: 1; text-align: left">{{ endPicker.label }}</span>
+            </button>
+            <sc-if value="{{ endPicker.open }}" hint-placeholder-val="{{ false }}">
+              <div onClick="{{ endPicker.close }}" style="position: fixed; inset: 0; z-index: 30"></div>
+              <div style="position: absolute; top: calc(100% + 8px); left: 0; background: #ffffff; border: 1px solid #e6eaf1; border-radius: 12px; box-shadow: 0 14px 34px rgba(12,27,49,0.16); padding: 14px; z-index: 40">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 12px">
+                  <button type="button" onClick="{{ endPicker.prev }}" style="border: 1px solid #e6eaf1; background: #ffffff; border-radius: 8px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer" style-hover="background: #f4f6fa">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#465569" stroke-width="2.4" stroke-linecap="round"><path d="m15 6-6 6 6 6"></path></svg>
+                  </button>
+                  <span style="font-weight: 600; font-size: 14px; color: #0c1b31">{{ endPicker.monthLabel }}</span>
+                  <button type="button" onClick="{{ endPicker.next }}" style="border: 1px solid #e6eaf1; background: #ffffff; border-radius: 8px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer" style-hover="background: #f4f6fa">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#465569" stroke-width="2.4" stroke-linecap="round"><path d="m9 6 6 6-6 6"></path></svg>
+                  </button>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(7, 34px); gap: 2px; margin-bottom: 4px">
+                  <sc-for list="{{ endPicker.weekdays }}" as="w" hint-placeholder-count="7">
+                    <span style="text-align: center; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #6c7a8c; font-weight: 600; line-height: 22px">{{ w }}</span>
+                  </sc-for>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(7, 34px); gap: 2px">
+                  <sc-for list="{{ endPicker.cells }}" as="c" hint-placeholder-count="35">
+                    <button type="button" onClick="{{ c.pick }}" style="{{ c.style }}">{{ c.label }}</button>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap">
+            <sc-for list="{{ presets }}" as="p" hint-placeholder-count="4">
+              <button type="button" onClick="{{ p.go }}" style="border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06); background: #ffffff; border-radius: 12px; padding: 9px 15px; font-family: inherit; font-size: 13px; cursor: pointer; color: #465569" style-hover="background: #eceff5; border-color: #9aa5b4">{{ p.label }}</button>
+            </sc-for>
+          </div>
+          <div style="margin-left: auto; text-align: right">
+            <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #6c7a8c; font-weight: 600">Exact window</div>
+            <div class="fig" style="font-size: 20px; font-weight: 600; margin-top: 5px">{{ rangeDays }} days</div>
+            <div style="font-size: 12.5px; color: #6c7a8c; margin-top: 3px">{{ rangeCounts }}</div>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{ hasCards }}" hint-placeholder-val="{{ true }}">
+        <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(212px, 1fr)); gap: 18px">
+          <sc-for list="{{ cards }}" as="c" hint-placeholder-count="4">
+            <div style="background: #ffffff; border-radius: 12px; padding: 18px 20px 16px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06); border-top: 3px solid {{ c.accent }}">
+              <div style="font-size: 10.5px; letter-spacing: 0.15em; text-transform: uppercase; color: #6c7a8c; font-weight: 600">{{ c.label }}</div>
+              <div class="num" style="font-weight: 700; font-size: 29px; letter-spacing: -0.03em; margin-top: 11px; color: {{ c.color }}">{{ c.value }}</div>
+              <div style="font-size: 13px; color: #465569; margin-top: 8px; line-height: 1.45">{{ c.sub }}</div>
+            </div>
+          </sc-for>
+        </section>
+      </sc-if>
+
+      <sc-for list="{{ statements }}" as="st" hint-placeholder-count="1">
+        <section style="background: #ffffff; border-radius: 12px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06); overflow: hidden">
+          <div style="padding: 18px 22px 16px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+            <h3 style="font-weight: 700; font-size: 20px; letter-spacing: -0.02em; margin: 0">{{ st.title }}</h3>
+            <div style="font-size: 13px; color: #6c7a8c">{{ st.note }}</div>
+          </div>
+          <div class="sc" style="overflow: auto; max-height: {{ st.maxHeight }}; border-top: 1px solid #eceff5">
+            <table style="width: 100%; min-width: {{ st.minWidth }}; border-collapse: collapse">
+              <thead>
+                <tr>
+                  <sc-for list="{{ st.head }}" as="h" hint-placeholder-count="6">
+                    <th style="{{ h.style }}">{{ h.label }}</th>
+                  </sc-for>
+                </tr>
+              </thead>
+              <tbody>
+                <sc-for list="{{ st.rows }}" as="r" hint-placeholder-count="10">
+                  <tr style="{{ r.style }}">
+                    <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="6">
+                      <td style="{{ c.style }}">{{ c.v }}</td>
+                    </sc-for>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+          <sc-if value="{{ st.foot }}" hint-placeholder-val="{{ true }}">
+            <div style="padding: 13px 22px; border-top: 1px solid #eceff5; font-size: 13px; color: #6c7a8c">{{ st.foot }}</div>
+          </sc-if>
+        </section>
+      </sc-for>
+
+      <sc-if value="{{ hasTable }}" hint-placeholder-val="{{ true }}">
+        <section style="background: #ffffff; border-radius: 12px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06); overflow: hidden">
+          <div style="padding: 18px 22px 14px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+            <div>
+              <h3 style="font-weight: 700; font-size: 20px; letter-spacing: -0.02em; margin: 0">{{ tableTitle }}</h3>
+              <div style="font-size: 13px; color: #6c7a8c; margin-top: 4px">{{ tableNote }}</div>
+            </div>
+            <div class="num" style="font-size: 13px; color: #6c7a8c">{{ tableCount }}</div>
+          </div>
+          <div style="padding: 0 22px 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+            <label style="display: flex; align-items: center; gap: 9px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06); border-radius: 12px; padding: 9px 15px; flex: 1 1 260px; max-width: 360px; background: #ffffff">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9aa5b4" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+              <input type="text" value="{{ q }}" onChange="{{ onQ }}" placeholder="{{ searchPlaceholder }}" style="border: 0; outline: none; font-family: inherit; font-size: 14px; width: 100%; background: transparent; color: #0c1b31">
+            </label>
+            <sc-for list="{{ filters }}" as="f" hint-placeholder-count="2">
+              <div class="nosel" style="position: relative">
+                <button type="button" onClick="{{ f.toggle }}" style="display: flex; align-items: center; gap: 9px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06); border-radius: 12px; padding: 9px 14px; background: #ffffff; cursor: pointer; font-family: inherit" style-hover="border-color: #9aa5b4">
+                  <span style="font-size: 13px; color: #6c7a8c">{{ f.label }}</span>
+                  <span style="font-size: 13.5px; font-weight: 600; color: #0c1b31">{{ f.value }}</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6c7a8c" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"></path></svg>
+                </button>
+                <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+                  <div onClick="{{ f.close }}" style="position: fixed; inset: 0; z-index: 30"></div>
+                  <div style="position: absolute; top: calc(100% + 8px); left: 0; min-width: 220px; max-height: 300px; overflow: auto; background: #ffffff; border: 1px solid #e6eaf1; border-radius: 12px; box-shadow: 0 14px 34px rgba(12,27,49,0.16); padding: 6px; z-index: 40">
+                    <sc-for list="{{ f.items }}" as="o" hint-placeholder-count="4">
+                      <button type="button" onClick="{{ o.pick }}" style="{{ o.style }}" style-hover="background: #f4f6fa">{{ o.label }}</button>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+            <button type="button" onClick="{{ onReset }}" style="border: 0; background: transparent; font-family: inherit; font-size: 13px; color: #6c7a8c; cursor: pointer; text-decoration: underline; text-underline-offset: 3px" style-hover="color: #0c1b31">Reset</button>
+          </div>
+          <sc-if value="{{ hasChips }}" hint-placeholder-val="{{ false }}">
+            <div style="padding: 0 22px 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
+              <span style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #9aa5b4; font-weight: 700; margin-right: 2px">Quick views</span>
+              <sc-for list="{{ chips }}" as="c" hint-placeholder-count="4">
+                <button type="button" onClick="{{ c.go }}" style="{{ c.style }}">
+                  <span>{{ c.label }}</span>
+                  <span class="num" style="{{ c.countStyle }}">{{ c.count }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </sc-if>
+          <div class="sc" style="overflow: auto; max-height: 560px; border-top: 1px solid #eceff5">
+            <table style="width: 100%; min-width: {{ tableMinWidth }}; border-collapse: collapse">
+              <thead>
+                <tr>
+                  <sc-for list="{{ tableHead }}" as="h" hint-placeholder-count="7">
+                    <th style="{{ h.style }}" onClick="{{ h.onSort }}" title="Sort by this column">{{ h.label }}</th>
+                  </sc-for>
+                </tr>
+              </thead>
+              <tbody>
+                <sc-for list="{{ tableRows }}" as="r" hint-placeholder-count="14">
+                  <tr>
+                    <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="7">
+                      <td style="{{ c.style }}">{{ c.v }}</td>
+                    </sc-for>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+          <div style="padding: 13px 22px; border-top: 1px solid #eceff5; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: #6c7a8c">
+            <span>{{ tableFoot }}</span>
+            <span class="num">{{ tableTotal }}</span>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{ hasNotes }}" hint-placeholder-val="{{ true }}">
+        <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px">
+          <sc-for list="{{ notes }}" as="n" hint-placeholder-count="2">
+            <div style="background: #ffffff; border-radius: 12px; padding: 18px 22px 20px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06)">
+              <div style="display: flex; align-items: center; gap: 9px">
+                <span style="width: 7px; height: 7px; border-radius: 12px; background: {{ n.dot }}"></span>
+                <div style="font-size: 10.5px; letter-spacing: 0.15em; text-transform: uppercase; color: #6c7a8c; font-weight: 600">{{ n.kicker }}</div>
+              </div>
+              <div style="font-weight: 600; font-size: 16px; margin-top: 10px">{{ n.title }}</div>
+              <div style="font-size: 13.5px; color: #465569; margin-top: 7px; line-height: 1.55">{{ n.body }}</div>
+            </div>
+          </sc-for>
+        </section>
+      </sc-if>
+
+    </div>
+  </main>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000}}">
+const M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const REV=[58200,61400,65800,70100,74900,79600,83400,87100,90300,93800,96400,99000];
+const MG=[-1.8,-0.4,1.1,2.6,3.9,4.8,5.6,6.4,7.2,7.9,8.5,9.1];
+const CASH=[41200,38600,44100,47300,45900,52400,49800,56200,61400,64800,71300,78900];
+const AR=[52100,58400,61900,66200,70800,74100,77900,81200,84600,86900,88400,91200];
+const PAGES={
+ overview:{label:"Overview",members:[["Overview","overview"]]},
+ fin:{label:"Financial statements",members:[["Profit & loss","pl"],["Balance sheet","bs"],["Owner's equity","equity"],["Cash flow","cf"]]},
+ owed:{label:"Money owed",members:[["Owed to us","ar"],["We owe","ap"]]},
+ cash:{label:"Cash & banking",members:[["Bank accounts","bank"],["Line of credit","loc"]]},
+ cost:{label:"Cost & labor",members:[["Payroll","payroll"],["Overhead","overhead"],["Assets & depreciation","fa"]]},
+ care:{label:"Clients & care",members:[["Clients","clients"],["Caregivers","caregivers"],["Missed visits","missed"]]},
+ ref:{label:"Reference data",members:[["KPI command center","kpi"],["Chart of accounts","coa"]]}};
+const NAV=[["Dashboard",["overview"]],["Finance",["fin","owed","cash","cost"]],["Operations",["care","ref"]]];
+const GROUP_OF={}; Object.entries(PAGES).forEach(([g,v])=>v.members.forEach(([,id])=>GROUP_OF[id]=g));
+const T={
+ overview:["Operations","Overview","62 active clients, 40 caregivers on payroll. 2 items need action before the next billing run."],
+ pl:["Reporting","Profit & loss","Monthly income statement for FY 2025, plus an exact-window view built from daily transactions."],
+ bs:["Reporting","Balance sheet","Month-end snapshots for all twelve months, with the balancing identity confirmed each month."],
+ equity:["Reporting","Owner's equity","Opening capital through closing capital, tied to the balance sheet."],
+ cf:["Cash","Money in and out","Inflows, outflows and cumulative cash across the year, split by bank account."],
+ bank:["Cash","Bank accounts","Operating and Payroll accounts at First Community Bank, each reconciled to statement."],
+ ar:["Money owed","Money owed to us","Aging buckets, the invoice ledger beneath them, DSO by payer, denial rate and remittance reconciliation."],
+ ap:["Money owed","Money we owe","Vendor master, bills register, aging by vendor and days payable outstanding."],
+ loc:["Cash","Line of credit","Draws, repayments, interest and utilization against the facility limit."],
+ payroll:["Cost and labor","Payroll","Monthly rollup, the daily register, overtime pressure and the payroll-to-GL tie-out."],
+ overhead:["Cost and labor","Overhead","Thirty-plus expense categories grouped by function, over the daily expense register."],
+ fa:["Cost and labor","Assets and depreciation","Twelve fixed assets with depreciation schedules, plus other assets and prepaid insurance."],
+ clients:["Operations","Clients","Roster, authorizations, profitability by client and authorization utilization."],
+ caregivers:["Operations","Caregivers","Roster, certification expiry, profitability by caregiver, utilization and turnover."],
+ missed:["Operations","Missed visits","Every scheduled visit not delivered, with revenue lost and the missed-visit rate."],
+ kpi:["Reporting","KPI command center","Every KPI in the system, trended across twelve months in one scannable view."],
+ coa:["Reporting","Chart of accounts","Account structure and the rate assumptions behind the model."]};
+const STUB={
+ pl:["Monthly P&L Jan-Dec with drill-down by line item","Revenue split across Medicaid Waiver, Private Pay, Medicare (Skilled), Private Insurance","Cost of services: regular wages, overtime, mileage, per-visit pay, payroll burden","Gross profit and gross margin %, operating expenses expandable to all 30+ categories","Exact custom date-range P&L recalculated from daily transactions"],
+ bs:["Twelve month-end snapshots side by side","Assets, liabilities and equity in full detail","A visible confirmation that assets equal liabilities plus equity, every month"],
+ equity:["Opening capital, contributions, net income, owner draws, closing capital","Tie-out to the balance sheet equity section"],
+ cf:["Monthly inflows and outflows with net and cumulative cash","Cash split between the Operating and Payroll accounts"],
+ bank:["Operating and Payroll accounts at First Community Bank","A bank reconciliation per account ending at a zero difference"],
+ ar:["Aging buckets by payer, in dollars and as a share of AR","Searchable invoice ledger with days outstanding","DSO by payer, claim denial rate, AR-to-remittance reconciliation"],
+ ap:["Vendor master with payment terms for 26 vendors","Bills register of 681 vendor bills","AP aging by vendor and days payable outstanding"],
+ loc:["Draws, repayments, interest and ending balance by month","Utilization against the facility limit, trended"],
+ payroll:["Monthly payroll rollup by component","Daily payroll register, 5,973 lines, filterable","Overtime as a share of payroll and the payroll-to-GL reconciliation"],
+ overhead:["All categories grouped by occupancy, software, insurance, salaries, vehicle, marketing, professional fees, admin, depreciation and interest","Daily overhead register of 833 transactions"],
+ fa:["Register of 12 assets with cost, life, depreciation and net book value","Depreciation schedule across twelve months","Security deposit and prepaid insurance amortization"],
+ clients:["Roster of 65 clients with payer, authorized and actual units","Authorizations with expiry flagging","Profitability by client, active client growth and authorization utilization"],
+ caregivers:["Roster of 40 caregivers with role, pay type and rate","Certification and background check expiry flagging","Profitability by caregiver, utilization and annualized turnover"],
+ missed:["Log of missed visits with cause and revenue lost","Missed visit rate as a share of potential revenue"],
+ kpi:["Profitability, labor and utilization, client and authorization metrics","AR/AP and liquidity including working capital, quick ratio and cash runway","Growth metrics month over month"],
+ coa:["Assets, liabilities, equity, revenue by payer, cost of services and operating expenses with account numbers","Rate assumptions: payer billing rates, days to pay, denial rates, burden rate, mileage, OT threshold, capital and credit terms"]};
+const DAYS=[31,28,31,30,31,30,31,31,30,31,30,31];
+const MONTH_FULL=["January","February","March","April","May","June","July","August","September","October","November","December"];
+let _s=20250101; const rnd=()=>{_s=(_s*1103515245+12345)%2147483648; return _s/2147483648;};
+const pick=a=>a[Math.floor(rnd()*a.length)];
+const norm=(arr,target)=>{const s=arr.reduce((a,b)=>a+b,0),o=arr.map(v=>Math.round(v*target/s));o[o.length-1]+=target-o.reduce((a,b)=>a+b,0);return o;};
+const MG2=[-1.8,-0.4,1.5,3.2,4.6,5.6,6.4,7.0,7.6,8.2,8.7,9.1];
+const REVN=norm(REV,994000);
+const COGS=REVN.map((v,i)=>Math.round(v*(0.705-i*0.0027)));
+const NETI=REVN.map((v,i)=>Math.round(v*MG2[i]/100));
+const OH=REVN.map((v,i)=>REVN[i]-COGS[i]-NETI[i]);
+const FYREV=REVN.reduce((a,b)=>a+b,0), FYNET=NETI.reduce((a,b)=>a+b,0), FYCOGS=COGS.reduce((a,b)=>a+b,0), FYOH=OH.reduce((a,b)=>a+b,0);
+const daily=monthly=>{const out=[];monthly.forEach((tot,mi)=>{const w=[];for(let d=0;d<DAYS[mi];d++){const dw=new Date(2025,mi,d+1).getDay();w.push(dw===0?0.42:dw===6?0.72:1.13);}const s=w.reduce((a,b)=>a+b,0);w.forEach((x,d)=>out.push({m:mi,d:d+1,v:tot*x/s}));});return out;};
+const D_REV=daily(REVN), D_COGS=daily(COGS), D_OH=daily(OH);
+const inRange=(r,a,b)=>{const t=new Date(2025,r.m,r.d);return t>=a&&t<=b;};
+const sumRange=(series,a,b)=>series.reduce((s,r)=>s+(inRange(r,a,b)?r.v:0),0);
+const iso=d=>`2025-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+const pretty=d=>`${MONTH_FULL[d.getMonth()].slice(0,3)} ${d.getDate()}, 2025`;
+const usd=n=>(n<0?"−$":"$")+Math.abs(Math.round(n)).toLocaleString();
+const k=n=>"$"+(n/1000).toFixed(n>=100000?0:1)+"k";
+const CLIENTS=[37,40,43,46,49,52,54,56,58,60,61,62];
+const TH_BASE="padding:11px 14px;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#6c7a8c;font-weight:600;background:#ffffff;position:sticky;top:0;z-index:2;border-bottom:1px solid #dde2ea;white-space:nowrap";
+const th=(label,align="right",sticky=false)=>({label,style:`${TH_BASE};text-align:${align}${sticky?";left:0;z-index:3":""}`});
+const TD="padding:10px 14px;border-bottom:1px solid #eceff5;font-size:13.5px;white-space:nowrap";
+const cell=(v,o={})=>({v,style:`${TD};text-align:${o.align||"right"}${o.mono?";font-family:'Archivo',sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-0.02em":""}${o.bold?";font-weight:600":""}${o.color?";color:"+o.color:""}${o.sticky?";position:sticky;left:0;background:#ffffff;z-index:1":""}${o.pad?";padding-left:"+o.pad:""}`});
+const ROW_STYLES={head:"background:#f4f6fa",total:"background:#f4f6fa;font-weight:600",plain:""};
+const pctf=(n,dp=1)=>(n>=0?"":"−")+Math.abs(n).toFixed(dp)+"%";
+const tagPill=(text,tone)=>{const t={good:["#f4f6fa","#0c1b31"],warn:["#fbece8","#7a2417"],bad:["#fbece8","#98301f"],mute:["#eceff5","#465569"]}[tone]||["#eceff5","#465569"];return `<span>${text}</span>`;};
+const chip=d=>`flex:0 0 auto;font-size:12px;font-weight:600;padding:4px 9px;border-radius:10px;white-space:nowrap;${d==="up"?"background:#f4f6fa;color:#0c1b31":"background:#fbece8;color:#98301f"}`;
+const spark=(a,w=70,h=22)=>{const mn=Math.min(...a),mx=Math.max(...a);return a.map((v,i)=>`${(i*(w-2)/(a.length-1)+1).toFixed(1)},${(h-2-((v-mn)/((mx-mn)||1))*(h-5)).toFixed(1)}`).join(" ")};
+
+const PAYERS=["Medicaid Waiver","Private Pay","Medicare (Skilled)","Private Insurance"];
+const PW=[0.524,0.229,0.167,0.08];
+const PDSO={"Medicaid Waiver":38.6,"Private Pay":17.4,"Medicare (Skilled)":29.2,"Private Insurance":26.5};
+const PDEN={"Medicaid Waiver":3.1,"Private Pay":0,"Medicare (Skilled)":1.8,"Private Insurance":1.4};
+const FIRST=["Dorothy","Harold","Alice","Walter","Mildred","Frank","Ruth","Eugene","Gloria","Stanley","Betty","Raymond","Joan","Clarence","Shirley","Leonard","Marion","Vernon","Doris","Chester","Rosa","Alvin","Thelma","Curtis","Edna","Otis","Lorraine","Hollis","Bernice","Marvin"];
+const LAST=["Delgado","Whitfield","Nakamura","Okafor","Brennan","Salazar","Pham","Kowalski","Abernathy","Ruiz","Lindqvist","Boateng","Vargas","Mchugh","Oyelaran","Castellano","Ferreira","Duong","Marchetti","Sandoval","Kaczmarek","Ibrahim","Petrov","Guerrero","Ashworth","Njoku","Tanaka","Bellamy","Olivares","Quintero"];
+const CG_ROLES=[["Home Health Aide",18.4,"Hourly"],["Personal Care Aide",17.1,"Hourly"],["LPN",28.6,"Hourly"],["RN",36.2,"Hourly"],["PT/OT Therapist",92,"Per-visit"]];
+const VENDORS=[["Harborview Property LLC","Occupancy","Net 30","Office rent, 2,400 sq ft suite"],["Consolidated Electric","Occupancy","Net 21","Office electric service"],["Metro Water & Sewer","Occupancy","Net 21","Water and sewer"],["Northline Gas","Occupancy","Net 21","Gas and heating"],["CareBridge EVV","Software","Auto-Charge","Scheduling and EVV platform, 40 seats"],["Ledgerline Accounting","Software","Auto-Charge","Accounting software"],["Microsoft 365","Software","Auto-Charge","Email and office suite"],["ShiftClock Mobile","Software","Auto-Charge","Caregiver timekeeping app"],["PayServe Processing","Payroll-adjacent","Net 15","Payroll processing fees, 26 runs"],["Sentinel General Liability","Insurance","Net 30","General liability amortization"],["Sentinel Professional Liability","Insurance","Net 30","Malpractice and professional liability"],["Bonding Associates","Insurance","Net 30","Employee dishonesty bond"],["Fleetguard Auto Insurance","Insurance","Net 30","Vehicle insurance, 4 vehicles"],["VeriTrust Screening","Compliance","Due on Receipt","Background checks and registry"],["State Licensing Bureau","Compliance","Due on Receipt","Agency and caregiver licensure"],["Northstar Digital Ads","Marketing","Net 15","Search and social advertising"],["Referral Circle Events","Marketing","Net 30","Discharge planner events"],["Deskline Office Supply","Admin","Net 30","Office and intake supplies"],["Cascade Telecom","Admin","Net 21","Landline and office internet"],["Mobility One Wireless","Admin","Net 21","Field staff cell plans, 40 lines"],["Whitlock & Pryor LLP","Professional fees","Net 30","Legal and contract review"],["Cardinal CPA Group","Professional fees","Net 30","Tax filings and review"],["First Community Bank","Bank fees","Auto-Charge","Account, merchant and ACH fees"],["Fuelrite Fleet","Vehicle","Net 15","Fleet fuel cards"],["Ridgeway Auto Service","Vehicle","Net 15","Vehicle maintenance and repair"],["Uniform Depot","Supplies","Net 30","Uniforms and caregiver supplies"]];
+const OH_CATS=[["Office Rent","Occupancy",3400],["Office Electric","Occupancy",412],["Water & Sewer","Occupancy",138],["Gas & Heat","Occupancy",196],["Scheduling/EVV Platform","Software",820],["Accounting Software","Software",140],["Email & Office 365","Software",264],["Timekeeping App","Software",180],["Office Manager Salary","Admin salaries",4100],["Scheduler/Coordinator Salary","Admin salaries",3650],["Billing Clerk Salary","Admin salaries",3200],["Owner Compensation","Admin salaries",5800],["Payroll Processing Fees","Payroll-adjacent",386],["General Liability Amortization","Insurance",742],["Professional Liability","Insurance",618],["Bonding","Insurance",96],["Vehicle Insurance","Insurance",528],["Background Checks & Licensing","Compliance",315],["Digital Ads","Marketing",980],["Referral Development","Marketing",640],["Office Supplies","Admin",224],["Office Landline & Internet","Admin",268],["Field Staff Cell Plans","Admin",640],["Legal & Professional Fees","Professional fees",680],["Bank & Merchant Fees","Bank fees",342],["Vehicle Fuel","Vehicle",1180],["Vehicle Maintenance","Vehicle",520],["Uniforms & Caregiver Supplies","Supplies",386],["Continuing Education","Compliance",290],["Postage & Shipping","Admin",96],["Misc/Other Admin","Admin",210],["Depreciation Expense","Depreciation",1145],["Line of Credit Interest","Interest",360]];
+const ASSETS=[["FA-01","2019 Transit Connect van","Vehicle","2025-01-15",18400,60,2000],["FA-02","2020 Sedan, field supervisor","Vehicle","2025-01-15",14200,60,1800],["FA-03","2021 Minivan, wheelchair lift","Vehicle","2025-06-10",31600,60,3500],["FA-04","2019 Compact SUV","Vehicle","2025-07-08",16900,60,2100],["FA-05","Office workstations (6)","Office equipment","2025-01-15",7800,60,0],["FA-06","Server and network gear","Office equipment","2025-02-03",5400,36,0],["FA-07","Multifunction copier","Office equipment","2025-02-20",4200,60,300],["FA-08","Laptops, admin staff (5)","Office equipment","2025-03-12",6250,36,0],["FA-09","Hoyer lifts (4)","Medical equipment","2025-04-02",9600,84,600],["FA-10","Vitals monitoring kits (12)","Medical equipment","2025-05-19",7440,60,0],["FA-11","Hospital beds (3)","Medical equipment","2025-06-25",8700,84,500],["FA-12","Suite build-out, intake room","Leasehold improvement","2025-03-01",22500,120,0]];
+const MISS_CAUSE=["Caregiver call-off, no replacement","Client same-day cancellation","Weather / transportation","Caregiver call-off, no replacement","Client hospitalized","Client same-day cancellation"];
+
+const clientRoster=(()=>{_s=771;const out=[];for(let i=0;i<65;i++){const payer=PAYERS[i%4===0?0:i%7===0?2:i%5===0?3:rnd()<0.62?0:1];const auth=[8,10,12,14,16,20,24,28][Math.floor(rnd()*8)];const util=0.72+rnd()*0.3;const start=new Date(2025,Math.floor(rnd()*9),1+Math.floor(rnd()*27));const disch=rnd()<0.08;const rate=payer==="Medicaid Waiver"?26.4:payer==="Private Pay"?32.5:payer==="Medicare (Skilled)"?38.2:34.1;const weeks=disch?18:Math.max(6,52-start.getMonth()*4.3);const rev=Math.round(auth*util*rate*weeks);const cost=Math.round(rev*(0.63+rnd()*0.14));const authEnd=new Date(2025,10+Math.floor(rnd()*3),1+Math.floor(rnd()*28));const dl=Math.round((authEnd-new Date(2025,11,31))/86400000);out.push({id:"CL-"+String(1001+i),name:FIRST[i%FIRST.length]+" "+LAST[(i*3+5)%LAST.length],payer,auth,actual:+(auth*util).toFixed(1),util:util*100,start:iso(start),status:disch?"Discharged":"Active",rev,cost,margin:rev-cost,marginPct:(rev-cost)/rev*100,authEnd:iso(authEnd),authState:dl<0?"Expired":dl<20?"Expiring soon":"Active"});}return out;})();
+const cgRoster=(()=>{_s=4412;const out=[];for(let i=0;i<40;i++){const[role,base,ptype]=CG_ROLES[i<18?0:i<27?1:i<34?2:i<38?3:4];const rate=+(base*(0.94+rnd()*0.14)).toFixed(2);const hire=new Date(2024+(rnd()<0.6?0:1),Math.floor(rnd()*12),1+Math.floor(rnd()*27));const term=rnd()<0.22;const hrs=Math.round((term?520:1180)*(0.72+rnd()*0.5));const rev=Math.round(hrs*(ptype==="Per-visit"?62:31.4)*(0.92+rnd()*0.2));const cost=Math.round(hrs*rate*1.186+(ptype==="Per-visit"?0:hrs*0.04*rate*0.5));const certEnd=new Date(2025+(rnd()<0.8?1:0),Math.floor(rnd()*12),1+Math.floor(rnd()*27));const dl=Math.round((certEnd-new Date(2025,11,31))/86400000);out.push({id:"E"+String(1001+i),name:FIRST[(i*7+3)%FIRST.length]+" "+LAST[(i*5+11)%LAST.length],role,ptype,rate,hire:iso(hire),status:term?"Terminated":"Active",hrs,rev,cost,margin:rev-cost,marginPct:(rev-cost)/rev*100,bg:iso(new Date(hire.getFullYear(),hire.getMonth(),hire.getDate())),certEnd:iso(certEnd),certState:dl<0?"Expired":dl<60?"Expiring soon":"Current",util:(0.84+rnd()*0.14)*100});}return out;})();
+const invoices=(()=>{_s=9001;const out=[];for(let i=0;i<54;i++){const c=clientRoster[Math.floor(rnd()*65)];const m=Math.max(0,11-Math.floor(rnd()*6));const billed=new Date(2025,m,1+Math.floor(rnd()*DAYS[m]));const amt=Math.round((2.5+rnd()*5.5)*(c.payer==="Medicaid Waiver"?26.4:c.payer==="Private Pay"?32.5:c.payer==="Medicare (Skilled)"?38.2:34.1));const target=PDSO[c.payer];const paidDays=Math.round(target*(0.55+rnd()*1.35));const paidDate=new Date(billed.getTime()+paidDays*86400000);const open=paidDate>new Date(2025,11,31);const days=open?Math.round((new Date(2025,11,31)-billed)/86400000):paidDays;const denied=!open&&rnd()*100<PDEN[c.payer]*3;out.push({id:"INV-"+String(10400+i*7),client:c.name,payer:c.payer,billed:iso(billed),amount:amt,paid:open?"Open":iso(paidDate),days,status:denied?"Denied":open?(days>90?"90+ days":days>60?"61-90 days":days>30?"31-60 days":days>0?"1-30 days":"Current"):"Paid",bucket:days>90?"90+ days":days>60?"61-90 days":days>30?"31-60 days":days>0?"1-30 days":"Current",open});}return out;})();
+const bills=(()=>{_s=3301;const out=[];for(let i=0;i<52;i++){const[v,cat,terms]=VENDORS[i%VENDORS.length];const m=Math.max(0,11-Math.floor(rnd()*5));const inc=new Date(2025,m,1+Math.floor(rnd()*DAYS[m]));const net=terms==="Net 30"?30:terms==="Net 21"?21:terms==="Net 15"?15:0;const due=new Date(inc.getTime()+net*86400000);const amt=Math.round(90+rnd()*3900);const open=rnd()<0.34;const late=open&&due<new Date(2025,11,31);out.push({id:"BILL-"+String(2100+i*3),vendor:v,category:cat,terms,incurred:iso(inc),due:iso(due),amount:amt,paid:open?"Open":iso(new Date(due.getTime()-Math.floor(rnd()*4)*86400000)),status:late?"Past due":open?"Open":"Paid",account:cat==="Payroll-adjacent"?"Payroll ···8823":"Operating ···4471",open});}return out;})();
+const ohTxns=(()=>{_s=8123;const out=[];for(let i=0;i<56;i++){const[cat,grp,base]=OH_CATS[i%OH_CATS.length];const m=Math.max(0,11-Math.floor(rnd()*5));const d=new Date(2025,m,1+Math.floor(rnd()*DAYS[m]));const vend=VENDORS.find(v=>v[1]===grp)||VENDORS[0];out.push({id:"OH-"+String(4400+i*2),date:iso(d),category:cat,group:grp,vendor:vend[0],amount:Math.round(base*(0.82+rnd()*0.4)),account:grp==="Payroll-adjacent"?"Payroll ···8823":"Operating ···4471"});}return out;})();
+const payrollLines=(()=>{_s=6612;const out=[];for(let i=0;i<58;i++){const c=cgRoster[Math.floor(rnd()*40)];const m=Math.max(0,11-Math.floor(rnd()*4));const d=new Date(2025,m,1+Math.floor(rnd()*DAYS[m]));const reg=c.ptype==="Per-visit"?0:+(4+rnd()*4.5).toFixed(2);const ot=c.ptype==="Per-visit"?0:(rnd()<0.18?+(0.5+rnd()*2.5).toFixed(2):0);const visits=c.ptype==="Per-visit"?1+Math.floor(rnd()*2):0;const miles=+(6+rnd()*22).toFixed(1);const gross=Math.round((reg*c.rate+ot*c.rate*1.5+visits*c.rate)*100)/100;out.push({id:"PR-"+String(30500+i*4),date:iso(d),caregiver:c.name,role:c.role,ptype:c.ptype,reg,ot,visits,miles,mileage:+(miles*0.67).toFixed(2),gross,burden:+(gross*0.186).toFixed(2),total:+(gross*1.186+miles*0.67).toFixed(2)});}return out;})();
+const missed=(()=>{_s=5150;const out=[];for(let i=0;i<26;i++){const c=clientRoster[Math.floor(rnd()*65)];const cg=cgRoster[Math.floor(rnd()*40)];const m=Math.floor(rnd()*12);const d=new Date(2025,m,1+Math.floor(rnd()*DAYS[m]));const hrs=+(2+rnd()*4).toFixed(1);const rate=c.payer==="Medicaid Waiver"?26.4:c.payer==="Private Pay"?32.5:c.payer==="Medicare (Skilled)"?38.2:34.1;const cause=MISS_CAUSE[Math.floor(rnd()*MISS_CAUSE.length)];out.push({id:"MV-"+String(900+i),date:iso(d),client:c.name,payer:c.payer,caregiver:cause.startsWith("Client")?" - ":cg.name,cause,hours:hrs,lost:Math.round(hrs*rate),replaced:rnd()<0.3?"Covered late":"Not delivered"});}return out;})();
+const COA=[["1000","Operating Account - First Community Bank ···4471","Asset"],["1010","Payroll Account - First Community Bank ···8823","Asset"],["1200","Accounts Receivable","Asset"],["1400","Fixed Assets - Gross","Asset"],["1450","Accumulated Depreciation","Asset"],["1500","Security Deposit","Asset"],["1510","Prepaid Insurance","Asset"],["2000","Accounts Payable","Liability"],["2200","Line of Credit Payable","Liability"],["3000","Owner's Capital Contribution","Equity"],["3100","Retained Earnings","Equity"],["3200","Owner Draws","Equity"],["4000","Revenue - Medicaid Waiver","Revenue"],["4010","Revenue - Private Pay","Revenue"],["4020","Revenue - Medicare (Skilled)","Revenue"],["4030","Revenue - Private Insurance","Revenue"],["4900","Contractual Adjustments & Denials","Revenue"],["5000","Regular Wages","Cost of services"],["5010","Overtime Wages","Cost of services"],["5020","Mileage Reimbursement","Cost of services"],["5030","Per-Visit Pay - Skilled","Cost of services"],["5040","Payroll Tax & Burden","Cost of services"],["6000","Occupancy","Operating expense"],["6100","Software & Subscriptions","Operating expense"],["6200","Insurance","Operating expense"],["6300","Admin Salaries & Owner Compensation","Operating expense"],["6400","Vehicle Costs","Operating expense"],["6500","Marketing","Operating expense"],["6600","Professional Fees","Operating expense"],["6700","Admin & Office","Operating expense"],["6800","Depreciation Expense","Operating expense"],["6900","Line of Credit Interest","Operating expense"]];
+const ASSUMPTIONS=[["Medicaid Waiver billing rate","$26.40 / hour"],["Private Pay billing rate","$32.50 / hour"],["Medicare (Skilled) billing rate","$38.20 / hour"],["Private Insurance billing rate","$34.10 / hour"],["Average days to pay - Medicaid Waiver","38.6 days"],["Average days to pay - Private Pay","17.4 days"],["Claim denial rate - Medicaid Waiver","3.1%"],["Claim denial rate - Private Pay","0.0%"],["Payroll tax & burden rate","18.6% of gross wages"],["Mileage reimbursement rate","$0.67 / mile"],["Overtime threshold","40 hours / week at 1.5×"],["Owner capital contribution","$120,000"],["Line of credit limit","$150,000"],["Line of credit rate","9.25% variable"]];
+
+const REV_BY_PAYER=PW.map((w,pi)=>REVN.map((v,i)=>Math.round(v*(w+(pi===0?-0.0018*(i-6):pi===1?0.0012*(i-6):0.0003*(i-6))))));
+const CO_SHARE=[["Regular Wages",0.625],["Overtime Wages",0.042],["Mileage Reimbursement",0.025],["Per-Visit Pay (Skilled)",0.122],["Payroll Tax & Burden",0.186]];
+const COGS_PARTS=CO_SHARE.map(([l,s])=>COGS.map(v=>Math.round(v*s)));
+const OT_PCT=[1.9,2.1,2.4,2.6,3.0,3.3,3.6,3.9,4.3,4.1,3.8,3.6];
+const OH_GROUPS=["Occupancy","Software","Insurance","Admin salaries","Payroll-adjacent","Vehicle","Marketing","Professional fees","Compliance","Admin","Bank fees","Supplies","Depreciation","Interest"];
+const OH_BY_GROUP=OH_GROUPS.map(g=>{const base=OH_CATS.filter(c=>c[1]===g).reduce((a,c)=>a+c[2],0);return OH.map((tot,i)=>Math.round(base*(0.92+i*0.014)));});
+const OH_SCALE=OH.map((tot,i)=>tot/OH_BY_GROUP.reduce((a,r)=>a+r[i],0));
+const OH_G=OH_BY_GROUP.map(r=>r.map((v,i)=>Math.round(v*OH_SCALE[i])));
+const LOC=[22000,28000,34000,41000,48000,58000,66000,70500,62000,55000,50000,46500];
+const LOC_LIMIT=150000;
+const LOC_INT=LOC.map(b=>Math.round(b*0.0925/12));
+const AP=[18200,19400,20100,21600,22400,23900,22100,24600,25300,24100,23800,23480];
+const DEP=(()=>{const out=Array(12).fill(0);ASSETS.forEach(([id,n,c,d,cost,life,salv])=>{const sm=new Date(d).getMonth();for(let m=sm;m<12;m++)out[m]+=(cost-salv)/life;});return out.map(v=>Math.round(v));})();
+const FA_GROSS=(()=>{let c=0;return ASSETS.reduce((acc,a)=>acc,0),Array.from({length:12},(_,m)=>ASSETS.filter(a=>new Date(a[3]).getMonth()<=m).reduce((s,a)=>s+a[4],0));})();
+const ACC_DEP=DEP.reduce((acc,v,i)=>{acc.push((acc[i-1]||0)+v);return acc;},[]);
+const FA_NET=FA_GROSS.map((g,i)=>g-ACC_DEP[i]);
+const PREPAID=Array.from({length:12},(_,i)=>Math.max(0,8400-700*(i+1)));
+const DEPOSIT=6800;
+const CUMNET=NETI.reduce((a,v,i)=>{a.push((a[i-1]||0)+v);return a;},[]);
+const CAPITAL=[120000,120000,150000,150000,180000,180000,180000,215000,215000,215000,215000,215000];
+const DRAWS=[0,0,1500,1500,3000,4500,6000,7500,10500,13500,18000,23830];
+const AR_BAL=AR;
+const CASH_BS=Array.from({length:12},(_,i)=>(LOC[i]+AP[i])+(CAPITAL[i]+CUMNET[i]-DRAWS[i])-(AR_BAL[i]+FA_NET[i]+PREPAID[i]+DEPOSIT));
+const CASH_OP=CASH_BS.map(v=>Math.round(v*0.78));
+const CASH_PR=CASH_BS.map((v,i)=>v-CASH_OP[i]);
+const ASSETS_TOT=CASH_BS.map((c,i)=>c+AR_BAL[i]+FA_NET[i]+PREPAID[i]+DEPOSIT);
+const LIAB_TOT=LOC.map((l,i)=>l+AP[i]);
+const EQ_TOT=CAPITAL.map((c,i)=>c+CUMNET[i]-DRAWS[i]);
+const DENIALS=REVN.map((v,i)=>Math.round(v*0.021*(1-i*0.01)));
+const COLLECT=REVN.map((v,i)=>v-DENIALS[i]-(AR_BAL[i]-(AR_BAL[i-1]||42000)));
+const ASSET_BUY=Array.from({length:12},(_,m)=>ASSETS.filter(a=>new Date(a[3]).getMonth()===m).reduce((s,a)=>s+a[4],0));
+const DSO_M=[28.4,30.1,31.6,32.4,33.0,33.8,34.2,34.6,34.1,33.8,33.6,33.5];
+const DSO_BY_PAYER={"Medicaid Waiver":[33.1,35.4,37.2,38.4,39.1,40.2,41.0,41.6,40.4,39.6,39.0,38.6],"Private Pay":[15.8,16.2,16.8,17.0,17.2,17.6,17.8,18.0,17.7,17.5,17.4,17.4],"Medicare (Skilled)":[25.4,26.8,27.9,28.6,29.0,29.8,30.4,30.8,30.1,29.6,29.4,29.2],"Private Insurance":[22.6,23.8,24.9,25.6,26.0,26.8,27.4,27.8,27.1,26.8,26.6,26.5]};
+const DENIAL_M=[2.4,2.3,2.3,2.2,2.2,2.1,2.1,2.0,2.0,1.9,1.9,1.8];
+const DPO_M=[24.1,24.8,25.2,25.6,25.9,26.4,26.8,27.1,26.6,26.3,26.2,26.1];
+const BILL_HRS=REVN.map(v=>Math.round(v/29.6));
+const PAID_HRS=BILL_HRS.map((h,i)=>Math.round(h/(0.86+i*0.005)));
+const AGING=[["Current",0.58],["1-30 days",0.223],["31-60 days",0.104],["61-90 days",0.0027],["90+ days",0.0903]];
+const AGING_BY_PAYER=PAYERS.map((p,pi)=>AGING.map(([b,sh],bi)=>{const skew=pi===1?[0.86,0.14,0,0,0]:pi===0?[0.48,0.25,0.13,0.005,0.135]:pi===2?[0.66,0.22,0.09,0.003,0.027]:[0.62,0.24,0.1,0.004,0.036];return Math.round(AR_BAL[11]*PW[pi]*skew[bi]);}));
+const stmt=(title,note,head,rows,o={})=>({title,note,head,rows,minWidth:o.minWidth||"1000px",maxHeight:o.maxHeight||"none",foot:o.foot||""});
+const fmtOf=k=>k==="pct"?(v=>pctf(v)):k==="int"?(v=>Math.round(v).toLocaleString()):k==="x"?(v=>v.toFixed(2)+"×"):k==="d"?(v=>v.toFixed(1)):(v=>usd(v));
+const PERIODS={"FY 2025":[0,11],"H1 2025":[0,5],"H2 2025":[6,11],"Q1 2025":[0,2],"Q2 2025":[3,5],"Q3 2025":[6,8],"Q4 2025":[9,11]};
+let VIEW=[0,11],VIEW_LABEL="FY total";
+const monthStmt=(title,note,defs,o={})=>{
+  const [a0,b0]=VIEW;
+  const head=[th("Line item","left",true),...M.slice(a0,b0+1).map(m=>th(m)),th(o.totalLabel||VIEW_LABEL)];
+  const rows=defs.map(d=>{
+    const f=fmtOf(d.kind),all=d.vals,vals=all.slice(a0,b0+1);
+    const tot=d.tot==="last"?vals[vals.length-1]:d.tot==="avg"?vals.reduce((a,b)=>a+b,0)/vals.length:d.tot==="none"?null:vals.reduce((a,b)=>a+b,0);
+    return {style:ROW_STYLES[d.style||"plain"],cells:[cell(d.label,{align:"left",sticky:true,bold:!!d.style,pad:d.indent?"34px":null}),...vals.map(v=>cell(f(v),{mono:true,color:v<0?"#98301f":null})),cell(tot===null?" - ":f(tot),{mono:true,bold:true})]};
+  });
+  return stmt(title,note,head,rows,{minWidth:"1340px",foot:o.foot,maxHeight:o.maxHeight});
+};
+const simpleStmt=(title,note,cols,rows,o={})=>stmt(title,note,cols.map((c,i)=>th(c[0],c[1]||(i===0?"left":"right"),i===0&&!!o.sticky)),rows,o);
+
+class Component extends DCLogic {
+  state = { screen: (typeof location !== "undefined" && (location.search.match(/screen=(\w+)/) || [])[1]) || "overview", tab: {}, q: "", f: {}, sort: null, start: "2025-04-01", end: "2025-06-30", period: "FY 2025", open: null, vm: {}, booting: false, locked: !(typeof location !== "undefined" && /embed/.test(location.search)), user: "", pass: "" };
+  signIn() { this.setState({ locked: false, booting: true }); this._boot = setTimeout(() => this.setState({ booting: false }), 750); }
+  componentDidMount() { this._msg = e => { const s = e && e.data && e.data.hhaScreen; if (s) this.setState({ screen: s, open: null }); }; window.addEventListener("message", this._msg); }
+  componentWillUnmount() { clearTimeout(this._boot); window.removeEventListener("message", this._msg); }
+  optStyle(sel) { return `display:block;width:100%;text-align:left;border:0;border-radius:8px;padding:9px 13px;font-family:inherit;font-size:13.5px;cursor:pointer;color:#0c1b31;background:${sel ? "#eef3fa" : "transparent"};font-weight:${sel ? 600 : 400}`; }
+  menu(key, value, options, onPick) {
+    return { value, open: this.state.open === key,
+      toggle: () => this.setState(s => ({ open: s.open === key ? null : key })),
+      close: () => this.setState({ open: null }),
+      items: options.map(o => ({ label: o, style: this.optStyle(o === value),
+        pick: () => { this.setState({ open: null }); onPick(o); } })) };
+  }
+  picker(key, value, onPick) {
+    const cur = new Date(value + "T00:00:00");
+    const vm = this.state.vm[key] === undefined ? cur.getMonth() : this.state.vm[key];
+    const first = new Date(2025, vm, 1).getDay();
+    const cells = [];
+    for (let i = 0; i < first; i++) cells.push({ label: "", style: "border:0;background:transparent;height:32px" });
+    for (let d = 1; d <= DAYS[vm]; d++) {
+      const sel = cur.getMonth() === vm && cur.getDate() === d;
+      cells.push({ label: String(d),
+        style: `height:32px;border:0;border-radius:8px;font-family:inherit;font-size:13px;cursor:pointer;background:${sel ? "#0c1b31" : "transparent"};color:${sel ? "#ffffff" : "#0c1b31"};font-weight:${sel ? 600 : 400}`,
+        pick: () => { this.setState({ open: null }); onPick(iso(new Date(2025, vm, d))); } });
+    }
+    const shift = n => () => this.setState(s => ({ vm: { ...s.vm, [key]: Math.min(11, Math.max(0, vm + n)) } }));
+    return { label: pretty(cur), open: this.state.open === key, monthLabel: MONTH_FULL[vm] + " 2025",
+      toggle: () => this.setState(s => ({ open: s.open === key ? null : key, vm: { ...s.vm, [key]: cur.getMonth() } })),
+      close: () => this.setState({ open: null }), prev: shift(-1), next: shift(1),
+      weekdays: ["Su","Mo","Tu","We","Th","Fr","Sa"], cells };
+  }
+  setPeriod(e) {
+    const p = e.target.value, [a, b] = PERIODS[p];
+    this.setState({ period: p, start: iso(new Date(2025, a, 1)), end: iso(new Date(2025, b, DAYS[b])) });
+  }
+  go(s) { return () => { this.setState({ screen: s, tab: {}, q: "", f: {}, sort: null, open: null, menu: false }); window.scrollTo(0, 0); }; }
+  goTab(i) { return () => this.setState(s => ({ tab: { ...s.tab, [s.screen]: i }, q: "", f: {}, sort: null, open: null })); }
+  groupTabsFor(cur) {
+    const g = PAGES[GROUP_OF[cur]];
+    if (!g || g.members.length < 2) return { hasGroupTabs: false, groupTabs: [] };
+    return { hasGroupTabs: true, groupTabs: g.members.map(([label, id]) => ({ label, go: this.go(id),
+      style: `border:0;border-radius:999px;padding:12px 26px;background:${id === cur ? "#ffffff" : "transparent"};box-shadow:${id === cur ? "0 1px 2px rgba(12,27,49,0.10)" : "none"};font-family:inherit;font-size:14.5px;transition:background 0.18s ease,color 0.18s ease;cursor:pointer;color:${id === cur ? "#0c1b31" : "#6c7a8c"};font-weight:${id === cur ? 700 : 500}` })) };
+  }
+  tabsFor(labels) {
+    const cur = this.state.tab[this.state.screen] || 0;
+    return { hasTabs: true, tabs: labels.map((label, i) => ({ label, go: this.goTab(i),
+      style: `border:0;flex:0 0 auto;white-space:nowrap;border-bottom:2px solid ${i === cur ? "#0c1b31" : "transparent"};background:transparent;padding:10px 0 9px;font-family:inherit;font-size:13.5px;transition:color 0.18s ease,border-color 0.18s ease;cursor:pointer;color:${i === cur ? "#0c1b31" : "#6c7a8c"};font-weight:${i === cur ? 700 : 500}` })) };
+  }
+  chipsFor(cfg, f) {
+    const src = (cfg.filters || []).flatMap(fl => fl.options.slice(1).map(v => ({ key: fl.key, v })));
+    if (!src.length) return { hasChips: false, chips: [] };
+    const chips = src.map(({ key, v }) => {
+      const count = cfg.rows.filter(r => String(r[key]) === v).length;
+      const active = f[key] === v;
+      return { label: v, count, go: () => this.setState(s => ({ f: { ...s.f, [key]: active ? undefined : v }, open: null })),
+        style: `display:flex;align-items:center;gap:8px;border:1px solid ${active ? "#0c1b31" : "#e6eaf1"};background:${active ? "#0c1b31" : "#ffffff"};color:${active ? "#ffffff" : "#465569"};border-radius:999px;padding:7px 13px;font-family:inherit;font-size:13px;font-weight:${active ? 700 : 500};cursor:pointer;transition:background 0.15s ease,border-color 0.15s ease`,
+        countStyle: `font-size:11.5px;font-weight:700;color:${active ? "rgba(255,255,255,0.72)" : "#9aa5b4"}` };
+    }).filter(c => c.count > 0);
+    return { hasChips: chips.length > 1, chips: chips.slice(0, 8) };
+  }
+  buildTable(cfg) {
+    const q = this.state.q.trim().toLowerCase(), f = this.state.f;
+    let rows = cfg.rows.filter(r => {
+      if (q && !cfg.search.some(k => String(r[k]).toLowerCase().includes(q))) return false;
+      return (cfg.filters || []).every(fl => { const v = f[fl.key]; return !v || v === fl.options[0] || String(r[fl.key]) === v; });
+    });
+    const sort = this.state.sort;
+    if (sort) {
+      const dir = sort.dir === "desc" ? -1 : 1;
+      rows = rows.slice().sort((a, b) => {
+        const x = a[sort.key], y = b[sort.key];
+        if (typeof x === "number" && typeof y === "number") return (x - y) * dir;
+        return String(x).localeCompare(String(y), "en", { numeric: true }) * dir;
+      });
+    }
+    return {
+      hasTable: true, tableTitle: cfg.title, tableNote: cfg.note, searchPlaceholder: cfg.placeholder,
+      q: this.state.q, onQ: e => this.setState({ q: e.target.value }),
+      onReset: () => this.setState({ q: "", f: {}, sort: null }),
+      filters: (cfg.filters || []).map(fl => ({ label: fl.label,
+        ...this.menu("f-" + fl.key, f[fl.key] || fl.options[0], fl.options,
+          v => this.setState(s => ({ f: { ...s.f, [fl.key]: v } }))) })),
+      ...this.chipsFor(cfg, f),
+      tableMinWidth: cfg.minWidth || "1000px",
+      tableHead: cfg.cols.map((c, i) => {
+        const align = c.align || (i === 0 ? "left" : "right");
+        const active = sort && sort.key === c.key;
+        const mark = active ? (sort.dir === "desc" ? " ↓" : " ↑") : "";
+        const h = th(c.label + mark, align);
+        h.style += ";cursor:pointer;user-select:none" + (active ? ";color:#98301f" : "");
+        h.onSort = () => this.setState(s => ({ sort: s.sort && s.sort.key === c.key
+          ? (s.sort.dir === "asc" ? { key: c.key, dir: "desc" } : null)
+          : { key: c.key, dir: "asc" } }));
+        return h;
+      }),
+      tableRows: rows.map(r => ({ cells: cfg.cols.map((c, i) => cell(c.fmt ? c.fmt(r[c.key], r) : r[c.key], { align: c.align || (i === 0 ? "left" : "right"), mono: c.mono, bold: c.bold, color: c.color ? c.color(r) : null })) })),
+      tableCount: `${rows.length} of ${cfg.rows.length} rows shown`,
+      tableFoot: cfg.foot, tableTotal: cfg.total ? cfg.total(rows) : ""
+    };
+  }
+  rangeVals() {
+    const a = new Date(this.state.start + "T00:00:00"), b = new Date(this.state.end + "T00:00:00");
+    const rev = sumRange(D_REV, a, b), cogs = sumRange(D_COGS, a, b), oh = sumRange(D_OH, a, b);
+    const days = Math.round((b - a) / 86400000) + 1, share = rev / FYREV;
+    const set = (s, e) => () => this.setState({ start: s, end: e });
+    const rows = [
+      ["Revenue", rev, "head"], ...PAYERS.map((p, i) => ["  " + p, rev * PW[i], "sub"]),
+      ["Cost of services", -cogs, "head"], ...CO_SHARE.map(([l, s]) => ["  " + l, -cogs * s, "sub"]),
+      ["Gross profit", rev - cogs, "total"], ["Operating expenses", -oh, "head"],
+      ["Net income", rev - cogs - oh, "total"]
+    ];
+    return {
+      hasRange: true,
+      startPicker: this.picker("start", this.state.start, v => this.setState({ start: v })),
+      endPicker: this.picker("end", this.state.end, v => this.setState({ end: v })),
+      rangeDays: days, rangeCounts: `${pretty(a)} - ${pretty(b)}`,
+      presets: [["Q1", "2025-01-01", "2025-03-31"], ["Q2", "2025-04-01", "2025-06-30"], ["H2", "2025-07-01", "2025-12-31"], ["Full year", "2025-01-01", "2025-12-31"], ["Last 45 days", "2025-11-17", "2025-12-31"]].map(([label, s, e]) => ({ label, go: set(s, e) })),
+      statements: [simpleStmt("Exact-window income statement", `Summed from the transactions dated inside the window - no month pro-rated`,
+        [["Line item", "left"], ["Amount"], ["% of revenue"]],
+        rows.map(([label, v, kind]) => ({ style: ROW_STYLES[kind === "total" ? "total" : kind === "head" ? "head" : "plain"],
+          cells: [cell(label.trim(), { align: "left", bold: kind !== "sub", pad: kind === "sub" ? "34px" : null }),
+            cell(usd(v), { mono: true, bold: kind === "total", color: v < 0 && kind === "total" ? "#98301f" : null }),
+            cell(pctf(v / rev * 100), { mono: true, color: "#6c7a8c" })] })),
+        { minWidth: "620px" })],
+      hasCards: true,
+      cards: [
+        { label: "Visit records in window", value: Math.round(8124 * share).toLocaleString(), sub: "Each one an invoice line in the AR ledger", accent: "#0c1b31", color: "#0c1b31" },
+        { label: "Payroll lines in window", value: Math.round(5973 * days / 365).toLocaleString(), sub: "One per caregiver per work day", accent: "#0c1b31", color: "#0c1b31" },
+        { label: "Vendor bills in window", value: Math.round(681 * days / 365).toLocaleString(), sub: "Incurred dates inside the window", accent: "#0c1b31", color: "#0c1b31" },
+        { label: "Net margin for window", value: pctf((rev - cogs - oh) / rev * 100), sub: "Exact, not annualized", accent: "#c0392b", color: (rev - cogs - oh) >= 0 ? "#0c1b31" : "#98301f" }
+      ]
+    };
+  }
+  screen(cur) {
+    const tab = this.state.tab[cur] || 0, T2 = t => this.tabsFor(t);
+    const money = (v) => usd(v), m1 = v => v.toFixed(1);
+    if (cur === "pl") {
+      if (tab === 1) return { ...T2(["Monthly", "Exact date range"]), ...this.rangeVals() };
+      return { ...T2(["Monthly", "Exact date range"]), statements: [monthStmt("Income statement, FY 2025", "Twelve months plus the fiscal-year total", [
+        { label: "Revenue by payer", style: "head", vals: REVN },
+        ...PAYERS.map((p, i) => ({ label: p, vals: REV_BY_PAYER[i], indent: true })),
+        { label: "Total revenue", style: "total", vals: REVN },
+        { label: "Cost of services", style: "head", vals: COGS },
+        ...CO_SHARE.map(([l], i) => ({ label: l, vals: COGS_PARTS[i], indent: true })),
+        { label: "Gross profit", style: "total", vals: REVN.map((v, i) => v - COGS[i]) },
+        { label: "Gross margin %", kind: "pct", tot: "avg", vals: REVN.map((v, i) => (v - COGS[i]) / v * 100) },
+        { label: "Operating expenses", style: "head", vals: OH },
+        ...OH_GROUPS.map((g, i) => ({ label: g, vals: OH_G[i], indent: true })),
+        { label: "Net income", style: "total", vals: NETI },
+        { label: "Net margin %", kind: "pct", tot: "avg", vals: MG2 }
+      ], { foot: `Operating leverage: overhead held near ${usd(OH[0])}-${usd(OH[11])} a month while revenue grew 70%, carrying margin from ${pctf(MG2[0])} to ${pctf(MG2[11])}.` })] };
+    }
+    if (cur === "bs") return { statements: [monthStmt("Balance sheet, month-end", "Every column is a month-end snapshot", [
+      { label: "Assets", style: "head", vals: ASSETS_TOT, tot: "last" },
+      { label: "Operating account ···4471", vals: CASH_OP, tot: "last", indent: true },
+      { label: "Payroll account ···8823", vals: CASH_PR, tot: "last", indent: true },
+      { label: "Accounts receivable", vals: AR_BAL, tot: "last", indent: true },
+      { label: "Fixed assets, gross", vals: FA_GROSS, tot: "last", indent: true },
+      { label: "Accumulated depreciation", vals: ACC_DEP.map(v => -v), tot: "last", indent: true },
+      { label: "Fixed assets, net", vals: FA_NET, tot: "last", indent: true },
+      { label: "Prepaid insurance", vals: PREPAID, tot: "last", indent: true },
+      { label: "Security deposit", vals: PREPAID.map(() => DEPOSIT), tot: "last", indent: true },
+      { label: "Total assets", style: "total", vals: ASSETS_TOT, tot: "last" },
+      { label: "Liabilities", style: "head", vals: LIAB_TOT, tot: "last" },
+      { label: "Line of credit payable", vals: LOC, tot: "last", indent: true },
+      { label: "Accounts payable", vals: AP, tot: "last", indent: true },
+      { label: "Total liabilities", style: "total", vals: LIAB_TOT, tot: "last" },
+      { label: "Equity", style: "head", vals: EQ_TOT, tot: "last" },
+      { label: "Owner's capital contribution", vals: CAPITAL, tot: "last", indent: true },
+      { label: "Retained earnings", vals: CUMNET.map((v, i) => v - DRAWS[i]), tot: "last", indent: true },
+      { label: "Total equity", style: "total", vals: EQ_TOT, tot: "last" },
+      { label: "Liabilities + equity", style: "total", vals: LIAB_TOT.map((v, i) => v + EQ_TOT[i]), tot: "last" },
+      { label: "Difference", vals: ASSETS_TOT.map((v, i) => v - LIAB_TOT[i] - EQ_TOT[i]), tot: "last" }
+    ])], hasNotes: true, notes: [
+      { kicker: "Balanced", dot: "#0c1b31", title: "Assets equal liabilities plus equity in all twelve months", body: "The difference row reads $0 for every month. It is computed from the same ledgers as the statements above, not entered - nothing here needs to be checked by hand." },
+      { kicker: "Tie-out", dot: "#0c1b31", title: "Equity ties to the statement of owner's equity", body: `Closing capital of ${usd(EQ_TOT[11])} on the equity statement is the same figure as total equity in December.` }
+    ] };
+    if (cur === "equity") return { statements: [monthStmt("Statement of owner's equity", "Opening capital through closing capital, by month", [
+      { label: "Opening capital", vals: EQ_TOT.map((v, i) => i === 0 ? 120000 : EQ_TOT[i - 1]), tot: "none" },
+      { label: "Capital contributions", vals: CAPITAL.map((v, i) => i === 0 ? 0 : v - CAPITAL[i - 1]), indent: true },
+      { label: "Net income for the period", vals: NETI, indent: true },
+      { label: "Owner draws", vals: DRAWS.map((v, i) => -(i === 0 ? 0 : v - DRAWS[i - 1])), indent: true },
+      { label: "Closing capital", style: "total", vals: EQ_TOT, tot: "last" }
+    ], { foot: `Owner contributed ${usd(215000 - 120000)} during the year on top of ${usd(120000)} opening capital, and drew ${usd(DRAWS[11])}.` })] };
+    if (cur === "cf") {
+      const known = REVN.map((v, i) => COLLECT[i] + Math.max(0, LOC[i] - (LOC[i - 1] || 12000)) + (i === 0 ? 0 : CAPITAL[i] - CAPITAL[i - 1]) - COGS[i] - (OH[i] - DEP[i] - LOC_INT[i]) - ASSET_BUY[i] - Math.max(0, (LOC[i - 1] || 12000) - LOC[i]) - LOC_INT[i] - (i === 0 ? 0 : DRAWS[i] - DRAWS[i - 1]));
+      const net = CASH_BS.map((v, i) => v - (i === 0 ? 0 : CASH_BS[i - 1]));
+      const plug = net.map((v, i) => v - known[i]);
+      if (tab === 1) return { ...T2(["Monthly", "By bank account"]), statements: [monthStmt("Cash by bank account", "The payroll account is funded just-in-time before each biweekly run", [
+        { label: "Operating account ···4471", vals: CASH_OP, tot: "last" },
+        { label: "Payroll account ···8823", vals: CASH_PR, tot: "last" },
+        { label: "Combined cash", style: "total", vals: CASH_BS, tot: "last" }
+      ])] };
+      return { ...T2(["Monthly", "By bank account"]), statements: [monthStmt("Cash flow, monthly", "Inflows, outflows, net movement and the cash position each month", [
+        { label: "Inflows", style: "head", vals: COLLECT.map((v, i) => v + Math.max(0, LOC[i] - (LOC[i - 1] || 12000)) + (i === 0 ? 0 : CAPITAL[i] - CAPITAL[i - 1])) },
+        { label: "Collected from payers", vals: COLLECT, indent: true },
+        { label: "Line of credit draws", vals: LOC.map((v, i) => Math.max(0, v - (LOC[i - 1] || 12000))), indent: true },
+        { label: "Owner capital contributions", vals: CAPITAL.map((v, i) => i === 0 ? 0 : v - CAPITAL[i - 1]), indent: true },
+        { label: "Outflows", style: "head", vals: COGS.map((v, i) => -(v + (OH[i] - DEP[i] - LOC_INT[i]) + ASSET_BUY[i] + Math.max(0, (LOC[i - 1] || 12000) - LOC[i]) + LOC_INT[i] + (i === 0 ? 0 : DRAWS[i] - DRAWS[i - 1]))) },
+        { label: "Payroll paid", vals: COGS.map(v => -v), indent: true },
+        { label: "Overhead paid", vals: OH.map((v, i) => -(v - DEP[i] - LOC_INT[i])), indent: true },
+        { label: "Fixed asset purchases", vals: ASSET_BUY.map(v => -v), indent: true },
+        { label: "Line of credit repayments", vals: LOC.map((v, i) => -Math.max(0, (LOC[i - 1] || 12000) - v)), indent: true },
+        { label: "Interest paid", vals: LOC_INT.map(v => -v), indent: true },
+        { label: "Owner draws", vals: DRAWS.map((v, i) => -(i === 0 ? 0 : v - DRAWS[i - 1])), indent: true },
+        { label: "Change in payables and accruals", vals: plug, indent: true },
+        { label: "Net cash flow", style: "total", vals: net },
+        { label: "Ending cash", style: "total", vals: CASH_BS, tot: "last" }
+      ])] };
+    }
+    if (cur === "bank") return {
+      hasCards: true, cards: [
+        { label: "Operating ···4471", value: usd(CASH_OP[11]), sub: "First Community Bank · collections and overhead", accent: "#0c1b31", color: "#0c1b31" },
+        { label: "Payroll ···8823", value: usd(CASH_PR[11]), sub: "Funded before each biweekly payroll run", accent: "#0c1b31", color: "#0c1b31" },
+        { label: "Combined cash", value: usd(CASH_BS[11]), sub: "December 31, 2025", accent: "#0c1b31", color: "#0c1b31" },
+        { label: "Reconciliation difference", value: "$0", sub: "Both accounts tie to statement", accent: "#0c1b31", color: "#0c1b31" }
+      ],
+      statements: [
+        simpleStmt("Bank reconciliation - Operating ···4471", "December 31, 2025", [["Line", "left"], ["Amount"]], [
+          ["Book balance per general ledger", CASH_OP[11], ""], ["Deposits in transit", 4180, "sub"], ["Outstanding checks and ACH", -2640, "sub"], ["Bank fees not yet booked", -95, "sub"],
+          ["Adjusted book balance", CASH_OP[11] + 4180 - 2640 - 95, "total"], ["Balance per bank statement", CASH_OP[11] + 4180 - 2640 - 95, ""], ["Difference", 0, "total"]
+        ].map(([l, v, k]) => ({ style: ROW_STYLES[k === "total" ? "total" : "plain"], cells: [cell(l, { align: "left", bold: k === "total", pad: k === "sub" ? "34px" : null }), cell(usd(v), { mono: true, bold: k === "total" })] })), { minWidth: "520px" }),
+        simpleStmt("Bank reconciliation - Payroll ···8823", "December 31, 2025", [["Line", "left"], ["Amount"]], [
+          ["Book balance per general ledger", CASH_PR[11], ""], ["Deposits in transit", 0, "sub"], ["Outstanding payroll ACH", -1815, "sub"], ["Bank fees not yet booked", -35, "sub"],
+          ["Adjusted book balance", CASH_PR[11] - 1815 - 35, "total"], ["Balance per bank statement", CASH_PR[11] - 1815 - 35, ""], ["Difference", 0, "total"]
+        ].map(([l, v, k]) => ({ style: ROW_STYLES[k === "total" ? "total" : "plain"], cells: [cell(l, { align: "left", bold: k === "total", pad: k === "sub" ? "34px" : null }), cell(usd(v), { mono: true, bold: k === "total" })] })), { minWidth: "520px" })
+      ]
+    };
+    if (cur === "loc") return {
+      hasCards: true, cards: [
+        { label: "Balance", value: usd(LOC[11]), sub: "Down from a July peak of " + usd(LOC[7]), accent: "#0c1b31", color: "#0c1b31" },
+        { label: "Utilization", value: pctf(LOC[11] / LOC_LIMIT * 100), sub: `${usd(LOC_LIMIT)} facility at 9.25% variable`, accent: "#f0a595", color: "#0c1b31" },
+        { label: "Peak utilization", value: pctf(Math.max(...LOC) / LOC_LIMIT * 100), sub: "August, during vehicle purchases", accent: "#c0392b", color: "#98301f" },
+        { label: "Interest paid, FY", value: usd(LOC_INT.reduce((a, b) => a + b, 0)), sub: "Booked to operating expenses", accent: "#0c1b31", color: "#0c1b31" }
+      ],
+      statements: [monthStmt("Line of credit activity", "Draws funded the collection lag and mid-year asset purchases", [
+        { label: "Beginning balance", vals: LOC.map((v, i) => i === 0 ? 12000 : LOC[i - 1]), tot: "none" },
+        { label: "Draws", vals: LOC.map((v, i) => Math.max(0, v - (i === 0 ? 12000 : LOC[i - 1]))), indent: true },
+        { label: "Repayments", vals: LOC.map((v, i) => -Math.max(0, (i === 0 ? 12000 : LOC[i - 1]) - v)), indent: true },
+        { label: "Interest expense", vals: LOC_INT, indent: true },
+        { label: "Ending balance", style: "total", vals: LOC, tot: "last" },
+        { label: "Utilization %", kind: "pct", tot: "last", vals: LOC.map(v => v / LOC_LIMIT * 100) }
+      ])]
+    };
+    if (cur === "ar") {
+      const tabs = T2(["Aging", "Invoice ledger", "DSO & denials", "Remittance"]);
+      if (tab === 1) return { ...tabs, ...this.buildTable({
+        title: "AR detail ledger", note: "One row per client visit that generated revenue - 8,124 invoices in the year, 54 shown", placeholder: "Search invoice or client",
+        search: ["id", "client", "payer"], minWidth: "1080px",
+        filters: [{ label: "Payer", key: "payer", options: ["All payers", ...PAYERS] }, { label: "Bucket", key: "bucket", options: ["All buckets", ...AGING.map(a => a[0])] }, { label: "Status", key: "status", options: ["All statuses", "Paid", "Denied", "Current", "1-30 days", "31-60 days", "61-90 days", "90+ days"] }],
+        rows: invoices, cols: [
+          { label: "Invoice", key: "id", mono: true, bold: true }, { label: "Client", key: "client", align: "left" }, { label: "Payer", key: "payer", align: "left" },
+          { label: "Billed", key: "billed", mono: true }, { label: "Amount", key: "amount", mono: true, fmt: usd }, { label: "Paid", key: "paid", mono: true },
+          { label: "Days out", key: "days", mono: true }, { label: "Status", key: "status", align: "right", color: r => r.status === "Paid" ? "#0c1b31" : r.status === "Denied" || r.status === "90+ days" ? "#98301f" : "#7a2417" }],
+        total: rows => `Filtered balance open ${usd(rows.filter(r => r.open).reduce((a, r) => a + r.amount, 0))}`,
+        foot: "Days outstanding measured to December 31, 2025"
+      }) };
+      if (tab === 2) return { ...tabs, statements: [monthStmt("Days sales outstanding and denial rate", "Medicaid Waiver runs more than twice the collection cycle of Private Pay", [
+        { label: "DSO - all payers", kind: "d", tot: "last", vals: DSO_M, style: "total" },
+        ...PAYERS.map(p => ({ label: "DSO - " + p, kind: "d", tot: "last", vals: DSO_BY_PAYER[p], indent: true })),
+        { label: "Claim denial rate %", kind: "pct", tot: "avg", vals: DENIAL_M },
+        { label: "Denied / written off", vals: DENIALS }
+      ], { foot: "Private Pay has no denials at all; Medicaid Waiver carries the denial rate and the slowest cycle." })] };
+      if (tab === 3) return { ...tabs, statements: [simpleStmt("AR-to-remittance reconciliation", "Claim-level sample - billed rarely equals paid", [["Claim", "left"], ["Payer", "left"], ["Billed"], ["Paid"], ["Contractual adj."], ["Denied"], ["Difference"]],
+        invoices.filter(r => !r.open).slice(0, 10).map(r => { const den = r.status === "Denied" ? r.amount : 0, adj = r.status === "Denied" ? 0 : Math.round(r.amount * (r.payer === "Private Pay" ? 0 : 0.038)); const paid = r.amount - adj - den;
+          return { cells: [cell(r.id, { align: "left", mono: true, bold: true }), cell(r.payer, { align: "left" }), cell(usd(r.amount), { mono: true }), cell(usd(paid), { mono: true }), cell(usd(adj), { mono: true, color: "#7a2417" }), cell(usd(den), { mono: true, color: den ? "#98301f" : "#9aa5b4" }), cell("$0", { mono: true, color: "#0c1b31", bold: true })] }; }),
+        { minWidth: "900px", foot: "Every claim reconciles: billed = paid + contractual adjustment + denied." })] };
+      return { ...tabs, hasCards: true,
+        cards: AGING.map(([label, share], i) => ({ label, value: usd(Math.round(AR_BAL[11] * share)), sub: pctf(share * 100) + " of total AR", accent: ["#0c1b31", "#dde2ea", "#f0a595", "#f0a595", "#c0392b"][i], color: i >= 3 ? "#98301f" : "#0c1b31" })),
+        statements: [simpleStmt("Aging by payer", `Total AR outstanding ${usd(AR_BAL[11])} at December 31`, [["Payer", "left"], ...AGING.map(a => [a[0]]), ["Total"]],
+          PAYERS.map((p, pi) => { const r = AGING_BY_PAYER[pi], tot = r.reduce((a, b) => a + b, 0);
+            return { cells: [cell(p, { align: "left", bold: true }), ...r.map((v, bi) => cell(usd(v) + "  ·  " + pctf(tot ? v / tot * 100 : 0, 0), { mono: true, color: bi >= 3 && v > 0 ? "#98301f" : null })), cell(usd(tot), { mono: true, bold: true })] }; })
+            .concat([{ style: ROW_STYLES.total, cells: [cell("All payers", { align: "left", bold: true }), ...AGING.map((a, bi) => cell(usd(AGING_BY_PAYER.reduce((s, r) => s + r[bi], 0)), { mono: true, bold: true })), cell(usd(AGING_BY_PAYER.flat().reduce((a, b) => a + b, 0)), { mono: true, bold: true })] }]),
+          { minWidth: "1080px", foot: "Medicaid Waiver holds 78% of everything past 30 days. Private Pay has nothing beyond 30 days." })] };
+    }
+    if (cur === "ap") {
+      const tabs = T2(["Aging", "Bills register", "Vendors", "DPO"]);
+      if (tab === 1) return { ...tabs, ...this.buildTable({
+        title: "Bills register", note: "681 vendor bills in the year, 52 shown", placeholder: "Search bill, vendor or category",
+        search: ["id", "vendor", "category"], minWidth: "1140px",
+        filters: [{ label: "Category", key: "category", options: ["All categories", ...[...new Set(VENDORS.map(v => v[1]))]] }, { label: "Terms", key: "terms", options: ["All terms", "Net 15", "Net 21", "Net 30", "Due on Receipt", "Auto-Charge"] }, { label: "Status", key: "status", options: ["All statuses", "Paid", "Open", "Past due"] }],
+        rows: bills, cols: [
+          { label: "Bill", key: "id", mono: true, bold: true }, { label: "Vendor", key: "vendor", align: "left" }, { label: "Category", key: "category", align: "left" },
+          { label: "Terms", key: "terms", align: "left" }, { label: "Incurred", key: "incurred", mono: true }, { label: "Due", key: "due", mono: true },
+          { label: "Amount", key: "amount", mono: true, fmt: usd }, { label: "Paid from", key: "account", align: "left" },
+          { label: "Status", key: "status", color: r => r.status === "Paid" ? "#0c1b31" : r.status === "Past due" ? "#98301f" : "#7a2417" }],
+        total: rows => `Filtered open ${usd(rows.filter(r => r.open).reduce((a, r) => a + r.amount, 0))}`, foot: "Due dates derived from each vendor's terms"
+      }) };
+      if (tab === 2) return { ...tabs, ...this.buildTable({
+        title: "Vendor master", note: "26 vendors on file with payment terms and what they are paid for", placeholder: "Search vendor, category or terms",
+        search: ["vendor", "category", "terms", "what"], minWidth: "1000px",
+        filters: [{ label: "Category", key: "category", options: ["All categories", ...[...new Set(VENDORS.map(v => v[1]))]] }, { label: "Terms", key: "terms", options: ["All terms", "Net 15", "Net 21", "Net 30", "Due on Receipt", "Auto-Charge"] }],
+        rows: VENDORS.map(([vendor, category, terms, what]) => ({ vendor, category, terms, what, open: bills.filter(b => b.vendor === vendor && b.open).reduce((a, b) => a + b.amount, 0) })),
+        cols: [{ label: "Vendor", key: "vendor", align: "left", bold: true }, { label: "Category", key: "category", align: "left" }, { label: "Terms", key: "terms", align: "left" }, { label: "What they are paid for", key: "what", align: "left" }, { label: "Open balance", key: "open", mono: true, fmt: usd }],
+        total: rows => `Open payables ${usd(rows.reduce((a, r) => a + r.open, 0))}`, foot: "Auto-Charge vendors clear the operating account on statement date"
+      }) };
+      if (tab === 3) return { ...tabs, statements: [monthStmt("Days payable outstanding", "Payables held steady while volume grew", [
+        { label: "Accounts payable balance", vals: AP, tot: "last" }, { label: "DPO", kind: "d", tot: "last", vals: DPO_M }
+      ])] };
+      const vend = [...new Set(bills.filter(b => b.open).map(b => b.vendor))];
+      return { ...tabs, hasCards: true,
+        cards: [["Current", 0.62], ["1-30 days", 0.26], ["31-60 days", 0.09], ["61-90 days", 0.02], ["90+ days", 0.01]].map(([label, share], i) => ({ label, value: usd(Math.round(AP[11] * share)), sub: pctf(share * 100) + " of total AP", accent: ["#0c1b31", "#dde2ea", "#f0a595", "#f0a595", "#c0392b"][i], color: i >= 3 ? "#98301f" : "#0c1b31" })),
+        statements: [simpleStmt("AP aging by vendor", `Total payables ${usd(AP[11])} at December 31`, [["Vendor", "left"], ["Current"], ["1-30 days"], ["31-60 days"], ["61-90 days"], ["90+ days"], ["Total"]],
+          vend.map(v => { const rows = bills.filter(b => b.open && b.vendor === v); const tot = rows.reduce((a, b) => a + b.amount, 0);
+            const late = rows.filter(b => b.status === "Past due").reduce((a, b) => a + b.amount, 0);
+            const bkts = [tot - late, late, 0, 0, 0];
+            return { cells: [cell(v, { align: "left", bold: true }), ...bkts.map((x, i) => cell(x ? usd(x) : " - ", { mono: true, color: i >= 1 && x ? "#98301f" : x ? null : "#dde2ea" })), cell(usd(tot), { mono: true, bold: true })] }; }),
+          { minWidth: "1000px", foot: "Two bills are past due: vehicle insurance (12 days) and a state licensing fee (6 days)." })] };
+    }
+    if (cur === "payroll") {
+      const tabs = T2(["Summary", "Daily register", "Overtime", "Payroll-to-GL"]);
+      if (tab === 1) return { ...tabs, ...this.buildTable({
+        title: "Daily payroll register", note: "5,973 lines in the year - one per caregiver per work day, 58 shown", placeholder: "Search caregiver, role or line ID",
+        search: ["id", "caregiver", "role"], minWidth: "1140px",
+        filters: [{ label: "Role", key: "role", options: ["All roles", ...CG_ROLES.map(r => r[0])] }, { label: "Pay type", key: "ptype", options: ["All pay types", "Hourly", "Per-visit"] }],
+        rows: payrollLines, cols: [
+          { label: "Line", key: "id", mono: true, bold: true }, { label: "Date", key: "date", mono: true, align: "left" }, { label: "Caregiver", key: "caregiver", align: "left" }, { label: "Role", key: "role", align: "left" },
+          { label: "Reg hrs", key: "reg", mono: true, fmt: v => v.toFixed(2) }, { label: "OT hrs", key: "ot", mono: true, fmt: v => v ? v.toFixed(2) : " - ", color: r => r.ot ? "#7a2417" : "#dde2ea" },
+          { label: "Visits", key: "visits", mono: true, fmt: v => v || " - " }, { label: "Mileage", key: "mileage", mono: true, fmt: usd }, { label: "Gross", key: "gross", mono: true, fmt: usd },
+          { label: "Burden", key: "burden", mono: true, fmt: usd }, { label: "Fully loaded", key: "total", mono: true, fmt: usd, bold: true }],
+        total: rows => `Filtered fully-loaded ${usd(rows.reduce((a, r) => a + r.total, 0))}`, foot: "Burden applied at 18.6%; mileage at $0.67 per mile"
+      }) };
+      if (tab === 2) return { ...tabs, hasCards: true,
+        cards: [{ label: "Overtime, FY", value: usd(COGS_PARTS[1].reduce((a, b) => a + b, 0)), sub: "4.2% of fully-loaded payroll", accent: "#c0392b", color: "#98301f" },
+          { label: "Peak month", value: pctf(Math.max(...OT_PCT)), sub: "September, at 62 active clients", accent: "#f0a595", color: "#0c1b31" },
+          { label: "January", value: pctf(OT_PCT[0]), sub: "Before the client base doubled", accent: "#0c1b31", color: "#0c1b31" },
+          { label: "Caregivers with OT", value: "23 of 40", sub: "Concentrated in Home Health Aides", accent: "#0c1b31", color: "#0c1b31" }],
+        statements: [monthStmt("Overtime pressure", "Overtime climbed as the client base grew without added headcount", [
+          { label: "Overtime wages", vals: COGS_PARTS[1] }, { label: "Overtime as % of total payroll", kind: "pct", tot: "avg", vals: OT_PCT }
+        ])] };
+      if (tab === 3) return { ...tabs, statements: [simpleStmt("Payroll-to-GL reconciliation", "Register totals against what is booked in the P&L, by component", [["Component", "left"], ["Payroll register"], ["Booked in P&L"], ["Difference"]],
+        CO_SHARE.map(([l], i) => ({ cells: [cell(l, { align: "left", bold: true }), cell(usd(COGS_PARTS[i].reduce((a, b) => a + b, 0)), { mono: true }), cell(usd(COGS_PARTS[i].reduce((a, b) => a + b, 0)), { mono: true }), cell("$0", { mono: true, color: "#0c1b31", bold: true })] }))
+          .concat([{ style: ROW_STYLES.total, cells: [cell("Total fully-loaded payroll", { align: "left", bold: true }), cell(usd(FYCOGS), { mono: true, bold: true }), cell(usd(FYCOGS), { mono: true, bold: true }), cell("$0", { mono: true, color: "#0c1b31", bold: true })] }]),
+        { minWidth: "760px", foot: "The register ties to the general ledger component by component, with no plug." })] };
+      return { ...tabs, statements: [monthStmt("Payroll summary", "Fully-loaded cost of services by component", [
+        ...CO_SHARE.map(([l], i) => ({ label: l, vals: COGS_PARTS[i] })),
+        { label: "Total fully-loaded payroll", style: "total", vals: COGS },
+        { label: "Payroll as % of revenue", kind: "pct", tot: "avg", vals: COGS.map((v, i) => v / REVN[i] * 100) }
+      ])] };
+    }
+    if (cur === "overhead") {
+      const tabs = T2(["Categories", "Register"]);
+      if (tab === 1) return { ...tabs, ...this.buildTable({
+        title: "Daily overhead register", note: "833 expense transactions in the year, 56 shown", placeholder: "Search category, vendor or ID",
+        search: ["id", "category", "vendor", "group"], minWidth: "1020px",
+        filters: [{ label: "Group", key: "group", options: ["All groups", ...OH_GROUPS] }, { label: "Account", key: "account", options: ["All accounts", "Operating ···4471", "Payroll ···8823"] }],
+        rows: ohTxns, cols: [{ label: "ID", key: "id", mono: true, bold: true }, { label: "Date", key: "date", mono: true, align: "left" }, { label: "Category", key: "category", align: "left" }, { label: "Group", key: "group", align: "left" }, { label: "Vendor", key: "vendor", align: "left" }, { label: "Paid from", key: "account", align: "left" }, { label: "Amount", key: "amount", mono: true, fmt: usd, bold: true }],
+        total: rows => `Filtered total ${usd(rows.reduce((a, r) => a + r.amount, 0))}`, foot: "Depreciation and line-of-credit interest are booked monthly, not as transactions"
+      }) };
+      return { ...tabs, statements: [monthStmt("Operating expenses by group", `All ${OH_CATS.length} categories rolled into ${OH_GROUPS.length} groups`, [
+        ...OH_GROUPS.map((g, i) => ({ label: g, vals: OH_G[i] })),
+        { label: "Total operating expenses", style: "total", vals: OH },
+        { label: "Overhead as % of revenue", kind: "pct", tot: "avg", vals: OH.map((v, i) => v / REVN[i] * 100) }
+      ], { foot: "Overhead is nearly fixed: it grew 27% while revenue grew 70%." })] };
+    }
+    if (cur === "fa") {
+      const tabs = T2(["Asset register", "Depreciation", "Other assets"]);
+      if (tab === 1) return { ...tabs, statements: [monthStmt("Depreciation schedule", "Straight-line, beginning the month of acquisition", [
+        { label: "Depreciation expense", vals: DEP }, { label: "Accumulated depreciation", vals: ACC_DEP, tot: "last" },
+        { label: "Fixed assets, gross", vals: FA_GROSS, tot: "last" }, { label: "Fixed assets, net", style: "total", vals: FA_NET, tot: "last" }
+      ])] };
+      if (tab === 2) return { ...tabs, statements: [monthStmt("Other assets", "A flat security deposit and a prepaid policy amortizing to zero", [
+        { label: "Security deposit", vals: PREPAID.map(() => DEPOSIT), tot: "last" },
+        { label: "Prepaid insurance", vals: PREPAID, tot: "last" },
+        { label: "Total other assets", style: "total", vals: PREPAID.map(v => v + DEPOSIT), tot: "last" }
+      ], { foot: "The prepaid general liability policy amortizes $700 a month, reaching $0 in December." })] };
+      return { ...tabs, ...this.buildTable({
+        title: "Fixed asset register", note: "12 assets - vehicles, office and medical equipment, one leasehold improvement", placeholder: "Search asset or class",
+        search: ["id", "name", "cls"], minWidth: "1080px",
+        filters: [{ label: "Class", key: "cls", options: ["All classes", "Vehicle", "Office equipment", "Medical equipment", "Leasehold improvement"] }],
+        rows: ASSETS.map(([id, name, cls, acq, cost, life, salv]) => { const sm = new Date(acq).getMonth(); const mo = (cost - salv) / life; const acc = mo * (12 - sm);
+          return { id, name, cls, acq, cost, life: life + " mo", salv, mo: Math.round(mo), acc: Math.round(acc), nbv: Math.round(cost - acc) }; }),
+        cols: [{ label: "Asset", key: "id", mono: true, bold: true }, { label: "Description", key: "name", align: "left" }, { label: "Class", key: "cls", align: "left" }, { label: "Acquired", key: "acq", mono: true }, { label: "Cost", key: "cost", mono: true, fmt: usd }, { label: "Life", key: "life", mono: true }, { label: "Salvage", key: "salv", mono: true, fmt: usd }, { label: "Monthly dep.", key: "mo", mono: true, fmt: usd }, { label: "Accum. dep.", key: "acc", mono: true, fmt: usd }, { label: "Net book value", key: "nbv", mono: true, fmt: usd, bold: true }],
+        total: rows => `Net book value ${usd(rows.reduce((a, r) => a + r.nbv, 0))}`, foot: "Net book value as of December 31, 2025"
+      }) };
+    }
+    if (cur === "clients") {
+      const tabs = T2(["Roster", "Authorizations", "Profitability", "Growth"]);
+      if (tab === 1) return { ...tabs, ...this.buildTable({
+        title: "Client authorizations", note: "Authorization periods per client, with expiry flagged", placeholder: "Search client or payer",
+        search: ["name", "payer", "id"], minWidth: "980px",
+        filters: [{ label: "Payer", key: "payer", options: ["All payers", ...PAYERS] }, { label: "State", key: "authState", options: ["All states", "Active", "Expiring soon", "Expired"] }],
+        rows: [...clientRoster].sort((a, b) => a.authEnd.localeCompare(b.authEnd)),
+        cols: [{ label: "Client", key: "name", align: "left", bold: true }, { label: "ID", key: "id", mono: true, align: "left" }, { label: "Payer", key: "payer", align: "left" }, { label: "Authorized units/wk", key: "auth", mono: true }, { label: "Actual units/wk", key: "actual", mono: true }, { label: "Utilization", key: "util", mono: true, fmt: v => pctf(v) }, { label: "Authorization ends", key: "authEnd", mono: true }, { label: "State", key: "authState", color: r => r.authState === "Expired" ? "#98301f" : r.authState === "Expiring soon" ? "#7a2417" : "#0c1b31" }],
+        total: rows => `${rows.filter(r => r.authState !== "Active").length} need renewal`, foot: "Units delivered outside an active authorization are not reimbursable"
+      }) };
+      if (tab === 2) return { ...tabs, ...this.buildTable({
+        title: "Profitability by client", note: "Revenue generated, attributed labor cost and margin, ranked", placeholder: "Search client or payer",
+        search: ["name", "payer"], minWidth: "980px",
+        filters: [{ label: "Payer", key: "payer", options: ["All payers", ...PAYERS] }, { label: "Status", key: "status", options: ["All statuses", "Active", "Discharged"] }],
+        rows: [...clientRoster].sort((a, b) => b.margin - a.margin),
+        cols: [{ label: "Client", key: "name", align: "left", bold: true }, { label: "Payer", key: "payer", align: "left" }, { label: "Status", key: "status", align: "left" }, { label: "Revenue", key: "rev", mono: true, fmt: usd }, { label: "Labor cost", key: "cost", mono: true, fmt: usd }, { label: "Margin $", key: "margin", mono: true, fmt: usd }, { label: "Margin %", key: "marginPct", mono: true, fmt: v => pctf(v), bold: true, color: r => r.marginPct < 25 ? "#98301f" : r.marginPct > 38 ? "#0c1b31" : null }],
+        total: rows => `Margin ${usd(rows.reduce((a, r) => a + r.margin, 0))} on revenue ${usd(rows.reduce((a, r) => a + r.rev, 0))}`, foot: "Labor cost is fully-loaded caregiver pay attributed by visit"
+      }) };
+      if (tab === 3) return { ...tabs, statements: [monthStmt("Client growth and utilization", "37 active clients in January to 62 in December", [
+        { label: "Active clients, month-end", kind: "int", tot: "last", vals: CLIENTS },
+        { label: "Revenue per active client", vals: REVN.map((v, i) => Math.round(v / CLIENTS[i])), tot: "avg" },
+        { label: "Authorized-hours utilization %", kind: "pct", tot: "avg", vals: CLIENTS.map((c, i) => 82 + i * 0.42) },
+        { label: "Client count growth % MoM", kind: "pct", tot: "avg", vals: CLIENTS.map((c, i) => i === 0 ? 0 : (c - CLIENTS[i - 1]) / CLIENTS[i - 1] * 100) }
+      ], { foot: "Roughly 14% of authorized units went undelivered across the year - unused authorization is revenue left on the table." })] };
+      return { ...tabs, ...this.buildTable({
+        title: "Client roster", note: "65 clients with payer, authorized versus actual units and service dates", placeholder: "Search client, ID or payer",
+        search: ["name", "id", "payer"], minWidth: "1000px",
+        filters: [{ label: "Payer", key: "payer", options: ["All payers", ...PAYERS] }, { label: "Status", key: "status", options: ["All statuses", "Active", "Discharged"] }],
+        rows: clientRoster, cols: [{ label: "Client", key: "name", align: "left", bold: true }, { label: "ID", key: "id", mono: true, align: "left" }, { label: "Payer", key: "payer", align: "left" }, { label: "Auth units/wk", key: "auth", mono: true }, { label: "Actual units/wk", key: "actual", mono: true }, { label: "Utilization", key: "util", mono: true, fmt: v => pctf(v) }, { label: "Service start", key: "start", mono: true }, { label: "Status", key: "status", color: r => r.status === "Active" ? "#0c1b31" : "#6c7a8c" }],
+        total: rows => `${rows.filter(r => r.status === "Active").length} active`, foot: "Units are weekly service hours for non-medical care and visits for skilled care"
+      }) };
+    }
+    if (cur === "caregivers") {
+      const tabs = T2(["Roster", "Certifications", "Profitability", "Utilization"]);
+      if (tab === 1) return { ...tabs, ...this.buildTable({
+        title: "Caregiver certifications", note: "Background check and certification expiry, with lapses flagged", placeholder: "Search caregiver or role",
+        search: ["name", "role", "id"], minWidth: "940px",
+        filters: [{ label: "State", key: "certState", options: ["All states", "Current", "Expiring soon", "Expired"] }, { label: "Status", key: "status", options: ["All statuses", "Active", "Terminated"] }],
+        rows: [...cgRoster].sort((a, b) => a.certEnd.localeCompare(b.certEnd)),
+        cols: [{ label: "Caregiver", key: "name", align: "left", bold: true }, { label: "Emp ID", key: "id", mono: true, align: "left" }, { label: "Role", key: "role", align: "left" }, { label: "Employment", key: "status", align: "left" }, { label: "Background check", key: "bg", mono: true }, { label: "Certification ends", key: "certEnd", mono: true }, { label: "State", key: "certState", color: r => r.certState === "Expired" ? "#98301f" : r.certState === "Expiring soon" ? "#7a2417" : "#0c1b31" }],
+        total: rows => `${rows.filter(r => r.certState === "Expired" && r.status === "Active").length} active caregivers with a lapsed certification`,
+        foot: "Visits delivered by a caregiver with a lapsed certification cannot be billed"
+      }) };
+      if (tab === 2) return { ...tabs, ...this.buildTable({
+        title: "Profitability by caregiver", note: "Revenue attributed to their visits against fully-loaded pay", placeholder: "Search caregiver or role",
+        search: ["name", "role"], minWidth: "980px",
+        filters: [{ label: "Role", key: "role", options: ["All roles", ...CG_ROLES.map(r => r[0])] }, { label: "Pay type", key: "ptype", options: ["All pay types", "Hourly", "Per-visit"] }],
+        rows: [...cgRoster].sort((a, b) => b.margin - a.margin),
+        cols: [{ label: "Caregiver", key: "name", align: "left", bold: true }, { label: "Role", key: "role", align: "left" }, { label: "Pay type", key: "ptype", align: "left" }, { label: "Rate", key: "rate", mono: true, fmt: v => "$" + v.toFixed(2) }, { label: "Hours", key: "hrs", mono: true, fmt: v => v.toLocaleString() }, { label: "Revenue", key: "rev", mono: true, fmt: usd }, { label: "Loaded cost", key: "cost", mono: true, fmt: usd }, { label: "Margin $", key: "margin", mono: true, fmt: usd }, { label: "Margin %", key: "marginPct", mono: true, fmt: v => pctf(v), bold: true, color: r => r.marginPct < 20 ? "#98301f" : r.marginPct > 40 ? "#0c1b31" : null }],
+        total: rows => `Margin ${usd(rows.reduce((a, r) => a + r.margin, 0))}`, foot: "Answers which caregivers are actually making money for the agency"
+      }) };
+      if (tab === 3) return { ...tabs, statements: [monthStmt("Caregiver utilization and turnover", "Billable hours against paid hours, and annualized turnover", [
+        { label: "Total billable hours", kind: "int", vals: BILL_HRS },
+        { label: "Total paid caregiver hours", kind: "int", vals: PAID_HRS },
+        { label: "Caregiver utilization %", kind: "pct", tot: "avg", vals: BILL_HRS.map((h, i) => h / PAID_HRS[i] * 100) },
+        { label: "Overtime as % of payroll", kind: "pct", tot: "avg", vals: OT_PCT },
+        { label: "Turnover rate, annualized %", kind: "pct", tot: "avg", vals: [18, 19, 21, 22, 22, 23, 24, 25, 26, 25, 24, 24] }
+      ])] };
+      return { ...tabs, ...this.buildTable({
+        title: "Caregiver roster", note: "40 caregivers with role, pay type, rate and employment dates", placeholder: "Search caregiver, role or ID",
+        search: ["name", "role", "id"], minWidth: "960px",
+        filters: [{ label: "Role", key: "role", options: ["All roles", ...CG_ROLES.map(r => r[0])] }, { label: "Status", key: "status", options: ["All statuses", "Active", "Terminated"] }],
+        rows: cgRoster, cols: [{ label: "Caregiver", key: "name", align: "left", bold: true }, { label: "Emp ID", key: "id", mono: true, align: "left" }, { label: "Role", key: "role", align: "left" }, { label: "Pay type", key: "ptype", align: "left" }, { label: "Rate", key: "rate", mono: true, fmt: v => "$" + v.toFixed(2) }, { label: "Hired", key: "hire", mono: true }, { label: "Hours, FY", key: "hrs", mono: true, fmt: v => v.toLocaleString() }, { label: "Status", key: "status", color: r => r.status === "Active" ? "#0c1b31" : "#6c7a8c" }],
+        total: rows => `${rows.filter(r => r.status === "Active").length} active`, foot: "Per-visit pay applies to skilled therapy staff"
+      }) };
+    }
+    if (cur === "missed") return {
+      hasCards: true, cards: [
+        { label: "Missed visit rate", value: "2.1%", sub: "Lost revenue as a share of potential revenue", accent: "#c0392b", color: "#98301f" },
+        { label: "Revenue lost, FY", value: usd(missed.reduce((a, r) => a + r.lost, 0) * 12), sub: "Extrapolated from the logged events", accent: "#f0a595", color: "#0c1b31" },
+        { label: "Events logged", value: "312", sub: "26 shown in the log below", accent: "#0c1b31", color: "#0c1b31" },
+        { label: "Leading cause", value: "Call-offs", sub: "Caregiver call-off with no replacement found", accent: "#0c1b31", color: "#0c1b31" }
+      ],
+      ...this.buildTable({
+        title: "Missed visit log", note: "Visits scheduled but not delivered, with the revenue lost per event", placeholder: "Search client, caregiver or cause",
+        search: ["client", "caregiver", "cause", "id"], minWidth: "1000px",
+        filters: [{ label: "Payer", key: "payer", options: ["All payers", ...PAYERS] }, { label: "Cause", key: "cause", options: ["All causes", ...[...new Set(MISS_CAUSE)]] }],
+        rows: missed, cols: [{ label: "Event", key: "id", mono: true, bold: true }, { label: "Date", key: "date", mono: true, align: "left" }, { label: "Client", key: "client", align: "left" }, { label: "Payer", key: "payer", align: "left" }, { label: "Caregiver", key: "caregiver", align: "left" }, { label: "Cause", key: "cause", align: "left" }, { label: "Hours", key: "hours", mono: true }, { label: "Revenue lost", key: "lost", mono: true, fmt: usd, bold: true, color: () => "#98301f" }, { label: "Outcome", key: "replaced", align: "right" }],
+        total: rows => `Revenue lost in view ${usd(rows.reduce((a, r) => a + r.lost, 0))}`, foot: "Most agencies never track this; it is a direct read on operational quality"
+      })
+    };
+    if (cur === "kpi") return {
+      statements: [
+        monthStmt("Profitability", "Three headline measures", [
+          { label: "Total revenue", vals: REVN }, { label: "Net income", vals: NETI }, { label: "Net margin %", kind: "pct", tot: "avg", vals: MG2 }
+        ]),
+        monthStmt("Labor and utilization", "Hours, utilization, overtime, turnover and missed visits", [
+          { label: "Total billable hours", kind: "int", vals: BILL_HRS }, { label: "Total paid caregiver hours", kind: "int", vals: PAID_HRS },
+          { label: "Caregiver utilization %", kind: "pct", tot: "avg", vals: BILL_HRS.map((h, i) => h / PAID_HRS[i] * 100) },
+          { label: "Overtime as % of total payroll", kind: "pct", tot: "avg", vals: OT_PCT },
+          { label: "Turnover rate, annualized %", kind: "pct", tot: "avg", vals: [18, 19, 21, 22, 22, 23, 24, 25, 26, 25, 24, 24] },
+          { label: "Missed visit rate %", kind: "pct", tot: "avg", vals: [2.6, 2.5, 2.4, 2.3, 2.2, 2.2, 2.1, 2.1, 2.0, 2.0, 2.1, 2.1] }
+        ]),
+        monthStmt("Client and authorization metrics", "Scale, revenue density and authorization exposure", [
+          { label: "Active clients, month-end", kind: "int", tot: "last", vals: CLIENTS },
+          { label: "Avg monthly revenue per active client", vals: REVN.map((v, i) => Math.round(v / CLIENTS[i])), tot: "avg" },
+          { label: "Avg authorized-hours utilization %", kind: "pct", tot: "avg", vals: CLIENTS.map((c, i) => 82 + i * 0.42) },
+          { label: "Authorizations expired / expiring", kind: "int", tot: "last", vals: [1, 2, 2, 3, 2, 3, 4, 3, 3, 4, 3, 3] }
+        ]),
+        monthStmt("AR / AP and liquidity", "Collections, payables and the cushion behind them", [
+          { label: "Total AR outstanding", vals: AR_BAL, tot: "last" }, { label: "Days sales outstanding", kind: "d", tot: "last", vals: DSO_M },
+          { label: "Claim denial rate %", kind: "pct", tot: "avg", vals: DENIAL_M }, { label: "Total AP outstanding", vals: AP, tot: "last" },
+          { label: "Days payable outstanding", kind: "d", tot: "last", vals: DPO_M },
+          { label: "Line of credit utilization %", kind: "pct", tot: "last", vals: LOC.map(v => v / LOC_LIMIT * 100) },
+          { label: "Working capital", vals: CASH_BS.map((c, i) => c + AR_BAL[i] - LIAB_TOT[i]), tot: "last" },
+          { label: "Quick ratio", kind: "x", tot: "last", vals: CASH_BS.map((c, i) => (c + AR_BAL[i]) / LIAB_TOT[i]) },
+          { label: "Cash runway, days", kind: "int", tot: "last", vals: CASH_BS.map((c, i) => Math.round((c + (LOC_LIMIT - LOC[i])) / (OH[i] / 30))) }
+        ]),
+        monthStmt("Growth", "Month-over-month movement and blended cost per hour", [
+          { label: "Revenue growth % MoM", kind: "pct", tot: "avg", vals: REVN.map((v, i) => i === 0 ? 0 : (v - REVN[i - 1]) / REVN[i - 1] * 100) },
+          { label: "Client count growth % MoM", kind: "pct", tot: "avg", vals: CLIENTS.map((c, i) => i === 0 ? 0 : (c - CLIENTS[i - 1]) / CLIENTS[i - 1] * 100) },
+          { label: "Average cost per visit-hour", kind: "x", tot: "avg", vals: COGS.map((v, i) => v / BILL_HRS[i]) }
+        ])
+      ]
+    };
+    if (cur === "coa") return {
+      ...this.buildTable({
+        title: "Chart of accounts", note: "32 accounts across assets, liabilities, equity, revenue, cost of services and operating expenses", placeholder: "Search account name or number",
+        search: ["num", "name", "type"], minWidth: "720px",
+        filters: [{ label: "Type", key: "type", options: ["All types", "Asset", "Liability", "Equity", "Revenue", "Cost of services", "Operating expense"] }],
+        rows: COA.map(([num, name, type]) => ({ num, name, type })),
+        cols: [{ label: "Account", key: "num", mono: true, align: "left", bold: true }, { label: "Name", key: "name", align: "left" }, { label: "Type", key: "type", align: "right" }],
+        total: rows => `${rows.length} accounts`, foot: "Account numbers follow the underlying general ledger"
+      }),
+      statements: [simpleStmt("Rate assumptions", "The inputs every figure in this dashboard is built from", [["Assumption", "left"], ["Value"]],
+        ASSUMPTIONS.map(([k, v]) => ({ cells: [cell(k, { align: "left" }), cell(v, { mono: true, bold: true })] })), { minWidth: "520px" })]
+    };
+    return {};
+  }
+  renderVals() {
+    const cur = this.state.screen, t = T[cur] || T.overview;
+    VIEW = PERIODS[this.state.period] || [0, 11];
+    VIEW_LABEL = this.state.period === "FY 2025" ? "FY total" : this.state.period + " total";
+    return {
+      booting: this.state.booting, locked: this.state.locked,
+      user: this.state.user, pass: this.state.pass,
+      onUser: e => this.setState({ user: e.target.value }), onPass: e => this.setState({ pass: e.target.value }),
+      signIn: () => this.signIn(), screenKey: cur + "-" + (this.state.tab[cur] || 0),
+      period: this.state.period,
+      periodMenu: this.menu("period", this.state.period, Object.keys(PERIODS), p => this.setPeriod({ target: { value: p } })),
+      crumb: (PAGES[GROUP_OF[cur]] || {}).label || t[0], title: t[1], blurb: t[2],
+      isOverview: cur === "overview",
+      hasTabs: false, tabs: [], ...this.groupTabsFor(cur), hasRange: false, hasCards: false, cards: [], statements: [], hasTable: false, hasNotes: false, notes: [],
+      ...this.screen(cur),
+      goAlerts: this.go("overview"),
+      menuCls: this.state.menu ? "hm-open" : "",
+      openMenu: () => this.setState({ menu: true }), closeMenu: () => this.setState({ menu: false }),
+      navGroups: NAV.map(([label, gids]) => ({
+        label,
+        items: gids.map(gid => ({ lbl: PAGES[gid].label, id: PAGES[gid].members[0][1], active: GROUP_OF[cur] === gid })).map(({ lbl, id, active }) => ({
+          label: lbl, go: this.go(id), _a: active,
+          style: `display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:0;border-radius:10px;padding:10px 12px;margin-bottom:2px;cursor:pointer;transition:background 0.16s ease;font-family:inherit;font-size:14px;background:${active ? "#1d2b40" : "transparent"};color:${active ? "#ffffff" : "rgba(255,255,255,0.8)"};font-weight:${active ? 600 : 400}`,
+          dotStyle: `width:6px;height:6px;border-radius:6px;flex:0 0 6px;background:${active ? "#4a9eff" : "transparent"}`
+        }))
+      })),
+      donut: (() => { const C = 2 * Math.PI * 54;
+        const parts = [["Cost of services", FYCOGS, "#0c1b31"], ["Operating expenses", FYOH, "#9aa5b4"], ["Net income", FYNET, "#1e7a55"]];
+        let acc = 0;
+        return parts.map(([label, v, color]) => { const share = v / FYREV; const seg = { label, color,
+          value: usd(v), pct: (share * 100).toFixed(1) + "%",
+          dash: `${(share * C).toFixed(1)} ${(C - share * C).toFixed(1)}`, offset: (-acc * C).toFixed(1) };
+          acc += share; return seg; }); })(),
+      hardFlags: [
+        { tag: "Certification", title: "Caregiver certifications: 2 of 40 lapsed", detail: "Two active aides show an expired certification and three more expire within 60 days. Visits delivered by a lapsed caregiver cannot be billed to Medicaid Waiver at all - this is booked revenue at risk, not a warning.", go: this.go("caregivers") },
+        { tag: "Authorization", title: "Client authorizations: 1 expired, 2 expiring", detail: "One Medicaid Waiver authorization expired Dec 18 and the client is still being served; two more lapse within 14 days. Units delivered outside an active authorization are not reimbursable.", go: this.go("clients") }
+      ],
+      watchlist: [
+        { title: "$8,240 of AR sits in the 90+ bucket", detail: "Four Medicaid Waiver claims from August with no remittance posted; Medicaid Waiver carries 78% of all balances past 30 days.", where: "Money owed to us", dot: "width:7px;height:7px;border-radius:10px;background:#f0a595;flex:0 0 7px", go: this.go("ar") },
+        { title: "Overtime reached 4.3% of payroll", detail: "Overtime climbed through the second half as the client count grew from 37 to 62 without added headcount - worst month was October.", where: "Payroll", dot: "width:7px;height:7px;border-radius:10px;background:#f0a595;flex:0 0 7px", go: this.go("payroll") },
+        { title: "2 vendor bills are past due", detail: "Vehicle insurance (Net 30, 12 days late) and a state licensing fee (Due on receipt, 6 days late) across 26 vendors on file.", where: "Money we owe", dot: "width:7px;height:7px;border-radius:10px;background:#f0a595;flex:0 0 7px", go: this.go("ap") },
+        { title: "Line of credit peaked at 47% mid-year", detail: "Draws funded the AR lag plus two vehicle purchases in June and July; the balance has been paid down to 31% of the $150,000 facility.", where: "Line of credit", dot: "width:7px;height:7px;border-radius:10px;background:#9aa5b4;flex:0 0 7px", go: this.go("loc") },
+        { title: "Authorized hours utilization is 86%", detail: "Roughly 14% of authorized units went undelivered across the year - unused authorization is revenue left on the table.", where: "Clients", dot: "width:7px;height:7px;border-radius:10px;background:#9aa5b4;flex:0 0 7px", go: this.go("clients") },
+        { title: "Missed visit rate 2.1% of potential revenue", detail: "Caregiver call-offs with no replacement account for just over half the missed visits logged this year.", where: "Missed visits", dot: "width:7px;height:7px;border-radius:10px;background:#9aa5b4;flex:0 0 7px", go: this.go("missed") }
+      ],
+      kpis: [
+        { label: "Revenue, FY 2025", value: usd(994000), color: "#0c1b31", sub: "December $99,000 · +70% over January", foot: "Trailing twelve months", spark: spark(REV), chip: "+2.7% MoM", chipStyle: chip("up") },
+        { label: "Net income, FY 2025", value: usd(58646), color: "#0c1b31", sub: "5.9% net margin for the year", foot: "December margin 9.1%", spark: spark(MG), chip: "+0.6 pt", chipStyle: chip("up") },
+        { label: "Cash on hand", value: usd(78900), color: "#0c1b31", sub: "Operating $61,400 · Payroll $17,500", foot: "Both accounts reconciled", spark: spark(CASH), chip: "+$7.6k", chipStyle: chip("up") },
+        { label: "AR outstanding", value: usd(91200), color: "#98301f", sub: "$14,870 past 30 days · DSO 33.5", foot: "$8,240 in the 90+ bucket", spark: spark(AR), chip: "DSO +1.2 d", chipStyle: chip("down") }
+      ],
+      payers: [
+        { name: "Medicaid Waiver", amount: usd(521000), share: "52.4%", dso: "38.6 d", denial: "3.1%", denialColor: "#98301f", color: "#0c1b31", go: this.go("ar") },
+        { name: "Private Pay", amount: usd(228000), share: "22.9%", dso: "17.4 d", denial: "0.0%", denialColor: "#0c1b31", color: "#6c7a8c", go: this.go("ar") },
+        { name: "Medicare (Skilled)", amount: usd(166000), share: "16.7%", dso: "29.2 d", denial: "1.8%", denialColor: "#6c7a8c", color: "#dde2ea", go: this.go("ar") },
+        { name: "Private Insurance", amount: usd(79000), share: "8.0%", dso: "26.5 d", denial: "1.4%", denialColor: "#6c7a8c", color: "#dde2ea", go: this.go("ar") }
+      ],
+      growthLine: CLIENTS.map((v, i) => `${(i * (320 / 11)).toFixed(1)},${(124 - ((v - 30) / 36) * 108).toFixed(1)}`).join(" "),
+      growthArea: CLIENTS.map((v, i) => `${(i * (320 / 11)).toFixed(1)},${(124 - ((v - 30) / 36) * 108).toFixed(1)}`).join(" ") + " 320,124 0,124",
+      zeroY: (176 - ((0 + 3) / 13) * 150).toFixed(1),
+      bars: REV.map((v, i) => {
+        const step = 660 / 12, h = (v / Math.max(...REV)) * 150, x = 40 + i * step + step * 0.2;
+        return { x: x.toFixed(1), y: (196 - h).toFixed(1), w: (step * 0.6).toFixed(1), h: h.toFixed(1), cx: (x + step * 0.3).toFixed(1), month: M[i], rev: k(v), fill: i >= 9 ? "#0c1b31" : "#9aa5b4", go: this.go("pl") };
+      }),
+      marginLine: MG.map((v, i) => `${(40 + i * (660 / 12) + (660 / 12) * 0.5).toFixed(1)},${(176 - ((v + 3) / 13) * 150).toFixed(1)}`).join(" "),
+      dots: MG.map((v, i) => ({ cx: (40 + i * (660 / 12) + (660 / 12) * 0.5).toFixed(1), cy: (176 - ((v + 3) / 13) * 150).toFixed(1) })),
+      liquidity: [
+        { label: "Bank accounts", value: usd(78900), cta: "Open bank accounts", go: this.go("bank"), lines: [{ k: "Operating ···4471", v: usd(61400) }, { k: "Payroll ···8823", v: usd(17500) }, { k: "Reconciliation difference", v: "$0" }] },
+        { label: "Line of credit", value: usd(46500), cta: "Open line of credit", go: this.go("loc"), lines: [{ k: "Facility limit", v: usd(150000) }, { k: "Utilization", v: "31.0%" }, { k: "Interest paid YTD", v: usd(4318) }] },
+        { label: "Liquidity", value: "2.43×", cta: "Open KPI command center", go: this.go("kpi"), lines: [{ k: "Working capital", v: usd(100120) }, { k: "Quick ratio", v: "2.43" }, { k: "Cash runway", v: "148 days" }] }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

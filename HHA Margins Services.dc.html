@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231e3a5f'/%3E%3Cpath d='M12 32h9.5l5.5-13 9.5 29 8-16h7.5' fill='none' stroke='%23ffffff' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#0c1b31">
+  <meta property="og:site_name" content="HHA Margins">
+  <title>Services - bookkeeping, monthly close and margin reporting for home care agencies | HHA Margins</title>
+  <meta name="description" content="Monthly close, payer and client margin reporting, AR and denial tracking, payroll control, cash forecasting and compliance-linked revenue risk for home care agencies.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
+  <style>
+    .hm-mnav { display: none }
+    .hm-mnav > summary { list-style: none } .hm-mnav > summary::-webkit-details-marker { display: none }
+    .hm-mnav[open] .hm-burger-open { display: none } .hm-mnav:not([open]) .hm-burger-close { display: none }
+    @media (max-width: 900px) {
+      .hm-dnav { display: none !important } .hm-mnav { display: block }
+      section { padding-left: 18px !important; padding-right: 18px !important }
+      header > div, footer > div { padding-left: 18px !important; padding-right: 18px !important }
+      h1 { font-size: clamp(30px, 8.4vw, 42px) !important }
+      h2 { font-size: clamp(24px, 6.6vw, 32px) !important }
+      [data-pad] { padding: 26px 22px !important }
+    }
+    body { margin: 0; background: #ffffff; color: #0c1b31; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased }
+    h1, h2, h3 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 800; letter-spacing: -0.03em; margin: 0; text-wrap: balance }
+    p { margin: 0; text-wrap: pretty }
+    a { color: #1e3a5f; text-decoration: none } a:hover { color: #c0392b }
+    .num { font-family: 'Archivo', sans-serif; font-variant-numeric: tabular-nums; letter-spacing: -0.02em }
+    :focus-visible { outline: 2px solid #c0392b; outline-offset: 3px }
+    @keyframes rise { from { opacity: 0; transform: translateY(16px) } to { opacity: 1; transform: none } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important } }
+  </style>
+</helmet>
+<div style="min-height: 100vh; background: #ffffff">
+  <header style="position: sticky; top: 0; z-index: 50; height: 66px; box-sizing: border-box; background: rgba(255,255,255,0.94); backdrop-filter: blur(10px); border-bottom: 1px solid #dde2ea">
+    <div style="max-width: 1180px; height: 100%; margin: 0 auto; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px">
+      <a href="HHA Margins Landing.dc.html" style="display: flex; align-items: center; gap: 11px">
+        <span style="width: 36px; height: 36px; border-radius: 10px; background: #1e3a5f; display: flex; align-items: center; justify-content: center; flex: 0 0 36px">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3.5l2-5 3.5 11 3-6h5.5"></path></svg>
+        </span>
+        <span style="font-weight: 800; font-size: 16px; color: #0c1b31; letter-spacing: -0.02em; white-space: nowrap">HHA Margins</span>
+      </a>
+      <nav class="hm-dnav" style="display: flex; align-items: center; gap: 24px">
+        <a href="HHA Margins Services.dc.html" style="font-size: 14px; white-space: nowrap; padding: 4px 0; color: #0c1b31; font-weight: 700; border-bottom: 2px solid #c0392b" style-hover="color: #0c1b31">Services</a>
+        <a href="HHA Margins Pricing.dc.html" style="font-size: 14px; white-space: nowrap; padding: 4px 0; color: #465569; font-weight: 500; border-bottom: 2px solid transparent" style-hover="color: #0c1b31">Pricing</a>
+        <a href="HHA Margins About.dc.html" style="font-size: 14px; white-space: nowrap; padding: 4px 0; color: #465569; font-weight: 500; border-bottom: 2px solid transparent" style-hover="color: #0c1b31">About</a>
+        <a href="HHA Margins Resources.dc.html" style="font-size: 14px; white-space: nowrap; padding: 4px 0; color: #465569; font-weight: 500; border-bottom: 2px solid transparent" style-hover="color: #0c1b31">Resources</a>
+        <a href="HHA Margins Contact.dc.html" style="font-size: 14px; white-space: nowrap; padding: 4px 0; color: #465569; font-weight: 500; border-bottom: 2px solid transparent" style-hover="color: #0c1b31">Contact</a>
+        <a href="HHA Margins Tour.dc.html" style="display: inline-flex; align-items: center; white-space: nowrap; background: #0c1b31; color: #ffffff; border-radius: 999px; padding: 11px 20px; font-size: 14px; font-weight: 700; transition: background 0.16s ease" style-hover="background: #c0392b; color: #ffffff">Product tour</a>
+      </nav>
+      <details class="hm-mnav">
+        <summary aria-label="Menu" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; border: 1px solid #dde2ea; background: #ffffff; cursor: pointer">
+          <svg class="hm-burger-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0c1b31" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+          <svg class="hm-burger-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0c1b31" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+        </summary>
+        <div style="position: absolute; left: 0; right: 0; top: 66px; background: #ffffff; border-bottom: 1px solid #dde2ea; box-shadow: 0 24px 40px rgba(12,27,49,0.12); padding: 10px 18px 20px; display: flex; flex-direction: column">
+          <a href="HHA Margins Landing.dc.html" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 4px; border-bottom: 1px solid #eceff5; font-size: 16px; font-weight: 700; color: #0c1b31">Home<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa5b4" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"></path></svg></a>
+          <a href="HHA Margins Services.dc.html" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 4px; border-bottom: 1px solid #eceff5; font-size: 16px; font-weight: 700; color: #0c1b31">Services<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa5b4" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"></path></svg></a>
+          <a href="HHA Margins Pricing.dc.html" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 4px; border-bottom: 1px solid #eceff5; font-size: 16px; font-weight: 700; color: #0c1b31">Pricing<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa5b4" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"></path></svg></a>
+          <a href="HHA Margins About.dc.html" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 4px; border-bottom: 1px solid #eceff5; font-size: 16px; font-weight: 700; color: #0c1b31">About<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa5b4" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"></path></svg></a>
+          <a href="HHA Margins Resources.dc.html" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 4px; border-bottom: 1px solid #eceff5; font-size: 16px; font-weight: 700; color: #0c1b31">Resources<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa5b4" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"></path></svg></a>
+          <a href="HHA Margins HIPAA.dc.html" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 4px; border-bottom: 1px solid #eceff5; font-size: 16px; font-weight: 700; color: #0c1b31">HIPAA<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa5b4" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"></path></svg></a>
+          <a href="HHA Margins Contact.dc.html" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 4px; border-bottom: 1px solid #eceff5; font-size: 16px; font-weight: 700; color: #0c1b31">Contact<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa5b4" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"></path></svg></a>
+          <a href="HHA Margins Tour.dc.html" style="margin-top: 14px; display: flex; align-items: center; justify-content: center; background: #0c1b31; color: #ffffff; border-radius: 12px; padding: 15px; font-size: 15px; font-weight: 700">Product tour</a>
+          <a href="HHA Margins Contact.dc.html" style="margin-top: 10px; display: flex; align-items: center; justify-content: center; border: 1px solid #dde2ea; color: #0c1b31; border-radius: 12px; padding: 15px; font-size: 15px; font-weight: 700">Book a margin review</a>
+        </div>
+      </details>
+    </div>
+  </header>
+
+  <section style="max-width: 1180px; margin: 0 auto; padding: 66px 28px 10px; animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both">
+    <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6c7a8c; font-weight: 700">Services</span>
+    <h1 style="font-size: clamp(34px, 4.6vw, 54px); line-height: 1.04; margin-top: 14px; max-width: 20ch">Everything finance, for home care and nothing else.</h1>
+    <p style="font-size: 17px; line-height: 1.65; color: #465569; margin-top: 18px; max-width: 60ch">Six services that run together as one monthly rhythm. Most agencies start with the close and margin reporting, then add the rest as they grow.</p>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px">
+      <sc-for list="{{ services }}" as="s" hint-placeholder-count="6">
+        <a href="{{ s.anchor }}" style="border: 1px solid #dde2ea; border-radius: 999px; padding: 9px 16px; font-size: 13.5px; font-weight: 600; color: #465569; transition: border-color 0.15s ease" style-hover="border-color: #0c1b31; color: #0c1b31">{{ s.title }}</a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="max-width: 1180px; margin: 0 auto; padding: 36px 28px 0; display: flex; flex-direction: column; gap: 18px">
+    <sc-for list="{{ services }}" as="s" hint-placeholder-count="6">
+      <article id="{{ s.id }}" style="border: 1px solid #e6eaf1; border-radius: 18px; overflow: hidden; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both">
+        <div style="padding: 32px; background: #f7f9fc">
+          <div style="display: flex; align-items: center; gap: 14px">
+            <span style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; background: #0c1b31; flex: 0 0 44px">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" dangerouslySetInnerHTML="{{ s.icon }}"></svg>
+            </span>
+            <span class="num" style="font-size: 13px; font-weight: 700; color: #c0392b">{{ s.n }}</span>
+          </div>
+          <h2 style="font-size: 26px; margin-top: 18px">{{ s.title }}</h2>
+          <p style="font-size: 15.5px; line-height: 1.65; color: #465569; margin-top: 12px">{{ s.body }}</p>
+          <div style="display: flex; align-items: baseline; gap: 10px; margin-top: 22px; padding-top: 18px; border-top: 1px solid #e6eaf1">
+            <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #6c7a8c; font-weight: 700">Deliverable</span>
+            <span style="font-size: 14.5px; font-weight: 700">{{ s.out }}</span>
+          </div>
+        </div>
+        <div style="padding: 32px">
+          <div style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6c7a8c; font-weight: 700">What is included</div>
+          <div style="display: flex; flex-direction: column; margin-top: 12px">
+            <sc-for list="{{ s.items }}" as="i" hint-placeholder-count="4">
+              <div style="display: flex; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid #eceff5">
+                <span style="display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 24px; background: #e3f2ea; flex: 0 0 24px">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1e7a55" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                </span>
+                <span style="font-size: 15px; font-weight: 600; line-height: 1.5">{{ i }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </article>
+    </sc-for>
+  </section>
+
+  <section style="max-width: 1180px; margin: 66px auto 0; padding: 0 28px">
+    <div style="background: #0c1b31; border-radius: 20px; padding: 48px 40px; display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap">
+      <div>
+        <h2 style="font-size: 32px; color: #ffffff; max-width: 24ch">Not sure where to start? Start with the free margin review.</h2>
+        <p style="font-size: 15.5px; color: rgba(255,255,255,0.72); margin-top: 12px">Twelve months of data in, profitability by payer and client out.</p>
+      </div>
+      <a href="HHA Margins Contact.dc.html" style="display: inline-flex; align-items: center; background: #ffffff; color: #0c1b31; border-radius: 12px; padding: 16px 26px; font-size: 15px; font-weight: 700; transition: transform 0.16s ease" style-hover="transform: translateY(-2px); color: #0c1b31">Book a margin review</a>
+    </div>
+  </section>
+
+  <footer style="border-top: 1px solid #e6eaf1; margin-top: 66px">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 64px 28px 48px; display: flex; flex-wrap: wrap; gap: 48px 72px; align-items: flex-start">
+      <div style="flex: 1 1 260px; max-width: 340px">
+        <div style="display: flex; align-items: center; gap: 11px">
+          <span style="width: 34px; height: 34px; border-radius: 10px; background: #1e3a5f; display: flex; align-items: center; justify-content: center; flex: 0 0 34px">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3.5l2-5 3.5 11 3-6h5.5"></path></svg>
+        </span>
+          <span style="font-weight: 800; font-size: 15.5px; letter-spacing: -0.02em; color: #0c1b31">HHA Margins</span>
+        </div>
+        <p style="font-size: 13.5px; line-height: 1.6; color: #6c7a8c; margin: 12px 0 0; max-width: 30ch">Bookkeeping and CFO reporting for home care agencies. Austin, Texas - serving agencies nationwide.</p>
+        <div style="display: flex; gap: 10px; margin-top: 20px">
+          <a href="https://www.linkedin.com/company/hhamargins" target="_blank" rel="noopener" aria-label="HHA Margins on LinkedIn" style="display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; border: 1px solid #dde2ea; background: #ffffff; transition: border-color 0.16s ease, transform 0.16s ease" style-hover="border-color: #0c1b31; transform: translateY(-2px)"><svg width="17" height="17" viewBox="0 0 24 24" fill="#1e3a5f"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4v11H3zM9.5 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1v5.35h-4v-4.75c0-1.13-.02-2.59-1.58-2.59-1.58 0-1.82 1.23-1.82 2.5v4.84h-4z"></path></svg></a>
+          <a href="https://www.instagram.com/hhamargins" target="_blank" rel="noopener" aria-label="HHA Margins on Instagram" style="display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; border: 1px solid #dde2ea; background: #ffffff; transition: border-color 0.16s ease, transform 0.16s ease" style-hover="border-color: #0c1b31; transform: translateY(-2px)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1e3a5f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="0.6" fill="#1e3a5f"></circle></svg></a>
+        </div>
+      </div>
+      <div style="flex: 2 1 520px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 40px 48px">
+        <div>
+          <div style="font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #9aa5b4; font-weight: 700; line-height: 34px">Services</div>
+          <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 14px">
+            <a href="HHA Margins Services.dc.html" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">Monthly close</a>
+            <a href="HHA Margins Services.dc.html" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">Margin reporting</a>
+            <a href="HHA Margins Services.dc.html" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">AR and denials</a>
+            <a href="HHA Margins Landing.dc.html#calculator" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">Margin calculator</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #9aa5b4; font-weight: 700; line-height: 34px">Company</div>
+          <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 14px">
+            <a href="HHA Margins About.dc.html" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">About</a>
+            <a href="HHA Margins Pricing.dc.html" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">Pricing</a>
+            <a href="HHA Margins Resources.dc.html" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">Resources</a>
+            <a href="HHA Margins Tour.dc.html" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">Product tour</a>
+            <a href="HHA Margins HIPAA.dc.html" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">HIPAA compliance</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #9aa5b4; font-weight: 700; line-height: 34px">Get in touch</div>
+          <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 14px">
+            <a href="mailto:hello@hhamargins.com" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">hello@hhamargins.com</a>
+            <a href="tel:+15125550137" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">(512) 555-0137</a>
+            <a href="HHA Margins Contact.dc.html" style="font-size: 14px; color: #465569" style-hover="color: #c0392b">Book a margin review</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="max-width: 1180px; margin: 0 auto; padding: 0 28px 48px">
+      <div style="border-top: 1px solid #eceff5; padding-top: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: #9aa5b4; font-size: 12.5px">
+        <span>© 2026 HHA Margins. All rights reserved.</span>
+        <span style="display: flex; gap: 18px; flex-wrap: wrap">
+          <a href="HHA Margins Legal.dc.html" style="color: #9aa5b4">Privacy</a>
+          <a href="HHA Margins Legal.dc.html?terms" style="color: #9aa5b4">Terms</a>
+          <a href="HHA Margins HIPAA.dc.html" style="color: #9aa5b4">HIPAA</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const ico = d => ({ __html: d });
+    const S = [
+      ["close", "Monthly close by the 10th", "Full close on your ledgers, reconciled to the bank and tied out to payroll and billing, with a written note on what moved.", "Close pack + updated dashboard",
+        ["P&L, balance sheet, owner's equity and cash flow", "Bank, payroll and remittance reconciliations", "Accruals for unbilled visits and payroll", "One-page note on what changed"], '<path d="M3 5h18v16H3zM3 10h18M8 3v4M16 3v4"/>'],
+      ["margin", "Margin by payer and client", "Revenue against fully-loaded labor for every payer, client and caregiver, so pricing and referral decisions rest on numbers.", "Margin report, ranked worst to best",
+        ["Contribution per hour by payer", "Client profitability after travel and burden", "Caregiver cost and utilization", "Rate-change modelling before you negotiate"], '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>'],
+      ["ar", "AR, denials and collections", "Aging by payer, days to pay and denial rate, with remittances matched back to what was billed.", "Aging report with claims at risk flagged",
+        ["Aging by payer and bucket", "Denial rate and top reasons", "Remittance-to-claim reconciliation", "Write-off review before year end"], '<path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>'],
+      ["payroll", "Payroll and overtime control", "Fully-loaded cost per caregiver, overtime share and the payroll-to-GL tie-out that most agencies never do.", "Payroll register + overtime watchlist",
+        ["Payroll-to-ledger tie-out every run", "Overtime share against target", "Burden and workers' comp checks", "Third pay period cash planning"], '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.87"/>'],
+      ["cash", "Cash forecasting", "A ninety-day view across operating and payroll accounts, so a line-of-credit draw is planned instead of rushed.", "Rolling 90-day forecast",
+        ["Weekly cash position by account", "Payer receipts modelled on real days to pay", "Line-of-credit use and interest", "Lender and board reporting pack"], '<path d="M3 17l6-6 4 4 7-7M14 8h7v7"/>'],
+      ["compliance", "Compliance-linked revenue risk", "Certifications and authorizations tracked against active clients and scheduled visits, because a lapse turns billable hours into write-offs.", "Expiry calendar tied to revenue at risk",
+        ["Caregiver certification expiry tracking", "Authorization units remaining per client", "Revenue at risk if a lapse is missed", "Monthly exception list for your office"], '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>']
+    ];
+    return { services: S.map(([id, title, body, out, items, icon], i) => ({ id, anchor: "#" + id, n: String(i + 1).padStart(2, "0"), title, body, out, items, icon: ico(icon) })) };
+  }
+}
+</script>
+</body>
+</html>
