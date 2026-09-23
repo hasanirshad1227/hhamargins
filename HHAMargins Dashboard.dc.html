@@ -186,7 +186,7 @@
           </div>
           <button type="button" onClick="{{ goAlerts }}" style="display: flex; align-items: center; gap: 10px; border: 1px solid #f4d5cd; background: #fbece8; border-radius: 12px; padding: 10px 18px; cursor: pointer; font-family: inherit" style-hover="background: #f4d5cd">
             <span style="width: 7px; height: 7px; border-radius: 12px; background: #c0392b"></span>
-            <span style="font-weight: 700; font-size: 14px; color: #98301f; white-space: nowrap">11 need attention</span>
+            <span style="font-weight: 700; font-size: 14px; color: #98301f; white-space: nowrap">{{ openFlagsCount }} need attention</span>
           </button>
         </div>
       </div>
@@ -231,14 +231,14 @@
               <sc-for list="{{ dots }}" as="d" hint-placeholder-count="12">
                 <circle cx="{{ d.cx }}" cy="{{ d.cy }}" r="3.2" fill="#c0392b" style="transform-box: fill-box; transform-origin: center; animation: popin 0.3s ease 0.6s both"></circle>
               </sc-for>
-              <text x="30" y="251" font-size="11.5" fill="#6c7a8c">Margin ran −1.8% in January and 9.1% in December: revenue outgrew fixed overhead.</text>
+              <text x="30" y="251" font-size="11.5" fill="#6c7a8c">{{ marginCaption }}</text>
             </svg>
           </div>
 
           <div style="background: #ffffff; border-radius: 12px; padding: 20px 24px 22px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06); flex: 1; display: flex; flex-direction: column; justify-content: center">
             <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap">
               <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0">Where every dollar goes</h3>
-              <div style="font-size: 13px; color: #6c7a8c">FY 2025 · share of $994,000 billed</div>
+              <div style="font-size: 13px; color: #6c7a8c">FY 2025 · share of {{ fyRevLabel }} billed</div>
             </div>
             <div style="display: flex; align-items: center; gap: 30px; margin-top: 18px; flex-wrap: wrap">
               <svg viewBox="0 0 150 150" width="150" height="150" style="flex: 0 0 150px; animation: fadein 0.6s ease 0.3s both">
@@ -246,7 +246,7 @@
                 <sc-for list="{{ donut }}" as="d" hint-placeholder-count="3">
                   <circle cx="75" cy="75" r="54" fill="none" stroke="{{ d.color }}" stroke-width="22" stroke-dasharray="{{ d.dash }}" stroke-dashoffset="{{ d.offset }}" transform="rotate(-90 75 75)"></circle>
                 </sc-for>
-                <text x="75" y="70" text-anchor="middle" font-size="13" font-weight="700" fill="#0c1b31">5.9%</text>
+                <text x="75" y="70" text-anchor="middle" font-size="13" font-weight="700" fill="#0c1b31">{{ donutMarginLabel }}</text>
                 <text x="75" y="87" text-anchor="middle" font-size="10.5" fill="#6c7a8c">net margin</text>
               </svg>
               <div style="flex: 1; min-width: 200px; display: flex; flex-direction: column">
@@ -318,7 +318,7 @@
 
           <div style="background: #ffffff; border-radius: 12px; padding: 20px 24px 18px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06); display: flex; flex-direction: column">
             <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0">Active clients</h3>
-            <div style="font-size: 13px; color: #6c7a8c; margin-top: 4px">37 in January to 62 in December</div>
+            <div style="font-size: 13px; color: #6c7a8c; margin-top: 4px">{{ clientsCaption }}</div>
             <svg viewBox="0 0 320 150" width="100%" height="150" style="display: block; margin-top: 14px; flex: 1">
               <polygon points="{{ growthArea }}" fill="#eceff5" style="animation: wipe 0.6s ease 0.1s both"></polygon>
               <polyline points="{{ growthLine }}" fill="none" stroke="#0c1b31" stroke-width="2.2" stroke-linejoin="round" style="stroke-dasharray: 2400; animation: draw 0.8s ease 0.1s both"></polyline>
@@ -327,9 +327,9 @@
               <text x="320" y="142" text-anchor="end" font-size="10.5" fill="#6c7a8c">Dec</text>
             </svg>
             <div style="border-top: 1px solid #eceff5; padding-top: 12px; display: flex; flex-direction: column; gap: 5px">
-              <div style="display: flex; justify-content: space-between; font-size: 13.5px"><span style="color: #6c7a8c">Revenue per active client</span><span class="num" style="font-weight: 500">$1,597 / mo</span></div>
-              <div style="display: flex; justify-content: space-between; font-size: 13.5px"><span style="color: #6c7a8c">Authorized-hours utilization</span><span class="num" style="font-weight: 500">86.2%</span></div>
-              <div style="display: flex; justify-content: space-between; font-size: 13.5px"><span style="color: #6c7a8c">Caregiver utilization</span><span class="num" style="font-weight: 500">91.4%</span></div>
+              <div style="display: flex; justify-content: space-between; font-size: 13.5px"><span style="color: #6c7a8c">Revenue per active client</span><span class="num" style="font-weight: 500">{{ revPerClientLabel }}</span></div>
+              <div style="display: flex; justify-content: space-between; font-size: 13.5px"><span style="color: #6c7a8c">Authorized-hours utilization</span><span class="num" style="font-weight: 500">{{ authUtilLabel }}</span></div>
+              <div style="display: flex; justify-content: space-between; font-size: 13.5px"><span style="color: #6c7a8c">Caregiver utilization</span><span class="num" style="font-weight: 500">{{ cgUtilLabel }}</span></div>
             </div>
           </div>
         </section>
@@ -340,7 +340,7 @@
               <span style="width: 7px; height: 7px; border-radius: 7px; background: #c0392b; animation: pulsedot 2.2s ease-in-out infinite"></span>
               <span style="font-size: 11px; letter-spacing: 0.17em; text-transform: uppercase; color: #98301f; font-weight: 600">Immediate action</span>
             </div>
-            <div style="font-size: 13px; color: #8a6a63">2 of 11 open flags are hard compliance failures</div>
+            <div style="font-size: 13px; color: #8a6a63">{{ hardFlagsCount }} of {{ openFlagsCount }} open flags are hard compliance failures</div>
           </div>
           <sc-for list="{{ hardFlags }}" as="f" hint-placeholder-count="2">
             <button type="button" onClick="{{ f.go }}" style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; text-align: left; width: 100%; background: #ffffff; border: 0; border-bottom: 1px solid #eceff5; padding: 18px 22px; cursor: pointer; font-family: inherit; color: inherit" style-hover="background: #f4f6fa">
@@ -356,7 +356,7 @@
         <section style="background: #ffffff; border-radius: 12px; border: 1px solid #e6eaf1; box-shadow: 0 1px 2px rgba(12,27,49,0.06)">
           <div style="padding: 18px 22px 14px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap">
             <div style="font-size: 11px; letter-spacing: 0.17em; text-transform: uppercase; color: #6c7a8c; font-weight: 600">Watchlist</div>
-            <div style="font-size: 13px; color: #6c7a8c">5 warning · 4 watch</div>
+            <div style="font-size: 13px; color: #6c7a8c">{{ watchlistCaption }}</div>
           </div>
           <sc-for list="{{ watchlist }}" as="w" hint-placeholder-count="5">
             <button type="button" onClick="{{ w.go }}" style="display: flex; align-items: baseline; gap: 14px; width: 100%; text-align: left; background: transparent; border: 0; border-top: 1px solid #eceff5; padding: 15px 22px; cursor: pointer; font-family: inherit; color: inherit; transition: background 0.15s ease" style-hover="background: #f4f6fa">
@@ -600,10 +600,6 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000}}">
 const M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-const REV=[58200,61400,65800,70100,74900,79600,83400,87100,90300,93800,96400,99000];
-const MG=[-1.8,-0.4,1.1,2.6,3.9,4.8,5.6,6.4,7.2,7.9,8.5,9.1];
-const CASH=[41200,38600,44100,47300,45900,52400,49800,56200,61400,64800,71300,78900];
-const AR=[52100,58400,61900,66200,70800,74100,77900,81200,84600,86900,88400,91200];
 const PAGES={
  overview:{label:"Overview",members:[["Overview","overview"]]},
  fin:{label:"Financial statements",members:[["Profit & loss","pl"],["Balance sheet","bs"],["Owner's equity","equity"],["Cash flow","cf"]]},
@@ -615,11 +611,11 @@ const PAGES={
 const NAV=[["Dashboard",["overview"]],["Finance",["fin","owed","cash","cost"]],["Operations",["care","ref"]]];
 const GROUP_OF={}; Object.entries(PAGES).forEach(([g,v])=>v.members.forEach(([,id])=>GROUP_OF[id]=g));
 const T={
- overview:["Operations","Overview","62 active clients, 40 caregivers on payroll. 2 items need action before the next billing run."],
+ overview:["Operations","Overview","65 clients on the roster, 40 caregivers on payroll. Several items need action before the next billing run."],
  pl:["Reporting","Profit & loss","Monthly income statement for FY 2025, plus an exact-window view built from daily transactions."],
  bs:["Reporting","Balance sheet","Month-end snapshots for all twelve months, with the balancing identity confirmed each month."],
  equity:["Reporting","Owner's equity","Opening capital through closing capital, tied to the balance sheet."],
- cf:["Cash","Money in and out","Inflows, outflows and cumulative cash across the year, split by bank account."],
+ cf:["Cash","Money in and out","Inflows, outflows and the cash position each month, split by bank account."],
  bank:["Cash","Bank accounts","Operating and Payroll accounts at First Community Bank, each reconciled to statement."],
  ar:["Money owed","Money owed to us","Aging buckets, the invoice ledger beneath them, DSO by payer, denial rate and remittance reconciliation."],
  ap:["Money owed","Money we owe","Vendor master, bills register, aging by vendor and days payable outstanding."],
@@ -632,114 +628,89 @@ const T={
  missed:["Operations","Missed visits","Every scheduled visit not delivered, with revenue lost and the missed-visit rate."],
  kpi:["Reporting","KPI command center","Every KPI in the system, trended across twelve months in one scannable view."],
  coa:["Reporting","Chart of accounts","Account structure and the rate assumptions behind the model."]};
-const STUB={
- pl:["Monthly P&L Jan-Dec with drill-down by line item","Revenue split across Medicaid Waiver, Private Pay, Medicare (Skilled), Private Insurance","Cost of services: regular wages, overtime, mileage, per-visit pay, payroll burden","Gross profit and gross margin %, operating expenses expandable to all 30+ categories","Exact custom date-range P&L recalculated from daily transactions"],
- bs:["Twelve month-end snapshots side by side","Assets, liabilities and equity in full detail","A visible confirmation that assets equal liabilities plus equity, every month"],
- equity:["Opening capital, contributions, net income, owner draws, closing capital","Tie-out to the balance sheet equity section"],
- cf:["Monthly inflows and outflows with net and cumulative cash","Cash split between the Operating and Payroll accounts"],
- bank:["Operating and Payroll accounts at First Community Bank","A bank reconciliation per account ending at a zero difference"],
- ar:["Aging buckets by payer, in dollars and as a share of AR","Searchable invoice ledger with days outstanding","DSO by payer, claim denial rate, AR-to-remittance reconciliation"],
- ap:["Vendor master with payment terms for 26 vendors","Bills register of 681 vendor bills","AP aging by vendor and days payable outstanding"],
- loc:["Draws, repayments, interest and ending balance by month","Utilization against the facility limit, trended"],
- payroll:["Monthly payroll rollup by component","Daily payroll register, 5,973 lines, filterable","Overtime as a share of payroll and the payroll-to-GL reconciliation"],
- overhead:["All categories grouped by occupancy, software, insurance, salaries, vehicle, marketing, professional fees, admin, depreciation and interest","Daily overhead register of 833 transactions"],
- fa:["Register of 12 assets with cost, life, depreciation and net book value","Depreciation schedule across twelve months","Security deposit and prepaid insurance amortization"],
- clients:["Roster of 65 clients with payer, authorized and actual units","Authorizations with expiry flagging","Profitability by client, active client growth and authorization utilization"],
- caregivers:["Roster of 40 caregivers with role, pay type and rate","Certification and background check expiry flagging","Profitability by caregiver, utilization and annualized turnover"],
- missed:["Log of missed visits with cause and revenue lost","Missed visit rate as a share of potential revenue"],
- kpi:["Profitability, labor and utilization, client and authorization metrics","AR/AP and liquidity including working capital, quick ratio and cash runway","Growth metrics month over month"],
- coa:["Assets, liabilities, equity, revenue by payer, cost of services and operating expenses with account numbers","Rate assumptions: payer billing rates, days to pay, denial rates, burden rate, mileage, OT threshold, capital and credit terms"]};
 const DAYS=[31,28,31,30,31,30,31,31,30,31,30,31];
 const MONTH_FULL=["January","February","March","April","May","June","July","August","September","October","November","December"];
-let _s=20250101; const rnd=()=>{_s=(_s*1103515245+12345)%2147483648; return _s/2147483648;};
-const pick=a=>a[Math.floor(rnd()*a.length)];
-const norm=(arr,target)=>{const s=arr.reduce((a,b)=>a+b,0),o=arr.map(v=>Math.round(v*target/s));o[o.length-1]+=target-o.reduce((a,b)=>a+b,0);return o;};
-const MG2=[-1.8,-0.4,1.5,3.2,4.6,5.6,6.4,7.0,7.6,8.2,8.7,9.1];
-const REVN=norm(REV,994000);
-const COGS=REVN.map((v,i)=>Math.round(v*(0.705-i*0.0027)));
-const NETI=REVN.map((v,i)=>Math.round(v*MG2[i]/100));
-const OH=REVN.map((v,i)=>REVN[i]-COGS[i]-NETI[i]);
-const FYREV=REVN.reduce((a,b)=>a+b,0), FYNET=NETI.reduce((a,b)=>a+b,0), FYCOGS=COGS.reduce((a,b)=>a+b,0), FYOH=OH.reduce((a,b)=>a+b,0);
-const daily=monthly=>{const out=[];monthly.forEach((tot,mi)=>{const w=[];for(let d=0;d<DAYS[mi];d++){const dw=new Date(2025,mi,d+1).getDay();w.push(dw===0?0.42:dw===6?0.72:1.13);}const s=w.reduce((a,b)=>a+b,0);w.forEach((x,d)=>out.push({m:mi,d:d+1,v:tot*x/s}));});return out;};
-const D_REV=daily(REVN), D_COGS=daily(COGS), D_OH=daily(OH);
-const inRange=(r,a,b)=>{const t=new Date(2025,r.m,r.d);return t>=a&&t<=b;};
-const sumRange=(series,a,b)=>series.reduce((s,r)=>s+(inRange(r,a,b)?r.v:0),0);
 const iso=d=>`2025-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
 const pretty=d=>`${MONTH_FULL[d.getMonth()].slice(0,3)} ${d.getDate()}, 2025`;
 const usd=n=>(n<0?"−$":"$")+Math.abs(Math.round(n)).toLocaleString();
 const k=n=>"$"+(n/1000).toFixed(n>=100000?0:1)+"k";
-const CLIENTS=[37,40,43,46,49,52,54,56,58,60,61,62];
 const TH_BASE="padding:11px 14px;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#6c7a8c;font-weight:600;background:#ffffff;position:sticky;top:0;z-index:2;border-bottom:1px solid #dde2ea;white-space:nowrap";
 const th=(label,align="right",sticky=false)=>({label,style:`${TH_BASE};text-align:${align}${sticky?";left:0;z-index:3":""}`});
 const TD="padding:10px 14px;border-bottom:1px solid #eceff5;font-size:13.5px;white-space:nowrap";
 const cell=(v,o={})=>({v,style:`${TD};text-align:${o.align||"right"}${o.mono?";font-family:'Archivo',sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-0.02em":""}${o.bold?";font-weight:600":""}${o.color?";color:"+o.color:""}${o.sticky?";position:sticky;left:0;background:#ffffff;z-index:1":""}${o.pad?";padding-left:"+o.pad:""}`});
 const ROW_STYLES={head:"background:#f4f6fa",total:"background:#f4f6fa;font-weight:600",plain:""};
 const pctf=(n,dp=1)=>(n>=0?"":"−")+Math.abs(n).toFixed(dp)+"%";
-const tagPill=(text,tone)=>{const t={good:["#f4f6fa","#0c1b31"],warn:["#fbece8","#7a2417"],bad:["#fbece8","#98301f"],mute:["#eceff5","#465569"]}[tone]||["#eceff5","#465569"];return `<span>${text}</span>`;};
 const chip=d=>`flex:0 0 auto;font-size:12px;font-weight:600;padding:4px 9px;border-radius:10px;white-space:nowrap;${d==="up"?"background:#f4f6fa;color:#0c1b31":"background:#fbece8;color:#98301f"}`;
 const spark=(a,w=70,h=22)=>{const mn=Math.min(...a),mx=Math.max(...a);return a.map((v,i)=>`${(i*(w-2)/(a.length-1)+1).toFixed(1)},${(h-2-((v-mn)/((mx-mn)||1))*(h-5)).toFixed(1)}`).join(" ")};
-
 const PAYERS=["Medicaid Waiver","Private Pay","Medicare (Skilled)","Private Insurance"];
-const PW=[0.524,0.229,0.167,0.08];
-const PDSO={"Medicaid Waiver":38.6,"Private Pay":17.4,"Medicare (Skilled)":29.2,"Private Insurance":26.5};
-const PDEN={"Medicaid Waiver":3.1,"Private Pay":0,"Medicare (Skilled)":1.8,"Private Insurance":1.4};
-const FIRST=["Dorothy","Harold","Alice","Walter","Mildred","Frank","Ruth","Eugene","Gloria","Stanley","Betty","Raymond","Joan","Clarence","Shirley","Leonard","Marion","Vernon","Doris","Chester","Rosa","Alvin","Thelma","Curtis","Edna","Otis","Lorraine","Hollis","Bernice","Marvin"];
-const LAST=["Delgado","Whitfield","Nakamura","Okafor","Brennan","Salazar","Pham","Kowalski","Abernathy","Ruiz","Lindqvist","Boateng","Vargas","Mchugh","Oyelaran","Castellano","Ferreira","Duong","Marchetti","Sandoval","Kaczmarek","Ibrahim","Petrov","Guerrero","Ashworth","Njoku","Tanaka","Bellamy","Olivares","Quintero"];
-const CG_ROLES=[["Home Health Aide",18.4,"Hourly"],["Personal Care Aide",17.1,"Hourly"],["LPN",28.6,"Hourly"],["RN",36.2,"Hourly"],["PT/OT Therapist",92,"Per-visit"]];
-const VENDORS=[["Harborview Property LLC","Occupancy","Net 30","Office rent, 2,400 sq ft suite"],["Consolidated Electric","Occupancy","Net 21","Office electric service"],["Metro Water & Sewer","Occupancy","Net 21","Water and sewer"],["Northline Gas","Occupancy","Net 21","Gas and heating"],["CareBridge EVV","Software","Auto-Charge","Scheduling and EVV platform, 40 seats"],["Ledgerline Accounting","Software","Auto-Charge","Accounting software"],["Microsoft 365","Software","Auto-Charge","Email and office suite"],["ShiftClock Mobile","Software","Auto-Charge","Caregiver timekeeping app"],["PayServe Processing","Payroll-adjacent","Net 15","Payroll processing fees, 26 runs"],["Sentinel General Liability","Insurance","Net 30","General liability amortization"],["Sentinel Professional Liability","Insurance","Net 30","Malpractice and professional liability"],["Bonding Associates","Insurance","Net 30","Employee dishonesty bond"],["Fleetguard Auto Insurance","Insurance","Net 30","Vehicle insurance, 4 vehicles"],["VeriTrust Screening","Compliance","Due on Receipt","Background checks and registry"],["State Licensing Bureau","Compliance","Due on Receipt","Agency and caregiver licensure"],["Northstar Digital Ads","Marketing","Net 15","Search and social advertising"],["Referral Circle Events","Marketing","Net 30","Discharge planner events"],["Deskline Office Supply","Admin","Net 30","Office and intake supplies"],["Cascade Telecom","Admin","Net 21","Landline and office internet"],["Mobility One Wireless","Admin","Net 21","Field staff cell plans, 40 lines"],["Whitlock & Pryor LLP","Professional fees","Net 30","Legal and contract review"],["Cardinal CPA Group","Professional fees","Net 30","Tax filings and review"],["First Community Bank","Bank fees","Auto-Charge","Account, merchant and ACH fees"],["Fuelrite Fleet","Vehicle","Net 15","Fleet fuel cards"],["Ridgeway Auto Service","Vehicle","Net 15","Vehicle maintenance and repair"],["Uniform Depot","Supplies","Net 30","Uniforms and caregiver supplies"]];
-const OH_CATS=[["Office Rent","Occupancy",3400],["Office Electric","Occupancy",412],["Water & Sewer","Occupancy",138],["Gas & Heat","Occupancy",196],["Scheduling/EVV Platform","Software",820],["Accounting Software","Software",140],["Email & Office 365","Software",264],["Timekeeping App","Software",180],["Office Manager Salary","Admin salaries",4100],["Scheduler/Coordinator Salary","Admin salaries",3650],["Billing Clerk Salary","Admin salaries",3200],["Owner Compensation","Admin salaries",5800],["Payroll Processing Fees","Payroll-adjacent",386],["General Liability Amortization","Insurance",742],["Professional Liability","Insurance",618],["Bonding","Insurance",96],["Vehicle Insurance","Insurance",528],["Background Checks & Licensing","Compliance",315],["Digital Ads","Marketing",980],["Referral Development","Marketing",640],["Office Supplies","Admin",224],["Office Landline & Internet","Admin",268],["Field Staff Cell Plans","Admin",640],["Legal & Professional Fees","Professional fees",680],["Bank & Merchant Fees","Bank fees",342],["Vehicle Fuel","Vehicle",1180],["Vehicle Maintenance","Vehicle",520],["Uniforms & Caregiver Supplies","Supplies",386],["Continuing Education","Compliance",290],["Postage & Shipping","Admin",96],["Misc/Other Admin","Admin",210],["Depreciation Expense","Depreciation",1145],["Line of Credit Interest","Interest",360]];
-const ASSETS=[["FA-01","2019 Transit Connect van","Vehicle","2025-01-15",18400,60,2000],["FA-02","2020 Sedan, field supervisor","Vehicle","2025-01-15",14200,60,1800],["FA-03","2021 Minivan, wheelchair lift","Vehicle","2025-06-10",31600,60,3500],["FA-04","2019 Compact SUV","Vehicle","2025-07-08",16900,60,2100],["FA-05","Office workstations (6)","Office equipment","2025-01-15",7800,60,0],["FA-06","Server and network gear","Office equipment","2025-02-03",5400,36,0],["FA-07","Multifunction copier","Office equipment","2025-02-20",4200,60,300],["FA-08","Laptops, admin staff (5)","Office equipment","2025-03-12",6250,36,0],["FA-09","Hoyer lifts (4)","Medical equipment","2025-04-02",9600,84,600],["FA-10","Vitals monitoring kits (12)","Medical equipment","2025-05-19",7440,60,0],["FA-11","Hospital beds (3)","Medical equipment","2025-06-25",8700,84,500],["FA-12","Suite build-out, intake room","Leasehold improvement","2025-03-01",22500,120,0]];
-const MISS_CAUSE=["Caregiver call-off, no replacement","Client same-day cancellation","Weather / transportation","Caregiver call-off, no replacement","Client hospitalized","Client same-day cancellation"];
+const CO_SHARE_LABELS=["Regular Wages","Overtime Wages","Mileage Reimbursement","Per-Visit Pay (Skilled)","Payroll Tax & Burden"];
+const BUCKET_KEYS=["Current","1-30 Days","31-60 Days","61-90 Days","90+ Days"];
 
-const clientRoster=(()=>{_s=771;const out=[];for(let i=0;i<65;i++){const payer=PAYERS[i%4===0?0:i%7===0?2:i%5===0?3:rnd()<0.62?0:1];const auth=[8,10,12,14,16,20,24,28][Math.floor(rnd()*8)];const util=0.72+rnd()*0.3;const start=new Date(2025,Math.floor(rnd()*9),1+Math.floor(rnd()*27));const disch=rnd()<0.08;const rate=payer==="Medicaid Waiver"?26.4:payer==="Private Pay"?32.5:payer==="Medicare (Skilled)"?38.2:34.1;const weeks=disch?18:Math.max(6,52-start.getMonth()*4.3);const rev=Math.round(auth*util*rate*weeks);const cost=Math.round(rev*(0.63+rnd()*0.14));const authEnd=new Date(2025,10+Math.floor(rnd()*3),1+Math.floor(rnd()*28));const dl=Math.round((authEnd-new Date(2025,11,31))/86400000);out.push({id:"CL-"+String(1001+i),name:FIRST[i%FIRST.length]+" "+LAST[(i*3+5)%LAST.length],payer,auth,actual:+(auth*util).toFixed(1),util:util*100,start:iso(start),status:disch?"Discharged":"Active",rev,cost,margin:rev-cost,marginPct:(rev-cost)/rev*100,authEnd:iso(authEnd),authState:dl<0?"Expired":dl<20?"Expiring soon":"Active"});}return out;})();
-const cgRoster=(()=>{_s=4412;const out=[];for(let i=0;i<40;i++){const[role,base,ptype]=CG_ROLES[i<18?0:i<27?1:i<34?2:i<38?3:4];const rate=+(base*(0.94+rnd()*0.14)).toFixed(2);const hire=new Date(2024+(rnd()<0.6?0:1),Math.floor(rnd()*12),1+Math.floor(rnd()*27));const term=rnd()<0.22;const hrs=Math.round((term?520:1180)*(0.72+rnd()*0.5));const rev=Math.round(hrs*(ptype==="Per-visit"?62:31.4)*(0.92+rnd()*0.2));const cost=Math.round(hrs*rate*1.186+(ptype==="Per-visit"?0:hrs*0.04*rate*0.5));const certEnd=new Date(2025+(rnd()<0.8?1:0),Math.floor(rnd()*12),1+Math.floor(rnd()*27));const dl=Math.round((certEnd-new Date(2025,11,31))/86400000);out.push({id:"E"+String(1001+i),name:FIRST[(i*7+3)%FIRST.length]+" "+LAST[(i*5+11)%LAST.length],role,ptype,rate,hire:iso(hire),status:term?"Terminated":"Active",hrs,rev,cost,margin:rev-cost,marginPct:(rev-cost)/rev*100,bg:iso(new Date(hire.getFullYear(),hire.getMonth(),hire.getDate())),certEnd:iso(certEnd),certState:dl<0?"Expired":dl<60?"Expiring soon":"Current",util:(0.84+rnd()*0.14)*100});}return out;})();
-const invoices=(()=>{_s=9001;const out=[];for(let i=0;i<54;i++){const c=clientRoster[Math.floor(rnd()*65)];const m=Math.max(0,11-Math.floor(rnd()*6));const billed=new Date(2025,m,1+Math.floor(rnd()*DAYS[m]));const amt=Math.round((2.5+rnd()*5.5)*(c.payer==="Medicaid Waiver"?26.4:c.payer==="Private Pay"?32.5:c.payer==="Medicare (Skilled)"?38.2:34.1));const target=PDSO[c.payer];const paidDays=Math.round(target*(0.55+rnd()*1.35));const paidDate=new Date(billed.getTime()+paidDays*86400000);const open=paidDate>new Date(2025,11,31);const days=open?Math.round((new Date(2025,11,31)-billed)/86400000):paidDays;const denied=!open&&rnd()*100<PDEN[c.payer]*3;out.push({id:"INV-"+String(10400+i*7),client:c.name,payer:c.payer,billed:iso(billed),amount:amt,paid:open?"Open":iso(paidDate),days,status:denied?"Denied":open?(days>90?"90+ days":days>60?"61-90 days":days>30?"31-60 days":days>0?"1-30 days":"Current"):"Paid",bucket:days>90?"90+ days":days>60?"61-90 days":days>30?"31-60 days":days>0?"1-30 days":"Current",open});}return out;})();
-const bills=(()=>{_s=3301;const out=[];for(let i=0;i<52;i++){const[v,cat,terms]=VENDORS[i%VENDORS.length];const m=Math.max(0,11-Math.floor(rnd()*5));const inc=new Date(2025,m,1+Math.floor(rnd()*DAYS[m]));const net=terms==="Net 30"?30:terms==="Net 21"?21:terms==="Net 15"?15:0;const due=new Date(inc.getTime()+net*86400000);const amt=Math.round(90+rnd()*3900);const open=rnd()<0.34;const late=open&&due<new Date(2025,11,31);out.push({id:"BILL-"+String(2100+i*3),vendor:v,category:cat,terms,incurred:iso(inc),due:iso(due),amount:amt,paid:open?"Open":iso(new Date(due.getTime()-Math.floor(rnd()*4)*86400000)),status:late?"Past due":open?"Open":"Paid",account:cat==="Payroll-adjacent"?"Payroll ···8823":"Operating ···4471",open});}return out;})();
-const ohTxns=(()=>{_s=8123;const out=[];for(let i=0;i<56;i++){const[cat,grp,base]=OH_CATS[i%OH_CATS.length];const m=Math.max(0,11-Math.floor(rnd()*5));const d=new Date(2025,m,1+Math.floor(rnd()*DAYS[m]));const vend=VENDORS.find(v=>v[1]===grp)||VENDORS[0];out.push({id:"OH-"+String(4400+i*2),date:iso(d),category:cat,group:grp,vendor:vend[0],amount:Math.round(base*(0.82+rnd()*0.4)),account:grp==="Payroll-adjacent"?"Payroll ···8823":"Operating ···4471"});}return out;})();
-const payrollLines=(()=>{_s=6612;const out=[];for(let i=0;i<58;i++){const c=cgRoster[Math.floor(rnd()*40)];const m=Math.max(0,11-Math.floor(rnd()*4));const d=new Date(2025,m,1+Math.floor(rnd()*DAYS[m]));const reg=c.ptype==="Per-visit"?0:+(4+rnd()*4.5).toFixed(2);const ot=c.ptype==="Per-visit"?0:(rnd()<0.18?+(0.5+rnd()*2.5).toFixed(2):0);const visits=c.ptype==="Per-visit"?1+Math.floor(rnd()*2):0;const miles=+(6+rnd()*22).toFixed(1);const gross=Math.round((reg*c.rate+ot*c.rate*1.5+visits*c.rate)*100)/100;out.push({id:"PR-"+String(30500+i*4),date:iso(d),caregiver:c.name,role:c.role,ptype:c.ptype,reg,ot,visits,miles,mileage:+(miles*0.67).toFixed(2),gross,burden:+(gross*0.186).toFixed(2),total:+(gross*1.186+miles*0.67).toFixed(2)});}return out;})();
-const missed=(()=>{_s=5150;const out=[];for(let i=0;i<26;i++){const c=clientRoster[Math.floor(rnd()*65)];const cg=cgRoster[Math.floor(rnd()*40)];const m=Math.floor(rnd()*12);const d=new Date(2025,m,1+Math.floor(rnd()*DAYS[m]));const hrs=+(2+rnd()*4).toFixed(1);const rate=c.payer==="Medicaid Waiver"?26.4:c.payer==="Private Pay"?32.5:c.payer==="Medicare (Skilled)"?38.2:34.1;const cause=MISS_CAUSE[Math.floor(rnd()*MISS_CAUSE.length)];out.push({id:"MV-"+String(900+i),date:iso(d),client:c.name,payer:c.payer,caregiver:cause.startsWith("Client")?" - ":cg.name,cause,hours:hrs,lost:Math.round(hrs*rate),replaced:rnd()<0.3?"Covered late":"Not delivered"});}return out;})();
-const COA=[["1000","Operating Account - First Community Bank ···4471","Asset"],["1010","Payroll Account - First Community Bank ···8823","Asset"],["1200","Accounts Receivable","Asset"],["1400","Fixed Assets - Gross","Asset"],["1450","Accumulated Depreciation","Asset"],["1500","Security Deposit","Asset"],["1510","Prepaid Insurance","Asset"],["2000","Accounts Payable","Liability"],["2200","Line of Credit Payable","Liability"],["3000","Owner's Capital Contribution","Equity"],["3100","Retained Earnings","Equity"],["3200","Owner Draws","Equity"],["4000","Revenue - Medicaid Waiver","Revenue"],["4010","Revenue - Private Pay","Revenue"],["4020","Revenue - Medicare (Skilled)","Revenue"],["4030","Revenue - Private Insurance","Revenue"],["4900","Contractual Adjustments & Denials","Revenue"],["5000","Regular Wages","Cost of services"],["5010","Overtime Wages","Cost of services"],["5020","Mileage Reimbursement","Cost of services"],["5030","Per-Visit Pay - Skilled","Cost of services"],["5040","Payroll Tax & Burden","Cost of services"],["6000","Occupancy","Operating expense"],["6100","Software & Subscriptions","Operating expense"],["6200","Insurance","Operating expense"],["6300","Admin Salaries & Owner Compensation","Operating expense"],["6400","Vehicle Costs","Operating expense"],["6500","Marketing","Operating expense"],["6600","Professional Fees","Operating expense"],["6700","Admin & Office","Operating expense"],["6800","Depreciation Expense","Operating expense"],["6900","Line of Credit Interest","Operating expense"]];
-const ASSUMPTIONS=[["Medicaid Waiver billing rate","$26.40 / hour"],["Private Pay billing rate","$32.50 / hour"],["Medicare (Skilled) billing rate","$38.20 / hour"],["Private Insurance billing rate","$34.10 / hour"],["Average days to pay - Medicaid Waiver","38.6 days"],["Average days to pay - Private Pay","17.4 days"],["Claim denial rate - Medicaid Waiver","3.1%"],["Claim denial rate - Private Pay","0.0%"],["Payroll tax & burden rate","18.6% of gross wages"],["Mileage reimbursement rate","$0.67 / mile"],["Overtime threshold","40 hours / week at 1.5×"],["Owner capital contribution","$120,000"],["Line of credit limit","$150,000"],["Line of credit rate","9.25% variable"]];
+// ---- real data, populated once hha-dashboard-data.json loads (see Component.componentDidMount) ----
+let READY=false;
+let REVN=[],REV_BY_PAYER=[],COGS=[],COGS_PARTS=[],NETI=[],MG2=[],OH=[],OH_G=[],OH_GROUPS=[],OH_CAT_COUNT=0;
+let AR_BAL=[],AR_BY_PAYER=[],DSO_BY_PAYER={};
+let CASH_BS=[],CASH_OP=[],CASH_PR=[],COLLECT=[],CASH_INFLOWS=[],OH_PAID_CASH=[],ASSET_BUY=[],LOC_REPAY_CF=[],CASH_OUTFLOWS=[],NET_CASH_FLOW=[];
+let LOC=[],LOC_BEGIN=[],LOC_DRAW=[],LOC_REPAY=[],LOC_INT=[];
+const LOC_LIMIT=175000;
+let AP=[];
+let FA_GROSS=[],ACC_DEP=[],FA_NET=[],DEP=[],OTHER_ASSETS=[],DEPOSIT=0,PREPAID_ANNUAL=0;
+let CAPITAL=[],RETAINED=[],EQ_TOT=[],LIAB_TOT=[],ASSETS_TOT=[];
+let CLIENTS=[],BILL_HRS=[],PAID_HRS=[],UTIL_PCT=[],OT_PCT=[];
+let DSO_M=[],DENIAL_M=[],DPO_M=[],LOC_UTIL=[],WORKING_CAPITAL=[],QUICK_RATIO=[],CASH_RUNWAY=[];
+let AVG_REV_PER_CLIENT=[],REV_GROWTH=[],CLIENT_GROWTH=[],COST_PER_HR=[];
+let FY_TURNOVER=0,FY_MISSED_RATE=0,FY_AUTH_UTIL=0,FY_AUTH_EXPIRING=0;
+let COA=[],ASSUMPTIONS=[],VENDORS=[],ASSETS=[],PAYER_RATES=[];
+let clientRoster=[],cgRoster=[],invoices=[],bills=[],ohTxns=[],payrollLines=[],missed=[],remittance=[];
+let AR_AGING_BUCKETS=[],AP_AGING_BUCKETS=[],BANK_RECON=null,PAYROLL_GL_RECON=[];
+let AGING=[],AP_AGING=[];
+let FYREV=0,FYNET=0,FYCOGS=0,FYOH=0;
+let D_REV=[],D_COGS=[],D_OH=[];
 
-const REV_BY_PAYER=PW.map((w,pi)=>REVN.map((v,i)=>Math.round(v*(w+(pi===0?-0.0018*(i-6):pi===1?0.0012*(i-6):0.0003*(i-6))))));
-const CO_SHARE=[["Regular Wages",0.625],["Overtime Wages",0.042],["Mileage Reimbursement",0.025],["Per-Visit Pay (Skilled)",0.122],["Payroll Tax & Burden",0.186]];
-const COGS_PARTS=CO_SHARE.map(([l,s])=>COGS.map(v=>Math.round(v*s)));
-const OT_PCT=[1.9,2.1,2.4,2.6,3.0,3.3,3.6,3.9,4.3,4.1,3.8,3.6];
-const OH_GROUPS=["Occupancy","Software","Insurance","Admin salaries","Payroll-adjacent","Vehicle","Marketing","Professional fees","Compliance","Admin","Bank fees","Supplies","Depreciation","Interest"];
-const OH_BY_GROUP=OH_GROUPS.map(g=>{const base=OH_CATS.filter(c=>c[1]===g).reduce((a,c)=>a+c[2],0);return OH.map((tot,i)=>Math.round(base*(0.92+i*0.014)));});
-const OH_SCALE=OH.map((tot,i)=>tot/OH_BY_GROUP.reduce((a,r)=>a+r[i],0));
-const OH_G=OH_BY_GROUP.map(r=>r.map((v,i)=>Math.round(v*OH_SCALE[i])));
-const LOC=[22000,28000,34000,41000,48000,58000,66000,70500,62000,55000,50000,46500];
-const LOC_LIMIT=150000;
-const LOC_INT=LOC.map(b=>Math.round(b*0.0925/12));
-const AP=[18200,19400,20100,21600,22400,23900,22100,24600,25300,24100,23800,23480];
-const DEP=(()=>{const out=Array(12).fill(0);ASSETS.forEach(([id,n,c,d,cost,life,salv])=>{const sm=new Date(d).getMonth();for(let m=sm;m<12;m++)out[m]+=(cost-salv)/life;});return out.map(v=>Math.round(v));})();
-const FA_GROSS=(()=>{let c=0;return ASSETS.reduce((acc,a)=>acc,0),Array.from({length:12},(_,m)=>ASSETS.filter(a=>new Date(a[3]).getMonth()<=m).reduce((s,a)=>s+a[4],0));})();
-const ACC_DEP=DEP.reduce((acc,v,i)=>{acc.push((acc[i-1]||0)+v);return acc;},[]);
-const FA_NET=FA_GROSS.map((g,i)=>g-ACC_DEP[i]);
-const PREPAID=Array.from({length:12},(_,i)=>Math.max(0,8400-700*(i+1)));
-const DEPOSIT=6800;
-const CUMNET=NETI.reduce((a,v,i)=>{a.push((a[i-1]||0)+v);return a;},[]);
-const CAPITAL=[120000,120000,150000,150000,180000,180000,180000,215000,215000,215000,215000,215000];
-const DRAWS=[0,0,1500,1500,3000,4500,6000,7500,10500,13500,18000,23830];
-const AR_BAL=AR;
-const CASH_BS=Array.from({length:12},(_,i)=>(LOC[i]+AP[i])+(CAPITAL[i]+CUMNET[i]-DRAWS[i])-(AR_BAL[i]+FA_NET[i]+PREPAID[i]+DEPOSIT));
-const CASH_OP=CASH_BS.map(v=>Math.round(v*0.78));
-const CASH_PR=CASH_BS.map((v,i)=>v-CASH_OP[i]);
-const ASSETS_TOT=CASH_BS.map((c,i)=>c+AR_BAL[i]+FA_NET[i]+PREPAID[i]+DEPOSIT);
-const LIAB_TOT=LOC.map((l,i)=>l+AP[i]);
-const EQ_TOT=CAPITAL.map((c,i)=>c+CUMNET[i]-DRAWS[i]);
-const DENIALS=REVN.map((v,i)=>Math.round(v*0.021*(1-i*0.01)));
-const COLLECT=REVN.map((v,i)=>v-DENIALS[i]-(AR_BAL[i]-(AR_BAL[i-1]||42000)));
-const ASSET_BUY=Array.from({length:12},(_,m)=>ASSETS.filter(a=>new Date(a[3]).getMonth()===m).reduce((s,a)=>s+a[4],0));
-const DSO_M=[28.4,30.1,31.6,32.4,33.0,33.8,34.2,34.6,34.1,33.8,33.6,33.5];
-const DSO_BY_PAYER={"Medicaid Waiver":[33.1,35.4,37.2,38.4,39.1,40.2,41.0,41.6,40.4,39.6,39.0,38.6],"Private Pay":[15.8,16.2,16.8,17.0,17.2,17.6,17.8,18.0,17.7,17.5,17.4,17.4],"Medicare (Skilled)":[25.4,26.8,27.9,28.6,29.0,29.8,30.4,30.8,30.1,29.6,29.4,29.2],"Private Insurance":[22.6,23.8,24.9,25.6,26.0,26.8,27.4,27.8,27.1,26.8,26.6,26.5]};
-const DENIAL_M=[2.4,2.3,2.3,2.2,2.2,2.1,2.1,2.0,2.0,1.9,1.9,1.8];
-const DPO_M=[24.1,24.8,25.2,25.6,25.9,26.4,26.8,27.1,26.6,26.3,26.2,26.1];
-const BILL_HRS=REVN.map(v=>Math.round(v/29.6));
-const PAID_HRS=BILL_HRS.map((h,i)=>Math.round(h/(0.86+i*0.005)));
-const AGING=[["Current",0.58],["1-30 days",0.223],["31-60 days",0.104],["61-90 days",0.0027],["90+ days",0.0903]];
-const AGING_BY_PAYER=PAYERS.map((p,pi)=>AGING.map(([b,sh],bi)=>{const skew=pi===1?[0.86,0.14,0,0,0]:pi===0?[0.48,0.25,0.13,0.005,0.135]:pi===2?[0.66,0.22,0.09,0.003,0.027]:[0.62,0.24,0.1,0.004,0.036];return Math.round(AR_BAL[11]*PW[pi]*skew[bi]);}));
+const inRange=(r,a,b)=>r.t>=a&&r.t<=b;
+const sumRange=(series,a,b)=>series.reduce((s,r)=>s+(inRange(r,a,b)?r.v:0),0);
+
+function applyData(j){
+  REVN=j.REVN; COGS=j.COGS; NETI=j.NETI; MG2=j.MG2; OH=j.OH;
+  REV_BY_PAYER=PAYERS.map(p=>j.REV_BY_PAYER[p]);
+  COGS_PARTS=CO_SHARE_LABELS.map(l=>j.COGS_PARTS[l]);
+  OH_GROUPS=j.OH_GROUPS_ORDER; OH_G=OH_GROUPS.map(g=>j.OH_G[g]); OH_CAT_COUNT=j.OH_CAT_COUNT;
+  AR_BAL=j.AR_BAL; AR_BY_PAYER=PAYERS.map(p=>j.AR_BY_PAYER[p]); DSO_BY_PAYER=j.DSO_BY_PAYER;
+  CASH_BS=j.CASH_BS; CASH_OP=j.CASH_OP; CASH_PR=j.CASH_PR;
+  COLLECT=j.COLLECT; CASH_INFLOWS=j.CASH_INFLOWS; OH_PAID_CASH=j.OH_PAID_CASH; ASSET_BUY=j.ASSET_BUY;
+  LOC_REPAY_CF=j.LOC_REPAY_CF; CASH_OUTFLOWS=j.CASH_OUTFLOWS; NET_CASH_FLOW=j.NET_CASH_FLOW;
+  LOC=j.LOC; LOC_BEGIN=j.LOC_BEGIN; LOC_DRAW=j.LOC_DRAW; LOC_REPAY=j.LOC_REPAY; LOC_INT=j.LOC_INT;
+  AP=j.AP;
+  FA_GROSS=j.FA_GROSS; ACC_DEP=j.ACC_DEP; FA_NET=j.FA_NET; DEP=j.DEP;
+  OTHER_ASSETS=j.OTHER_ASSETS; DEPOSIT=j.DEPOSIT; PREPAID_ANNUAL=j.PREPAID_ANNUAL;
+  CAPITAL=j.CAPITAL; RETAINED=j.RETAINED; EQ_TOT=j.EQ_TOT; LIAB_TOT=j.LIAB_TOT; ASSETS_TOT=j.ASSETS_TOT;
+  CLIENTS=j.CLIENTS; BILL_HRS=j.BILL_HRS; PAID_HRS=j.PAID_HRS; UTIL_PCT=j.UTIL_PCT; OT_PCT=j.OT_PCT;
+  DSO_M=j.DSO_M; DENIAL_M=j.DENIAL_M; DPO_M=j.DPO_M; LOC_UTIL=j.LOC_UTIL;
+  WORKING_CAPITAL=j.WORKING_CAPITAL; QUICK_RATIO=j.QUICK_RATIO; CASH_RUNWAY=j.CASH_RUNWAY;
+  AVG_REV_PER_CLIENT=j.AVG_REV_PER_CLIENT; REV_GROWTH=j.REV_GROWTH; CLIENT_GROWTH=j.CLIENT_GROWTH; COST_PER_HR=j.COST_PER_HR;
+  FY_TURNOVER=j.FY_TURNOVER; FY_MISSED_RATE=j.FY_MISSED_RATE; FY_AUTH_UTIL=j.FY_AUTH_UTIL; FY_AUTH_EXPIRING=j.FY_AUTH_EXPIRING;
+  COA=j.COA; ASSUMPTIONS=j.ASSUMPTIONS; VENDORS=j.VENDORS; ASSETS=j.ASSETS; PAYER_RATES=j.PAYER_RATES;
+  AR_AGING_BUCKETS=j.AR_AGING_BUCKETS; AP_AGING_BUCKETS=j.AP_AGING_BUCKETS;
+  BANK_RECON=j.BANK_RECON; PAYROLL_GL_RECON=j.PAYROLL_GL_RECON;
+
+  invoices=j.invoices; bills=j.bills; ohTxns=j.ohTxns; payrollLines=j.payrollLines; missed=j.missed; remittance=j.remittance;
+
+  const hrsBy={}; payrollLines.forEach(p=>{hrsBy[p.cgId]=(hrsBy[p.cgId]||0)+(p.reg||0)+(p.ot||0);});
+  cgRoster=j.CG_ROSTER.map(c=>({...c,hrs:Math.round(hrsBy[c.id]||0)}));
+  clientRoster=j.CLIENT_ROSTER.map(c=>({...c,util:c.auth?c.actual/c.auth*100:0}));
+
+  AGING=BUCKET_KEYS.map(bk=>[bk,AR_AGING_BUCKETS.reduce((s,r)=>s+(r[bk]||0),0)]);
+  AP_AGING=BUCKET_KEYS.map(bk=>[bk,AP_AGING_BUCKETS.reduce((s,r)=>s+(r[bk]||0),0)]);
+
+  FYREV=REVN.reduce((a,b)=>a+b,0); FYNET=NETI.reduce((a,b)=>a+b,0);
+  FYCOGS=COGS.reduce((a,b)=>a+b,0); FYOH=OH.reduce((a,b)=>a+b,0);
+
+  D_REV=j.DAILY_DATES.map((d,i)=>({t:new Date(d+"T00:00:00"),v:j.DAILY_REV[i]}));
+  D_COGS=j.DAILY_DATES.map((d,i)=>({t:new Date(d+"T00:00:00"),v:j.DAILY_COGS[i]}));
+  D_OH=j.DAILY_DATES.map((d,i)=>({t:new Date(d+"T00:00:00"),v:j.DAILY_OH[i]}));
+  READY=true;
+}
+
 const stmt=(title,note,head,rows,o={})=>({title,note,head,rows,minWidth:o.minWidth||"1000px",maxHeight:o.maxHeight||"none",foot:o.foot||""});
 const fmtOf=k=>k==="pct"?(v=>pctf(v)):k==="int"?(v=>Math.round(v).toLocaleString()):k==="x"?(v=>v.toFixed(2)+"×"):k==="d"?(v=>v.toFixed(1)):(v=>usd(v));
 const PERIODS={"FY 2025":[0,11],"H1 2025":[0,5],"H2 2025":[6,11],"Q1 2025":[0,2],"Q2 2025":[3,5],"Q3 2025":[6,8],"Q4 2025":[9,11]};
@@ -757,9 +728,16 @@ const monthStmt=(title,note,defs,o={})=>{
 const simpleStmt=(title,note,cols,rows,o={})=>stmt(title,note,cols.map((c,i)=>th(c[0],c[1]||(i===0?"left":"right"),i===0&&!!o.sticky)),rows,o);
 
 class Component extends DCLogic {
-  state = { screen: (typeof location !== "undefined" && (location.search.match(/screen=(\w+)/) || [])[1]) || "overview", tab: {}, q: "", f: {}, sort: null, start: "2025-04-01", end: "2025-06-30", period: "FY 2025", open: null, vm: {}, booting: false, locked: !(typeof location !== "undefined" && /embed/.test(location.search)), user: "", pass: "" };
+  state = { screen: (typeof location !== "undefined" && (location.search.match(/screen=(\w+)/) || [])[1]) || "overview", tab: {}, q: "", f: {}, sort: null, start: "2025-04-01", end: "2025-06-30", period: "FY 2025", open: null, vm: {}, booting: false, ready: READY, locked: !(typeof location !== "undefined" && /embed/.test(location.search)), user: "", pass: "" };
   signIn() { this.setState({ locked: false, booting: true }); this._boot = setTimeout(() => this.setState({ booting: false }), 750); }
-  componentDidMount() { this._msg = e => { const s = e && e.data && e.data.hhaScreen; if (s) this.setState({ screen: s, open: null }); }; window.addEventListener("message", this._msg); }
+  componentDidMount() {
+    this._msg = e => { const s = e && e.data && e.data.hhaScreen; if (s) this.setState({ screen: s, open: null }); };
+    window.addEventListener("message", this._msg);
+    if (!READY) {
+      fetch("./hha-dashboard-data.json").then(r => r.json()).then(j => { applyData(j); this.setState({ ready: true }); })
+        .catch(err => { console.error("Failed to load dashboard data", err); this.setState({ ready: true, loadError: true }); });
+    }
+  }
   componentWillUnmount() { clearTimeout(this._boot); window.removeEventListener("message", this._msg); }
   optStyle(sel) { return `display:block;width:100%;text-align:left;border:0;border-radius:8px;padding:9px 13px;font-family:inherit;font-size:13.5px;cursor:pointer;color:#0c1b31;background:${sel ? "#eef3fa" : "transparent"};font-weight:${sel ? 600 : 400}`; }
   menu(key, value, options, onPick) {
@@ -860,13 +838,18 @@ class Component extends DCLogic {
     const a = new Date(this.state.start + "T00:00:00"), b = new Date(this.state.end + "T00:00:00");
     const rev = sumRange(D_REV, a, b), cogs = sumRange(D_COGS, a, b), oh = sumRange(D_OH, a, b);
     const days = Math.round((b - a) / 86400000) + 1, share = rev / FYREV;
+    const revByPayer = PAYERS.map(p => invoices.filter(inv => inv.payer === p && new Date(inv.billed + "T00:00:00") >= a && new Date(inv.billed + "T00:00:00") <= b).reduce((s, inv) => s + inv.amount, 0));
+    const cogsByPart = COGS_PARTS.map((_, i) => cogs * (COGS_PARTS[i].reduce((s,v)=>s+v,0) / FYCOGS));
     const set = (s, e) => () => this.setState({ start: s, end: e });
     const rows = [
-      ["Revenue", rev, "head"], ...PAYERS.map((p, i) => ["  " + p, rev * PW[i], "sub"]),
-      ["Cost of services", -cogs, "head"], ...CO_SHARE.map(([l, s]) => ["  " + l, -cogs * s, "sub"]),
+      ["Revenue", rev, "head"], ...PAYERS.map((p, i) => ["  " + p, revByPayer[i], "sub"]),
+      ["Cost of services", -cogs, "head"], ...CO_SHARE_LABELS.map((l, i) => ["  " + l, -cogsByPart[i], "sub"]),
       ["Gross profit", rev - cogs, "total"], ["Operating expenses", -oh, "head"],
       ["Net income", rev - cogs - oh, "total"]
     ];
+    const visitsInWindow = invoices.filter(inv => new Date(inv.billed + "T00:00:00") >= a && new Date(inv.billed + "T00:00:00") <= b).length;
+    const payrollInWindow = payrollLines.filter(p => new Date(p.date + "T00:00:00") >= a && new Date(p.date + "T00:00:00") <= b).length;
+    const billsInWindow = bills.filter(bl => new Date(bl.incurred + "T00:00:00") >= a && new Date(bl.incurred + "T00:00:00") <= b).length;
     return {
       hasRange: true,
       startPicker: this.picker("start", this.state.start, v => this.setState({ start: v })),
@@ -882,16 +865,15 @@ class Component extends DCLogic {
         { minWidth: "620px" })],
       hasCards: true,
       cards: [
-        { label: "Visit records in window", value: Math.round(8124 * share).toLocaleString(), sub: "Each one an invoice line in the AR ledger", accent: "#0c1b31", color: "#0c1b31" },
-        { label: "Payroll lines in window", value: Math.round(5973 * days / 365).toLocaleString(), sub: "One per caregiver per work day", accent: "#0c1b31", color: "#0c1b31" },
-        { label: "Vendor bills in window", value: Math.round(681 * days / 365).toLocaleString(), sub: "Incurred dates inside the window", accent: "#0c1b31", color: "#0c1b31" },
+        { label: "Visit records in window", value: visitsInWindow.toLocaleString(), sub: "Each one an invoice line in the AR ledger", accent: "#0c1b31", color: "#0c1b31" },
+        { label: "Payroll lines in window", value: payrollInWindow.toLocaleString(), sub: "One per caregiver per work day", accent: "#0c1b31", color: "#0c1b31" },
+        { label: "Vendor bills in window", value: billsInWindow.toLocaleString(), sub: "Incurred dates inside the window", accent: "#0c1b31", color: "#0c1b31" },
         { label: "Net margin for window", value: pctf((rev - cogs - oh) / rev * 100), sub: "Exact, not annualized", accent: "#c0392b", color: (rev - cogs - oh) >= 0 ? "#0c1b31" : "#98301f" }
       ]
     };
   }
   screen(cur) {
     const tab = this.state.tab[cur] || 0, T2 = t => this.tabsFor(t);
-    const money = (v) => usd(v), m1 = v => v.toFixed(1);
     if (cur === "pl") {
       if (tab === 1) return { ...T2(["Monthly", "Exact date range"]), ...this.rangeVals() };
       return { ...T2(["Monthly", "Exact date range"]), statements: [monthStmt("Income statement, FY 2025", "Twelve months plus the fiscal-year total", [
@@ -899,25 +881,24 @@ class Component extends DCLogic {
         ...PAYERS.map((p, i) => ({ label: p, vals: REV_BY_PAYER[i], indent: true })),
         { label: "Total revenue", style: "total", vals: REVN },
         { label: "Cost of services", style: "head", vals: COGS },
-        ...CO_SHARE.map(([l], i) => ({ label: l, vals: COGS_PARTS[i], indent: true })),
+        ...CO_SHARE_LABELS.map((l, i) => ({ label: l, vals: COGS_PARTS[i], indent: true })),
         { label: "Gross profit", style: "total", vals: REVN.map((v, i) => v - COGS[i]) },
         { label: "Gross margin %", kind: "pct", tot: "avg", vals: REVN.map((v, i) => (v - COGS[i]) / v * 100) },
         { label: "Operating expenses", style: "head", vals: OH },
         ...OH_GROUPS.map((g, i) => ({ label: g, vals: OH_G[i], indent: true })),
         { label: "Net income", style: "total", vals: NETI },
         { label: "Net margin %", kind: "pct", tot: "avg", vals: MG2 }
-      ], { foot: `Operating leverage: overhead held near ${usd(OH[0])}-${usd(OH[11])} a month while revenue grew 70%, carrying margin from ${pctf(MG2[0])} to ${pctf(MG2[11])}.` })] };
+      ], { foot: `Overhead held near ${usd(Math.min(...OH))}-${usd(Math.max(...OH))} a month while revenue moved from ${usd(REVN[0])} to ${usd(REVN[11])}, carrying margin from ${pctf(MG2[0])} to ${pctf(MG2[11])}.` })] };
     }
     if (cur === "bs") return { statements: [monthStmt("Balance sheet, month-end", "Every column is a month-end snapshot", [
       { label: "Assets", style: "head", vals: ASSETS_TOT, tot: "last" },
-      { label: "Operating account ···4471", vals: CASH_OP, tot: "last", indent: true },
-      { label: "Payroll account ···8823", vals: CASH_PR, tot: "last", indent: true },
+      { label: "Operating account ···4821", vals: CASH_OP, tot: "last", indent: true },
+      { label: "Payroll account ···4839", vals: CASH_PR, tot: "last", indent: true },
       { label: "Accounts receivable", vals: AR_BAL, tot: "last", indent: true },
       { label: "Fixed assets, gross", vals: FA_GROSS, tot: "last", indent: true },
       { label: "Accumulated depreciation", vals: ACC_DEP.map(v => -v), tot: "last", indent: true },
       { label: "Fixed assets, net", vals: FA_NET, tot: "last", indent: true },
-      { label: "Prepaid insurance", vals: PREPAID, tot: "last", indent: true },
-      { label: "Security deposit", vals: PREPAID.map(() => DEPOSIT), tot: "last", indent: true },
+      { label: "Other assets (deposit + prepaid insurance)", vals: OTHER_ASSETS, tot: "last", indent: true },
       { label: "Total assets", style: "total", vals: ASSETS_TOT, tot: "last" },
       { label: "Liabilities", style: "head", vals: LIAB_TOT, tot: "last" },
       { label: "Line of credit payable", vals: LOC, tot: "last", indent: true },
@@ -925,209 +906,207 @@ class Component extends DCLogic {
       { label: "Total liabilities", style: "total", vals: LIAB_TOT, tot: "last" },
       { label: "Equity", style: "head", vals: EQ_TOT, tot: "last" },
       { label: "Owner's capital contribution", vals: CAPITAL, tot: "last", indent: true },
-      { label: "Retained earnings", vals: CUMNET.map((v, i) => v - DRAWS[i]), tot: "last", indent: true },
+      { label: "Retained earnings", vals: RETAINED, tot: "last", indent: true },
       { label: "Total equity", style: "total", vals: EQ_TOT, tot: "last" },
       { label: "Liabilities + equity", style: "total", vals: LIAB_TOT.map((v, i) => v + EQ_TOT[i]), tot: "last" },
-      { label: "Difference", vals: ASSETS_TOT.map((v, i) => v - LIAB_TOT[i] - EQ_TOT[i]), tot: "last" }
+      { label: "Difference", vals: ASSETS_TOT.map((v, i) => { const d = v - LIAB_TOT[i] - EQ_TOT[i]; return Math.abs(d) < 0.01 ? 0 : d; }), tot: "last" }
     ])], hasNotes: true, notes: [
       { kicker: "Balanced", dot: "#0c1b31", title: "Assets equal liabilities plus equity in all twelve months", body: "The difference row reads $0 for every month. It is computed from the same ledgers as the statements above, not entered - nothing here needs to be checked by hand." },
       { kicker: "Tie-out", dot: "#0c1b31", title: "Equity ties to the statement of owner's equity", body: `Closing capital of ${usd(EQ_TOT[11])} on the equity statement is the same figure as total equity in December.` }
     ] };
     if (cur === "equity") return { statements: [monthStmt("Statement of owner's equity", "Opening capital through closing capital, by month", [
-      { label: "Opening capital", vals: EQ_TOT.map((v, i) => i === 0 ? 120000 : EQ_TOT[i - 1]), tot: "none" },
-      { label: "Capital contributions", vals: CAPITAL.map((v, i) => i === 0 ? 0 : v - CAPITAL[i - 1]), indent: true },
+      { label: "Opening capital", vals: EQ_TOT.map((v, i) => i === 0 ? CAPITAL[0] - NETI[0] : EQ_TOT[i - 1]), tot: "none" },
+      { label: "Capital contributions", vals: CAPITAL.map((v, i) => i === 0 ? CAPITAL[0] : v - CAPITAL[i - 1]), indent: true },
       { label: "Net income for the period", vals: NETI, indent: true },
-      { label: "Owner draws", vals: DRAWS.map((v, i) => -(i === 0 ? 0 : v - DRAWS[i - 1])), indent: true },
+      { label: "Owner draws", vals: NETI.map(() => 0), indent: true },
       { label: "Closing capital", style: "total", vals: EQ_TOT, tot: "last" }
-    ], { foot: `Owner contributed ${usd(215000 - 120000)} during the year on top of ${usd(120000)} opening capital, and drew ${usd(DRAWS[11])}.` })] };
+    ], { foot: `Owner contributed ${usd(CAPITAL[11])} in opening capital during the year. No draws were taken.` })] };
     if (cur === "cf") {
-      const known = REVN.map((v, i) => COLLECT[i] + Math.max(0, LOC[i] - (LOC[i - 1] || 12000)) + (i === 0 ? 0 : CAPITAL[i] - CAPITAL[i - 1]) - COGS[i] - (OH[i] - DEP[i] - LOC_INT[i]) - ASSET_BUY[i] - Math.max(0, (LOC[i - 1] || 12000) - LOC[i]) - LOC_INT[i] - (i === 0 ? 0 : DRAWS[i] - DRAWS[i - 1]));
-      const net = CASH_BS.map((v, i) => v - (i === 0 ? 0 : CASH_BS[i - 1]));
-      const plug = net.map((v, i) => v - known[i]);
       if (tab === 1) return { ...T2(["Monthly", "By bank account"]), statements: [monthStmt("Cash by bank account", "The payroll account is funded just-in-time before each biweekly run", [
-        { label: "Operating account ···4471", vals: CASH_OP, tot: "last" },
-        { label: "Payroll account ···8823", vals: CASH_PR, tot: "last" },
+        { label: "Operating account ···4821", vals: CASH_OP, tot: "last" },
+        { label: "Payroll account ···4839", vals: CASH_PR, tot: "last" },
         { label: "Combined cash", style: "total", vals: CASH_BS, tot: "last" }
       ])] };
       return { ...T2(["Monthly", "By bank account"]), statements: [monthStmt("Cash flow, monthly", "Inflows, outflows, net movement and the cash position each month", [
-        { label: "Inflows", style: "head", vals: COLLECT.map((v, i) => v + Math.max(0, LOC[i] - (LOC[i - 1] || 12000)) + (i === 0 ? 0 : CAPITAL[i] - CAPITAL[i - 1])) },
+        { label: "Inflows", style: "head", vals: CASH_INFLOWS },
         { label: "Collected from payers", vals: COLLECT, indent: true },
-        { label: "Line of credit draws", vals: LOC.map((v, i) => Math.max(0, v - (LOC[i - 1] || 12000))), indent: true },
-        { label: "Owner capital contributions", vals: CAPITAL.map((v, i) => i === 0 ? 0 : v - CAPITAL[i - 1]), indent: true },
-        { label: "Outflows", style: "head", vals: COGS.map((v, i) => -(v + (OH[i] - DEP[i] - LOC_INT[i]) + ASSET_BUY[i] + Math.max(0, (LOC[i - 1] || 12000) - LOC[i]) + LOC_INT[i] + (i === 0 ? 0 : DRAWS[i] - DRAWS[i - 1]))) },
+        { label: "Line of credit draws", vals: LOC_DRAW, indent: true },
+        { label: "Outflows", style: "head", vals: CASH_OUTFLOWS.map(v => -v) },
         { label: "Payroll paid", vals: COGS.map(v => -v), indent: true },
-        { label: "Overhead paid", vals: OH.map((v, i) => -(v - DEP[i] - LOC_INT[i])), indent: true },
+        { label: "Overhead paid in cash", vals: OH_PAID_CASH.map(v => -v), indent: true },
         { label: "Fixed asset purchases", vals: ASSET_BUY.map(v => -v), indent: true },
-        { label: "Line of credit repayments", vals: LOC.map((v, i) => -Math.max(0, (LOC[i - 1] || 12000) - v)), indent: true },
-        { label: "Interest paid", vals: LOC_INT.map(v => -v), indent: true },
-        { label: "Owner draws", vals: DRAWS.map((v, i) => -(i === 0 ? 0 : v - DRAWS[i - 1])), indent: true },
-        { label: "Change in payables and accruals", vals: plug, indent: true },
-        { label: "Net cash flow", style: "total", vals: net },
+        { label: "Line of credit repayments", vals: LOC_REPAY_CF.map(v => -Math.abs(v)), indent: true },
+        { label: "Net cash flow", style: "total", vals: NET_CASH_FLOW },
         { label: "Ending cash", style: "total", vals: CASH_BS, tot: "last" }
       ])] };
     }
     if (cur === "bank") return {
       hasCards: true, cards: [
-        { label: "Operating ···4471", value: usd(CASH_OP[11]), sub: "First Community Bank · collections and overhead", accent: "#0c1b31", color: "#0c1b31" },
-        { label: "Payroll ···8823", value: usd(CASH_PR[11]), sub: "Funded before each biweekly payroll run", accent: "#0c1b31", color: "#0c1b31" },
+        { label: "Operating ···4821", value: usd(CASH_OP[11]), sub: "First Community Bank · collections and overhead", accent: "#0c1b31", color: "#0c1b31" },
+        { label: "Payroll ···4839", value: usd(CASH_PR[11]), sub: "Funded before each biweekly payroll run", accent: "#0c1b31", color: "#0c1b31" },
         { label: "Combined cash", value: usd(CASH_BS[11]), sub: "December 31, 2025", accent: "#0c1b31", color: "#0c1b31" },
         { label: "Reconciliation difference", value: "$0", sub: "Both accounts tie to statement", accent: "#0c1b31", color: "#0c1b31" }
       ],
       statements: [
-        simpleStmt("Bank reconciliation - Operating ···4471", "December 31, 2025", [["Line", "left"], ["Amount"]], [
-          ["Book balance per general ledger", CASH_OP[11], ""], ["Deposits in transit", 4180, "sub"], ["Outstanding checks and ACH", -2640, "sub"], ["Bank fees not yet booked", -95, "sub"],
-          ["Adjusted book balance", CASH_OP[11] + 4180 - 2640 - 95, "total"], ["Balance per bank statement", CASH_OP[11] + 4180 - 2640 - 95, ""], ["Difference", 0, "total"]
-        ].map(([l, v, k]) => ({ style: ROW_STYLES[k === "total" ? "total" : "plain"], cells: [cell(l, { align: "left", bold: k === "total", pad: k === "sub" ? "34px" : null }), cell(usd(v), { mono: true, bold: k === "total" })] })), { minWidth: "520px" }),
-        simpleStmt("Bank reconciliation - Payroll ···8823", "December 31, 2025", [["Line", "left"], ["Amount"]], [
-          ["Book balance per general ledger", CASH_PR[11], ""], ["Deposits in transit", 0, "sub"], ["Outstanding payroll ACH", -1815, "sub"], ["Bank fees not yet booked", -35, "sub"],
-          ["Adjusted book balance", CASH_PR[11] - 1815 - 35, "total"], ["Balance per bank statement", CASH_PR[11] - 1815 - 35, ""], ["Difference", 0, "total"]
-        ].map(([l, v, k]) => ({ style: ROW_STYLES[k === "total" ? "total" : "plain"], cells: [cell(l, { align: "left", bold: k === "total", pad: k === "sub" ? "34px" : null }), cell(usd(v), { mono: true, bold: k === "total" })] })), { minWidth: "520px" })
+        simpleStmt("Bank reconciliation - Operating ···4821", "December 31, 2025", [["Line", "left"], ["Amount"]], [
+          ["Book balance per general ledger", BANK_RECON.operating.book, ""], ["Deposits in transit", BANK_RECON.operating.depositsInTransit, "sub"],
+          ["Outstanding checks and ACH", BANK_RECON.operating.outstanding, "sub"], ["Bank fees not yet booked", BANK_RECON.operating.feesNotRecorded, "sub"],
+          ["Interest earned not yet booked", BANK_RECON.operating.interestNotRecorded, "sub"],
+          ["Adjusted book balance", BANK_RECON.operating.adjusted, "total"], ["Balance per bank statement", BANK_RECON.operating.statement, ""], ["Difference", 0, "total"]
+        ].map(([l, v, kk]) => ({ style: ROW_STYLES[kk === "total" ? "total" : "plain"], cells: [cell(l, { align: "left", bold: kk === "total", pad: kk === "sub" ? "34px" : null }), cell(usd(v), { mono: true, bold: kk === "total" })] })), { minWidth: "520px" }),
+        simpleStmt("Bank reconciliation - Payroll ···4839", "December 31, 2025", [["Line", "left"], ["Amount"]], [
+          ["Book balance per general ledger", BANK_RECON.payroll.book, ""], ["Payroll ACH not yet cleared", BANK_RECON.payroll.achNotCleared, "sub"], ["Bank fees not yet booked", BANK_RECON.payroll.feesNotRecorded, "sub"],
+          ["Adjusted book balance", BANK_RECON.payroll.adjusted, "total"], ["Balance per bank statement", BANK_RECON.payroll.statement, ""], ["Difference", 0, "total"]
+        ].map(([l, v, kk]) => ({ style: ROW_STYLES[kk === "total" ? "total" : "plain"], cells: [cell(l, { align: "left", bold: kk === "total", pad: kk === "sub" ? "34px" : null }), cell(usd(v), { mono: true, bold: kk === "total" })] })), { minWidth: "520px" })
       ]
     };
     if (cur === "loc") return {
       hasCards: true, cards: [
-        { label: "Balance", value: usd(LOC[11]), sub: "Down from a July peak of " + usd(LOC[7]), accent: "#0c1b31", color: "#0c1b31" },
+        { label: "Balance", value: usd(LOC[11]), sub: "Peaked at " + usd(Math.max(...LOC)), accent: "#0c1b31", color: "#0c1b31" },
         { label: "Utilization", value: pctf(LOC[11] / LOC_LIMIT * 100), sub: `${usd(LOC_LIMIT)} facility at 9.25% variable`, accent: "#f0a595", color: "#0c1b31" },
-        { label: "Peak utilization", value: pctf(Math.max(...LOC) / LOC_LIMIT * 100), sub: "August, during vehicle purchases", accent: "#c0392b", color: "#98301f" },
+        { label: "Peak utilization", value: pctf(Math.max(...LOC_UTIL)), sub: M[LOC_UTIL.indexOf(Math.max(...LOC_UTIL))] + " 2025", accent: "#c0392b", color: "#98301f" },
         { label: "Interest paid, FY", value: usd(LOC_INT.reduce((a, b) => a + b, 0)), sub: "Booked to operating expenses", accent: "#0c1b31", color: "#0c1b31" }
       ],
-      statements: [monthStmt("Line of credit activity", "Draws funded the collection lag and mid-year asset purchases", [
-        { label: "Beginning balance", vals: LOC.map((v, i) => i === 0 ? 12000 : LOC[i - 1]), tot: "none" },
-        { label: "Draws", vals: LOC.map((v, i) => Math.max(0, v - (i === 0 ? 12000 : LOC[i - 1]))), indent: true },
-        { label: "Repayments", vals: LOC.map((v, i) => -Math.max(0, (i === 0 ? 12000 : LOC[i - 1]) - v)), indent: true },
+      statements: [monthStmt("Line of credit activity", "Draws funded the collection lag and fixed-asset purchases", [
+        { label: "Beginning balance", vals: LOC_BEGIN, tot: "none" },
+        { label: "Draws", vals: LOC_DRAW, indent: true },
+        { label: "Repayments", vals: LOC_REPAY, indent: true },
         { label: "Interest expense", vals: LOC_INT, indent: true },
         { label: "Ending balance", style: "total", vals: LOC, tot: "last" },
-        { label: "Utilization %", kind: "pct", tot: "last", vals: LOC.map(v => v / LOC_LIMIT * 100) }
+        { label: "Utilization %", kind: "pct", tot: "last", vals: LOC_UTIL }
       ])]
     };
     if (cur === "ar") {
       const tabs = T2(["Aging", "Invoice ledger", "DSO & denials", "Remittance"]);
       if (tab === 1) return { ...tabs, ...this.buildTable({
-        title: "AR detail ledger", note: "One row per client visit that generated revenue - 8,124 invoices in the year, 54 shown", placeholder: "Search invoice or client",
+        title: "AR detail ledger", note: `Every client visit that generated revenue - ${invoices.length.toLocaleString()} invoices in the year, all shown here`, placeholder: "Search invoice or client",
         search: ["id", "client", "payer"], minWidth: "1080px",
-        filters: [{ label: "Payer", key: "payer", options: ["All payers", ...PAYERS] }, { label: "Bucket", key: "bucket", options: ["All buckets", ...AGING.map(a => a[0])] }, { label: "Status", key: "status", options: ["All statuses", "Paid", "Denied", "Current", "1-30 days", "31-60 days", "61-90 days", "90+ days"] }],
+        filters: [{ label: "Payer", key: "payer", options: ["All payers", ...PAYERS] }, { label: "Bucket", key: "bucket", options: ["All buckets", ...BUCKET_KEYS] }, { label: "Status", key: "status", options: ["All statuses", "Paid", "Open"] }],
         rows: invoices, cols: [
           { label: "Invoice", key: "id", mono: true, bold: true }, { label: "Client", key: "client", align: "left" }, { label: "Payer", key: "payer", align: "left" },
           { label: "Billed", key: "billed", mono: true }, { label: "Amount", key: "amount", mono: true, fmt: usd }, { label: "Paid", key: "paid", mono: true },
-          { label: "Days out", key: "days", mono: true }, { label: "Status", key: "status", align: "right", color: r => r.status === "Paid" ? "#0c1b31" : r.status === "Denied" || r.status === "90+ days" ? "#98301f" : "#7a2417" }],
+          { label: "Days out", key: "days", mono: true }, { label: "Status", key: "status", align: "right", color: r => r.status === "Paid" ? "#0c1b31" : r.bucket === "90+ Days" ? "#98301f" : "#7a2417" }],
         total: rows => `Filtered balance open ${usd(rows.filter(r => r.open).reduce((a, r) => a + r.amount, 0))}`,
         foot: "Days outstanding measured to December 31, 2025"
       }) };
-      if (tab === 2) return { ...tabs, statements: [monthStmt("Days sales outstanding and denial rate", "Medicaid Waiver runs more than twice the collection cycle of Private Pay", [
+      if (tab === 2) return { ...tabs, statements: [monthStmt("Days sales outstanding and denial rate", "Medicaid Waiver runs the longest collection cycle of any payer", [
         { label: "DSO - all payers", kind: "d", tot: "last", vals: DSO_M, style: "total" },
-        ...PAYERS.map(p => ({ label: "DSO - " + p, kind: "d", tot: "last", vals: DSO_BY_PAYER[p], indent: true })),
-        { label: "Claim denial rate %", kind: "pct", tot: "avg", vals: DENIAL_M },
-        { label: "Denied / written off", vals: DENIALS }
-      ], { foot: "Private Pay has no denials at all; Medicaid Waiver carries the denial rate and the slowest cycle." })] };
-      if (tab === 3) return { ...tabs, statements: [simpleStmt("AR-to-remittance reconciliation", "Claim-level sample - billed rarely equals paid", [["Claim", "left"], ["Payer", "left"], ["Billed"], ["Paid"], ["Contractual adj."], ["Denied"], ["Difference"]],
-        invoices.filter(r => !r.open).slice(0, 10).map(r => { const den = r.status === "Denied" ? r.amount : 0, adj = r.status === "Denied" ? 0 : Math.round(r.amount * (r.payer === "Private Pay" ? 0 : 0.038)); const paid = r.amount - adj - den;
-          return { cells: [cell(r.id, { align: "left", mono: true, bold: true }), cell(r.payer, { align: "left" }), cell(usd(r.amount), { mono: true }), cell(usd(paid), { mono: true }), cell(usd(adj), { mono: true, color: "#7a2417" }), cell(usd(den), { mono: true, color: den ? "#98301f" : "#9aa5b4" }), cell("$0", { mono: true, color: "#0c1b31", bold: true })] }; }),
-        { minWidth: "900px", foot: "Every claim reconciles: billed = paid + contractual adjustment + denied." })] };
+        ...PAYERS.map((p, i) => ({ label: "DSO - " + p, kind: "d", tot: "last", vals: DSO_BY_PAYER[p], indent: true })),
+        { label: "Claim denial rate %", kind: "pct", tot: "avg", vals: DENIAL_M }
+      ], { foot: "Private Pay collects fastest; Medicaid Waiver carries the slowest cycle and the highest denial rate." })] };
+      if (tab === 3) return { ...tabs, statements: [simpleStmt("AR-to-remittance reconciliation", "Every claim in the year with a denial or adjustment - billed rarely equals paid", [["Claim", "left"], ["Payer", "left"], ["Billed"], ["Denied"], ["Paid"], ["Variance"]],
+        remittance.map(r => ({ cells: [cell(r.visitId, { align: "left", mono: true, bold: true }), cell(r.payer, { align: "left" }), cell(usd(r.billed), { mono: true }), cell(usd(r.denied), { mono: true, color: r.denied ? "#98301f" : "#9aa5b4" }), cell(usd(r.paid), { mono: true }), cell(usd(r.variance), { mono: true, color: "#7a2417" })] })),
+        { minWidth: "900px", foot: `${remittance.length} claims in the year carried a denial or partial-unit adjustment; every other claim paid exactly as billed.` })] };
       return { ...tabs, hasCards: true,
-        cards: AGING.map(([label, share], i) => ({ label, value: usd(Math.round(AR_BAL[11] * share)), sub: pctf(share * 100) + " of total AR", accent: ["#0c1b31", "#dde2ea", "#f0a595", "#f0a595", "#c0392b"][i], color: i >= 3 ? "#98301f" : "#0c1b31" })),
-        statements: [simpleStmt("Aging by payer", `Total AR outstanding ${usd(AR_BAL[11])} at December 31`, [["Payer", "left"], ...AGING.map(a => [a[0]]), ["Total"]],
-          PAYERS.map((p, pi) => { const r = AGING_BY_PAYER[pi], tot = r.reduce((a, b) => a + b, 0);
-            return { cells: [cell(p, { align: "left", bold: true }), ...r.map((v, bi) => cell(usd(v) + "  ·  " + pctf(tot ? v / tot * 100 : 0, 0), { mono: true, color: bi >= 3 && v > 0 ? "#98301f" : null })), cell(usd(tot), { mono: true, bold: true })] }; })
-            .concat([{ style: ROW_STYLES.total, cells: [cell("All payers", { align: "left", bold: true }), ...AGING.map((a, bi) => cell(usd(AGING_BY_PAYER.reduce((s, r) => s + r[bi], 0)), { mono: true, bold: true })), cell(usd(AGING_BY_PAYER.flat().reduce((a, b) => a + b, 0)), { mono: true, bold: true })] }]),
-          { minWidth: "1080px", foot: "Medicaid Waiver holds 78% of everything past 30 days. Private Pay has nothing beyond 30 days." })] };
+        cards: AGING.map(([label, amt]) => ({ label, value: usd(amt), sub: pctf(amt / AR_BAL[11] * 100) + " of total AR", accent: label === "90+ Days" ? "#c0392b" : label.includes("61") || label.includes("90") ? "#f0a595" : label === "Current" ? "#0c1b31" : "#dde2ea", color: label === "90+ Days" || label === "61-90 Days" ? "#98301f" : "#0c1b31" })),
+        statements: [simpleStmt("Aging by payer", `Total AR outstanding ${usd(AR_BAL[11])} at December 31`, [["Payer", "left"], ...BUCKET_KEYS.map(b => [b]), ["Total"]],
+          AR_AGING_BUCKETS.map(r => { const tot = r.Total;
+            return { cells: [cell(r.Payer, { align: "left", bold: true }), ...BUCKET_KEYS.map(bk => cell(usd(r[bk] || 0) + "  ·  " + pctf(tot ? (r[bk] || 0) / tot * 100 : 0, 0), { mono: true, color: (bk === "61-90 Days" || bk === "90+ Days") && r[bk] > 0 ? "#98301f" : null })), cell(usd(tot), { mono: true, bold: true })] }; })
+            .concat([{ style: ROW_STYLES.total, cells: [cell("All payers", { align: "left", bold: true }), ...BUCKET_KEYS.map(bk => cell(usd(AR_AGING_BUCKETS.reduce((s, r) => s + (r[bk] || 0), 0)), { mono: true, bold: true })), cell(usd(AR_BAL[11]), { mono: true, bold: true })] }]),
+          { minWidth: "1080px", foot: `Medicaid Waiver holds the largest share of everything past 30 days.` })] };
     }
     if (cur === "ap") {
       const tabs = T2(["Aging", "Bills register", "Vendors", "DPO"]);
+      const categories = [...new Set(VENDORS.map(v => v.category))];
+      const terms = [...new Set(VENDORS.map(v => v.terms))];
       if (tab === 1) return { ...tabs, ...this.buildTable({
-        title: "Bills register", note: "681 vendor bills in the year, 52 shown", placeholder: "Search bill, vendor or category",
+        title: "Bills register", note: `${bills.length} vendor bills in the year, all shown here`, placeholder: "Search bill, vendor or category",
         search: ["id", "vendor", "category"], minWidth: "1140px",
-        filters: [{ label: "Category", key: "category", options: ["All categories", ...[...new Set(VENDORS.map(v => v[1]))]] }, { label: "Terms", key: "terms", options: ["All terms", "Net 15", "Net 21", "Net 30", "Due on Receipt", "Auto-Charge"] }, { label: "Status", key: "status", options: ["All statuses", "Paid", "Open", "Past due"] }],
+        filters: [{ label: "Category", key: "category", options: ["All categories", ...categories] }, { label: "Terms", key: "terms", options: ["All terms", ...terms] }, { label: "Status", key: "status", options: ["All statuses", "Paid", "Open"] }],
         rows: bills, cols: [
           { label: "Bill", key: "id", mono: true, bold: true }, { label: "Vendor", key: "vendor", align: "left" }, { label: "Category", key: "category", align: "left" },
           { label: "Terms", key: "terms", align: "left" }, { label: "Incurred", key: "incurred", mono: true }, { label: "Due", key: "due", mono: true },
           { label: "Amount", key: "amount", mono: true, fmt: usd }, { label: "Paid from", key: "account", align: "left" },
-          { label: "Status", key: "status", color: r => r.status === "Paid" ? "#0c1b31" : r.status === "Past due" ? "#98301f" : "#7a2417" }],
+          { label: "Status", key: "status", color: r => r.status === "Paid" ? "#0c1b31" : "#7a2417" }],
         total: rows => `Filtered open ${usd(rows.filter(r => r.open).reduce((a, r) => a + r.amount, 0))}`, foot: "Due dates derived from each vendor's terms"
       }) };
       if (tab === 2) return { ...tabs, ...this.buildTable({
-        title: "Vendor master", note: "26 vendors on file with payment terms and what they are paid for", placeholder: "Search vendor, category or terms",
-        search: ["vendor", "category", "terms", "what"], minWidth: "1000px",
-        filters: [{ label: "Category", key: "category", options: ["All categories", ...[...new Set(VENDORS.map(v => v[1]))]] }, { label: "Terms", key: "terms", options: ["All terms", "Net 15", "Net 21", "Net 30", "Due on Receipt", "Auto-Charge"] }],
-        rows: VENDORS.map(([vendor, category, terms, what]) => ({ vendor, category, terms, what, open: bills.filter(b => b.vendor === vendor && b.open).reduce((a, b) => a + b.amount, 0) })),
-        cols: [{ label: "Vendor", key: "vendor", align: "left", bold: true }, { label: "Category", key: "category", align: "left" }, { label: "Terms", key: "terms", align: "left" }, { label: "What they are paid for", key: "what", align: "left" }, { label: "Open balance", key: "open", mono: true, fmt: usd }],
+        title: "Vendor master", note: `${VENDORS.length} vendors on file with payment terms`, placeholder: "Search vendor, category or terms",
+        search: ["vendor", "category", "terms"], minWidth: "900px",
+        filters: [{ label: "Category", key: "category", options: ["All categories", ...categories] }, { label: "Terms", key: "terms", options: ["All terms", ...terms] }],
+        rows: VENDORS.map(({ vendor, category, terms }) => ({ vendor, category, terms, open: bills.filter(b => b.vendor === vendor && b.open).reduce((a, b) => a + b.amount, 0) })),
+        cols: [{ label: "Vendor", key: "vendor", align: "left", bold: true }, { label: "Category", key: "category", align: "left" }, { label: "Terms", key: "terms", align: "left" }, { label: "Open balance", key: "open", mono: true, fmt: usd }],
         total: rows => `Open payables ${usd(rows.reduce((a, r) => a + r.open, 0))}`, foot: "Auto-Charge vendors clear the operating account on statement date"
       }) };
       if (tab === 3) return { ...tabs, statements: [monthStmt("Days payable outstanding", "Payables held steady while volume grew", [
         { label: "Accounts payable balance", vals: AP, tot: "last" }, { label: "DPO", kind: "d", tot: "last", vals: DPO_M }
       ])] };
-      const vend = [...new Set(bills.filter(b => b.open).map(b => b.vendor))];
       return { ...tabs, hasCards: true,
-        cards: [["Current", 0.62], ["1-30 days", 0.26], ["31-60 days", 0.09], ["61-90 days", 0.02], ["90+ days", 0.01]].map(([label, share], i) => ({ label, value: usd(Math.round(AP[11] * share)), sub: pctf(share * 100) + " of total AP", accent: ["#0c1b31", "#dde2ea", "#f0a595", "#f0a595", "#c0392b"][i], color: i >= 3 ? "#98301f" : "#0c1b31" })),
-        statements: [simpleStmt("AP aging by vendor", `Total payables ${usd(AP[11])} at December 31`, [["Vendor", "left"], ["Current"], ["1-30 days"], ["31-60 days"], ["61-90 days"], ["90+ days"], ["Total"]],
-          vend.map(v => { const rows = bills.filter(b => b.open && b.vendor === v); const tot = rows.reduce((a, b) => a + b.amount, 0);
-            const late = rows.filter(b => b.status === "Past due").reduce((a, b) => a + b.amount, 0);
-            const bkts = [tot - late, late, 0, 0, 0];
-            return { cells: [cell(v, { align: "left", bold: true }), ...bkts.map((x, i) => cell(x ? usd(x) : " - ", { mono: true, color: i >= 1 && x ? "#98301f" : x ? null : "#dde2ea" })), cell(usd(tot), { mono: true, bold: true })] }; }),
-          { minWidth: "1000px", foot: "Two bills are past due: vehicle insurance (12 days) and a state licensing fee (6 days)." })] };
+        cards: AP_AGING.map(([label, amt]) => ({ label, value: usd(amt), sub: pctf(AP[11] ? amt / AP[11] * 100 : 0) + " of total AP", accent: label === "90+ Days" ? "#c0392b" : label.includes("61") ? "#f0a595" : label === "Current" ? "#0c1b31" : "#dde2ea", color: label === "90+ Days" || label === "61-90 Days" ? "#98301f" : "#0c1b31" })),
+        statements: [simpleStmt("AP aging by vendor", `Total payables ${usd(AP[11])} at December 31`, [["Vendor", "left"], ...BUCKET_KEYS.map(b => [b]), ["Total"]],
+          AP_AGING_BUCKETS.map(r => { const tot = r.Total;
+            return { cells: [cell(r.Vendor, { align: "left", bold: true }), ...BUCKET_KEYS.map(bk => cell(r[bk] ? usd(r[bk]) : " - ", { mono: true, color: (bk === "61-90 Days" || bk === "90+ Days") && r[bk] ? "#98301f" : r[bk] ? null : "#dde2ea" })), cell(usd(tot), { mono: true, bold: true })] }; }),
+          { minWidth: "1000px", foot: `${AP_AGING_BUCKETS.length} vendors carried an open balance at year end.` })] };
     }
     if (cur === "payroll") {
       const tabs = T2(["Summary", "Daily register", "Overtime", "Payroll-to-GL"]);
+      const roles = [...new Set(cgRoster.map(c => c.role))];
       if (tab === 1) return { ...tabs, ...this.buildTable({
-        title: "Daily payroll register", note: "5,973 lines in the year - one per caregiver per work day, 58 shown", placeholder: "Search caregiver, role or line ID",
+        title: "Daily payroll register", note: `${payrollLines.length.toLocaleString()} lines in the year - one per caregiver per work day, all shown here`, placeholder: "Search caregiver, role or line ID",
         search: ["id", "caregiver", "role"], minWidth: "1140px",
-        filters: [{ label: "Role", key: "role", options: ["All roles", ...CG_ROLES.map(r => r[0])] }, { label: "Pay type", key: "ptype", options: ["All pay types", "Hourly", "Per-visit"] }],
+        filters: [{ label: "Role", key: "role", options: ["All roles", ...roles] }, { label: "Pay type", key: "ptype", options: ["All pay types", "Hourly", "Per Visit"] }],
         rows: payrollLines, cols: [
           { label: "Line", key: "id", mono: true, bold: true }, { label: "Date", key: "date", mono: true, align: "left" }, { label: "Caregiver", key: "caregiver", align: "left" }, { label: "Role", key: "role", align: "left" },
           { label: "Reg hrs", key: "reg", mono: true, fmt: v => v.toFixed(2) }, { label: "OT hrs", key: "ot", mono: true, fmt: v => v ? v.toFixed(2) : " - ", color: r => r.ot ? "#7a2417" : "#dde2ea" },
           { label: "Visits", key: "visits", mono: true, fmt: v => v || " - " }, { label: "Mileage", key: "mileage", mono: true, fmt: usd }, { label: "Gross", key: "gross", mono: true, fmt: usd },
           { label: "Burden", key: "burden", mono: true, fmt: usd }, { label: "Fully loaded", key: "total", mono: true, fmt: usd, bold: true }],
-        total: rows => `Filtered fully-loaded ${usd(rows.reduce((a, r) => a + r.total, 0))}`, foot: "Burden applied at 18.6%; mileage at $0.67 per mile"
+        total: rows => `Filtered fully-loaded ${usd(rows.reduce((a, r) => a + r.total, 0))}`, foot: "Burden applied at 14.5%; mileage at $0.67 per mile, folded into gross pay"
       }) };
-      if (tab === 2) return { ...tabs, hasCards: true,
-        cards: [{ label: "Overtime, FY", value: usd(COGS_PARTS[1].reduce((a, b) => a + b, 0)), sub: "4.2% of fully-loaded payroll", accent: "#c0392b", color: "#98301f" },
-          { label: "Peak month", value: pctf(Math.max(...OT_PCT)), sub: "September, at 62 active clients", accent: "#f0a595", color: "#0c1b31" },
-          { label: "January", value: pctf(OT_PCT[0]), sub: "Before the client base doubled", accent: "#0c1b31", color: "#0c1b31" },
-          { label: "Caregivers with OT", value: "23 of 40", sub: "Concentrated in Home Health Aides", accent: "#0c1b31", color: "#0c1b31" }],
-        statements: [monthStmt("Overtime pressure", "Overtime climbed as the client base grew without added headcount", [
+      if (tab === 2) {
+        const otIdx = OT_PCT.indexOf(Math.max(...OT_PCT));
+        const cgWithOT = new Set(payrollLines.filter(p => p.ot).map(p => p.cgId)).size;
+        const otWages = COGS_PARTS[1].reduce((a, b) => a + b, 0);
+        return { ...tabs, hasCards: true,
+        cards: [{ label: "Overtime, FY", value: usd(otWages), sub: pctf(otWages / FYCOGS * 100) + " of fully-loaded payroll", accent: "#c0392b", color: "#98301f" },
+          { label: "Peak month", value: pctf(Math.max(...OT_PCT)), sub: M[otIdx] + " 2025", accent: "#f0a595", color: "#0c1b31" },
+          { label: "January", value: pctf(OT_PCT[0]), sub: "Before overtime built up", accent: "#0c1b31", color: "#0c1b31" },
+          { label: "Caregivers with OT", value: `${cgWithOT} of ${cgRoster.length}`, sub: "Concentrated in hourly roles", accent: "#0c1b31", color: "#0c1b31" }],
+        statements: [monthStmt("Overtime pressure", "Overtime as a share of total payroll, trended monthly", [
           { label: "Overtime wages", vals: COGS_PARTS[1] }, { label: "Overtime as % of total payroll", kind: "pct", tot: "avg", vals: OT_PCT }
         ])] };
+      }
       if (tab === 3) return { ...tabs, statements: [simpleStmt("Payroll-to-GL reconciliation", "Register totals against what is booked in the P&L, by component", [["Component", "left"], ["Payroll register"], ["Booked in P&L"], ["Difference"]],
-        CO_SHARE.map(([l], i) => ({ cells: [cell(l, { align: "left", bold: true }), cell(usd(COGS_PARTS[i].reduce((a, b) => a + b, 0)), { mono: true }), cell(usd(COGS_PARTS[i].reduce((a, b) => a + b, 0)), { mono: true }), cell("$0", { mono: true, color: "#0c1b31", bold: true })] }))
-          .concat([{ style: ROW_STYLES.total, cells: [cell("Total fully-loaded payroll", { align: "left", bold: true }), cell(usd(FYCOGS), { mono: true, bold: true }), cell(usd(FYCOGS), { mono: true, bold: true }), cell("$0", { mono: true, color: "#0c1b31", bold: true })] }]),
+        PAYROLL_GL_RECON.map(r => ({ style: r.component === "TOTAL" ? ROW_STYLES.total : ROW_STYLES.plain, cells: [cell(r.component, { align: "left", bold: true }), cell(usd(r.register), { mono: true, bold: r.component === "TOTAL" }), cell(usd(r.pnl), { mono: true, bold: r.component === "TOTAL" }), cell(usd(r.diff), { mono: true, color: "#0c1b31", bold: true })] })),
         { minWidth: "760px", foot: "The register ties to the general ledger component by component, with no plug." })] };
       return { ...tabs, statements: [monthStmt("Payroll summary", "Fully-loaded cost of services by component", [
-        ...CO_SHARE.map(([l], i) => ({ label: l, vals: COGS_PARTS[i] })),
+        ...CO_SHARE_LABELS.map((l, i) => ({ label: l, vals: COGS_PARTS[i] })),
         { label: "Total fully-loaded payroll", style: "total", vals: COGS },
         { label: "Payroll as % of revenue", kind: "pct", tot: "avg", vals: COGS.map((v, i) => v / REVN[i] * 100) }
       ])] };
     }
     if (cur === "overhead") {
       const tabs = T2(["Categories", "Register"]);
+      const accounts = [...new Set(ohTxns.map(o => o.account))];
       if (tab === 1) return { ...tabs, ...this.buildTable({
-        title: "Daily overhead register", note: "833 expense transactions in the year, 56 shown", placeholder: "Search category, vendor or ID",
+        title: "Daily overhead register", note: `${ohTxns.length} expense transactions in the year, all shown here`, placeholder: "Search category, vendor or ID",
         search: ["id", "category", "vendor", "group"], minWidth: "1020px",
-        filters: [{ label: "Group", key: "group", options: ["All groups", ...OH_GROUPS] }, { label: "Account", key: "account", options: ["All accounts", "Operating ···4471", "Payroll ···8823"] }],
+        filters: [{ label: "Group", key: "group", options: ["All groups", ...OH_GROUPS] }, { label: "Account", key: "account", options: ["All accounts", ...accounts] }],
         rows: ohTxns, cols: [{ label: "ID", key: "id", mono: true, bold: true }, { label: "Date", key: "date", mono: true, align: "left" }, { label: "Category", key: "category", align: "left" }, { label: "Group", key: "group", align: "left" }, { label: "Vendor", key: "vendor", align: "left" }, { label: "Paid from", key: "account", align: "left" }, { label: "Amount", key: "amount", mono: true, fmt: usd, bold: true }],
         total: rows => `Filtered total ${usd(rows.reduce((a, r) => a + r.amount, 0))}`, foot: "Depreciation and line-of-credit interest are booked monthly, not as transactions"
       }) };
-      return { ...tabs, statements: [monthStmt("Operating expenses by group", `All ${OH_CATS.length} categories rolled into ${OH_GROUPS.length} groups`, [
+      return { ...tabs, statements: [monthStmt("Operating expenses by group", `All ${OH_CAT_COUNT} categories rolled into ${OH_GROUPS.length} groups`, [
         ...OH_GROUPS.map((g, i) => ({ label: g, vals: OH_G[i] })),
         { label: "Total operating expenses", style: "total", vals: OH },
         { label: "Overhead as % of revenue", kind: "pct", tot: "avg", vals: OH.map((v, i) => v / REVN[i] * 100) }
-      ], { foot: "Overhead is nearly fixed: it grew 27% while revenue grew 70%." })] };
+      ], { foot: `Overhead moved from ${usd(OH[0])} to ${usd(OH[11])} across the year while revenue moved from ${usd(REVN[0])} to ${usd(REVN[11])}.` })] };
     }
     if (cur === "fa") {
+      const classes = [...new Set(ASSETS.map(a => a.cls))];
       const tabs = T2(["Asset register", "Depreciation", "Other assets"]);
       if (tab === 1) return { ...tabs, statements: [monthStmt("Depreciation schedule", "Straight-line, beginning the month of acquisition", [
         { label: "Depreciation expense", vals: DEP }, { label: "Accumulated depreciation", vals: ACC_DEP, tot: "last" },
         { label: "Fixed assets, gross", vals: FA_GROSS, tot: "last" }, { label: "Fixed assets, net", style: "total", vals: FA_NET, tot: "last" }
       ])] };
-      if (tab === 2) return { ...tabs, statements: [monthStmt("Other assets", "A flat security deposit and a prepaid policy amortizing to zero", [
-        { label: "Security deposit", vals: PREPAID.map(() => DEPOSIT), tot: "last" },
-        { label: "Prepaid insurance", vals: PREPAID, tot: "last" },
-        { label: "Total other assets", style: "total", vals: PREPAID.map(v => v + DEPOSIT), tot: "last" }
-      ], { foot: "The prepaid general liability policy amortizes $700 a month, reaching $0 in December." })] };
+      if (tab === 2) return { ...tabs, statements: [monthStmt("Other assets", "A flat security deposit and a prepaid policy amortizing across the year", [
+        { label: "Security deposit", vals: OTHER_ASSETS.map(() => DEPOSIT), tot: "last" },
+        { label: "Prepaid insurance", vals: OTHER_ASSETS.map(v => v - DEPOSIT), tot: "last" },
+        { label: "Total other assets", style: "total", vals: OTHER_ASSETS, tot: "last" }
+      ], { foot: `The prepaid general liability policy (${usd(PREPAID_ANNUAL)} annual) amortizes to the security deposit floor of ${usd(DEPOSIT)} by December.` })] };
       return { ...tabs, ...this.buildTable({
-        title: "Fixed asset register", note: "12 assets - vehicles, office and medical equipment, one leasehold improvement", placeholder: "Search asset or class",
+        title: "Fixed asset register", note: `${ASSETS.length} assets - vehicles, office and medical equipment, one leasehold improvement`, placeholder: "Search asset or class",
         search: ["id", "name", "cls"], minWidth: "1080px",
-        filters: [{ label: "Class", key: "cls", options: ["All classes", "Vehicle", "Office equipment", "Medical equipment", "Leasehold improvement"] }],
-        rows: ASSETS.map(([id, name, cls, acq, cost, life, salv]) => { const sm = new Date(acq).getMonth(); const mo = (cost - salv) / life; const acc = mo * (12 - sm);
-          return { id, name, cls, acq, cost, life: life + " mo", salv, mo: Math.round(mo), acc: Math.round(acc), nbv: Math.round(cost - acc) }; }),
+        filters: [{ label: "Class", key: "cls", options: ["All classes", ...classes] }],
+        rows: ASSETS.map(a => ({ id: a.id, name: a.name, cls: a.cls, acq: a.acq, cost: a.cost, life: (a.life * 12) + " mo", salv: a.salv, mo: Math.round(a.monthlyDep), acc: Math.round(a.accDep), nbv: Math.round(a.nbv) })),
         cols: [{ label: "Asset", key: "id", mono: true, bold: true }, { label: "Description", key: "name", align: "left" }, { label: "Class", key: "cls", align: "left" }, { label: "Acquired", key: "acq", mono: true }, { label: "Cost", key: "cost", mono: true, fmt: usd }, { label: "Life", key: "life", mono: true }, { label: "Salvage", key: "salv", mono: true, fmt: usd }, { label: "Monthly dep.", key: "mo", mono: true, fmt: usd }, { label: "Accum. dep.", key: "acc", mono: true, fmt: usd }, { label: "Net book value", key: "nbv", mono: true, fmt: usd, bold: true }],
         total: rows => `Net book value ${usd(rows.reduce((a, r) => a + r.nbv, 0))}`, foot: "Net book value as of December 31, 2025"
       }) };
@@ -1137,27 +1116,26 @@ class Component extends DCLogic {
       if (tab === 1) return { ...tabs, ...this.buildTable({
         title: "Client authorizations", note: "Authorization periods per client, with expiry flagged", placeholder: "Search client or payer",
         search: ["name", "payer", "id"], minWidth: "980px",
-        filters: [{ label: "Payer", key: "payer", options: ["All payers", ...PAYERS] }, { label: "State", key: "authState", options: ["All states", "Active", "Expiring soon", "Expired"] }],
-        rows: [...clientRoster].sort((a, b) => a.authEnd.localeCompare(b.authEnd)),
-        cols: [{ label: "Client", key: "name", align: "left", bold: true }, { label: "ID", key: "id", mono: true, align: "left" }, { label: "Payer", key: "payer", align: "left" }, { label: "Authorized units/wk", key: "auth", mono: true }, { label: "Actual units/wk", key: "actual", mono: true }, { label: "Utilization", key: "util", mono: true, fmt: v => pctf(v) }, { label: "Authorization ends", key: "authEnd", mono: true }, { label: "State", key: "authState", color: r => r.authState === "Expired" ? "#98301f" : r.authState === "Expiring soon" ? "#7a2417" : "#0c1b31" }],
-        total: rows => `${rows.filter(r => r.authState !== "Active").length} need renewal`, foot: "Units delivered outside an active authorization are not reimbursable"
+        filters: [{ label: "Payer", key: "payer", options: ["All payers", ...PAYERS] }, { label: "State", key: "authState", options: ["All states", "Current", "Expiring Soon", "EXPIRED"] }],
+        rows: [...clientRoster].sort((a, b) => (a.authEnd||"").localeCompare(b.authEnd||"")),
+        cols: [{ label: "Client", key: "name", align: "left", bold: true }, { label: "ID", key: "id", mono: true, align: "left" }, { label: "Payer", key: "payer", align: "left" }, { label: "Authorized units/wk", key: "auth", mono: true }, { label: "Actual units/wk", key: "actual", mono: true }, { label: "Utilization", key: "util", mono: true, fmt: v => pctf(v) }, { label: "Authorization ends", key: "authEnd", mono: true }, { label: "State", key: "authState", color: r => r.authState === "EXPIRED" ? "#98301f" : r.authState === "Expiring Soon" ? "#7a2417" : "#0c1b31" }],
+        total: rows => `${rows.filter(r => r.authState !== "Current").length} need renewal`, foot: "Units delivered outside an active authorization are not reimbursable"
       }) };
       if (tab === 2) return { ...tabs, ...this.buildTable({
         title: "Profitability by client", note: "Revenue generated, attributed labor cost and margin, ranked", placeholder: "Search client or payer",
         search: ["name", "payer"], minWidth: "980px",
         filters: [{ label: "Payer", key: "payer", options: ["All payers", ...PAYERS] }, { label: "Status", key: "status", options: ["All statuses", "Active", "Discharged"] }],
         rows: [...clientRoster].sort((a, b) => b.margin - a.margin),
-        cols: [{ label: "Client", key: "name", align: "left", bold: true }, { label: "Payer", key: "payer", align: "left" }, { label: "Status", key: "status", align: "left" }, { label: "Revenue", key: "rev", mono: true, fmt: usd }, { label: "Labor cost", key: "cost", mono: true, fmt: usd }, { label: "Margin $", key: "margin", mono: true, fmt: usd }, { label: "Margin %", key: "marginPct", mono: true, fmt: v => pctf(v), bold: true, color: r => r.marginPct < 25 ? "#98301f" : r.marginPct > 38 ? "#0c1b31" : null }],
+        cols: [{ label: "Client", key: "name", align: "left", bold: true }, { label: "Payer", key: "payer", align: "left" }, { label: "Status", key: "status", align: "left" }, { label: "Revenue", key: "rev", mono: true, fmt: usd }, { label: "Labor cost", key: "cost", mono: true, fmt: usd }, { label: "Margin $", key: "margin", mono: true, fmt: usd }, { label: "Margin %", key: "marginPct", mono: true, fmt: v => pctf(v), bold: true, color: r => r.marginPct < 25 ? "#98301f" : r.marginPct > 45 ? "#0c1b31" : null }],
         total: rows => `Margin ${usd(rows.reduce((a, r) => a + r.margin, 0))} on revenue ${usd(rows.reduce((a, r) => a + r.rev, 0))}`, foot: "Labor cost is fully-loaded caregiver pay attributed by visit"
       }) };
-      if (tab === 3) return { ...tabs, statements: [monthStmt("Client growth and utilization", "37 active clients in January to 62 in December", [
+      if (tab === 3) return { ...tabs, statements: [monthStmt("Client growth", `${CLIENTS[0]} active clients in January to ${CLIENTS[11]} in December`, [
         { label: "Active clients, month-end", kind: "int", tot: "last", vals: CLIENTS },
-        { label: "Revenue per active client", vals: REVN.map((v, i) => Math.round(v / CLIENTS[i])), tot: "avg" },
-        { label: "Authorized-hours utilization %", kind: "pct", tot: "avg", vals: CLIENTS.map((c, i) => 82 + i * 0.42) },
-        { label: "Client count growth % MoM", kind: "pct", tot: "avg", vals: CLIENTS.map((c, i) => i === 0 ? 0 : (c - CLIENTS[i - 1]) / CLIENTS[i - 1] * 100) }
-      ], { foot: "Roughly 14% of authorized units went undelivered across the year - unused authorization is revenue left on the table." })] };
+        { label: "Revenue per active client", vals: AVG_REV_PER_CLIENT, tot: "avg" },
+        { label: "Client count growth % MoM", kind: "pct", tot: "avg", vals: CLIENT_GROWTH }
+      ], { foot: `FY average authorized-hours utilization was ${pctf(FY_AUTH_UTIL)} (annual figure, not trended monthly in the source data); ${FY_AUTH_EXPIRING} authorizations were expired or expiring within 30 days as of year end.` })] };
       return { ...tabs, ...this.buildTable({
-        title: "Client roster", note: "65 clients with payer, authorized versus actual units and service dates", placeholder: "Search client, ID or payer",
+        title: "Client roster", note: `${clientRoster.length} clients with payer, authorized versus actual units and service dates`, placeholder: "Search client, ID or payer",
         search: ["name", "id", "payer"], minWidth: "1000px",
         filters: [{ label: "Payer", key: "payer", options: ["All payers", ...PAYERS] }, { label: "Status", key: "status", options: ["All statuses", "Active", "Discharged"] }],
         rows: clientRoster, cols: [{ label: "Client", key: "name", align: "left", bold: true }, { label: "ID", key: "id", mono: true, align: "left" }, { label: "Payer", key: "payer", align: "left" }, { label: "Auth units/wk", key: "auth", mono: true }, { label: "Actual units/wk", key: "actual", mono: true }, { label: "Utilization", key: "util", mono: true, fmt: v => pctf(v) }, { label: "Service start", key: "start", mono: true }, { label: "Status", key: "status", color: r => r.status === "Active" ? "#0c1b31" : "#6c7a8c" }],
@@ -1166,106 +1144,143 @@ class Component extends DCLogic {
     }
     if (cur === "caregivers") {
       const tabs = T2(["Roster", "Certifications", "Profitability", "Utilization"]);
+      const roles = [...new Set(cgRoster.map(c => c.role))];
       if (tab === 1) return { ...tabs, ...this.buildTable({
         title: "Caregiver certifications", note: "Background check and certification expiry, with lapses flagged", placeholder: "Search caregiver or role",
         search: ["name", "role", "id"], minWidth: "940px",
-        filters: [{ label: "State", key: "certState", options: ["All states", "Current", "Expiring soon", "Expired"] }, { label: "Status", key: "status", options: ["All statuses", "Active", "Terminated"] }],
-        rows: [...cgRoster].sort((a, b) => a.certEnd.localeCompare(b.certEnd)),
-        cols: [{ label: "Caregiver", key: "name", align: "left", bold: true }, { label: "Emp ID", key: "id", mono: true, align: "left" }, { label: "Role", key: "role", align: "left" }, { label: "Employment", key: "status", align: "left" }, { label: "Background check", key: "bg", mono: true }, { label: "Certification ends", key: "certEnd", mono: true }, { label: "State", key: "certState", color: r => r.certState === "Expired" ? "#98301f" : r.certState === "Expiring soon" ? "#7a2417" : "#0c1b31" }],
-        total: rows => `${rows.filter(r => r.certState === "Expired" && r.status === "Active").length} active caregivers with a lapsed certification`,
+        filters: [{ label: "State", key: "certState", options: ["All states", "Current", "Expiring Soon"] }, { label: "Status", key: "status", options: ["All statuses", "Active", "Terminated"] }],
+        rows: [...cgRoster].sort((a, b) => (a.certEnd||"").localeCompare(b.certEnd||"")),
+        cols: [{ label: "Caregiver", key: "name", align: "left", bold: true }, { label: "Emp ID", key: "id", mono: true, align: "left" }, { label: "Role", key: "role", align: "left" }, { label: "Employment", key: "status", align: "left" }, { label: "Background check", key: "bg", mono: true }, { label: "Certification ends", key: "certEnd", mono: true }, { label: "State", key: "certState", color: r => r.certState === "Expiring Soon" ? "#7a2417" : "#0c1b31" }],
+        total: rows => `${rows.filter(r => r.certState === "Expiring Soon" && r.status === "Active").length} active caregivers with a certification expiring soon`,
         foot: "Visits delivered by a caregiver with a lapsed certification cannot be billed"
       }) };
       if (tab === 2) return { ...tabs, ...this.buildTable({
         title: "Profitability by caregiver", note: "Revenue attributed to their visits against fully-loaded pay", placeholder: "Search caregiver or role",
         search: ["name", "role"], minWidth: "980px",
-        filters: [{ label: "Role", key: "role", options: ["All roles", ...CG_ROLES.map(r => r[0])] }, { label: "Pay type", key: "ptype", options: ["All pay types", "Hourly", "Per-visit"] }],
+        filters: [{ label: "Role", key: "role", options: ["All roles", ...roles] }, { label: "Pay type", key: "ptype", options: ["All pay types", "Hourly", "Per Visit"] }],
         rows: [...cgRoster].sort((a, b) => b.margin - a.margin),
-        cols: [{ label: "Caregiver", key: "name", align: "left", bold: true }, { label: "Role", key: "role", align: "left" }, { label: "Pay type", key: "ptype", align: "left" }, { label: "Rate", key: "rate", mono: true, fmt: v => "$" + v.toFixed(2) }, { label: "Hours", key: "hrs", mono: true, fmt: v => v.toLocaleString() }, { label: "Revenue", key: "rev", mono: true, fmt: usd }, { label: "Loaded cost", key: "cost", mono: true, fmt: usd }, { label: "Margin $", key: "margin", mono: true, fmt: usd }, { label: "Margin %", key: "marginPct", mono: true, fmt: v => pctf(v), bold: true, color: r => r.marginPct < 20 ? "#98301f" : r.marginPct > 40 ? "#0c1b31" : null }],
+        cols: [{ label: "Caregiver", key: "name", align: "left", bold: true }, { label: "Role", key: "role", align: "left" }, { label: "Pay type", key: "ptype", align: "left" }, { label: "Rate", key: "rate", mono: true, fmt: v => "$" + v.toFixed(2) }, { label: "Hours", key: "hrs", mono: true, fmt: v => v.toLocaleString() }, { label: "Revenue", key: "rev", mono: true, fmt: usd }, { label: "Loaded cost", key: "cost", mono: true, fmt: usd }, { label: "Margin $", key: "margin", mono: true, fmt: usd }, { label: "Margin %", key: "marginPct", mono: true, fmt: v => pctf(v), bold: true, color: r => r.marginPct < 20 ? "#98301f" : r.marginPct > 50 ? "#0c1b31" : null }],
         total: rows => `Margin ${usd(rows.reduce((a, r) => a + r.margin, 0))}`, foot: "Answers which caregivers are actually making money for the agency"
       }) };
-      if (tab === 3) return { ...tabs, statements: [monthStmt("Caregiver utilization and turnover", "Billable hours against paid hours, and annualized turnover", [
+      if (tab === 3) return { ...tabs, statements: [monthStmt("Caregiver utilization", "Billable hours against paid hours, and overtime pressure", [
         { label: "Total billable hours", kind: "int", vals: BILL_HRS },
         { label: "Total paid caregiver hours", kind: "int", vals: PAID_HRS },
-        { label: "Caregiver utilization %", kind: "pct", tot: "avg", vals: BILL_HRS.map((h, i) => h / PAID_HRS[i] * 100) },
-        { label: "Overtime as % of payroll", kind: "pct", tot: "avg", vals: OT_PCT },
-        { label: "Turnover rate, annualized %", kind: "pct", tot: "avg", vals: [18, 19, 21, 22, 22, 23, 24, 25, 26, 25, 24, 24] }
-      ])] };
+        { label: "Caregiver utilization %", kind: "pct", tot: "avg", vals: UTIL_PCT },
+        { label: "Overtime as % of payroll", kind: "pct", tot: "avg", vals: OT_PCT }
+      ], { foot: `FY annualized turnover was ${pctf(FY_TURNOVER)} (annual figure, not trended monthly in the source data): ${cgRoster.filter(c=>c.status==="Terminated").length} of ${cgRoster.length} caregivers on the roster left during the year.` })] };
       return { ...tabs, ...this.buildTable({
-        title: "Caregiver roster", note: "40 caregivers with role, pay type, rate and employment dates", placeholder: "Search caregiver, role or ID",
+        title: "Caregiver roster", note: `${cgRoster.length} caregivers with role, pay type, rate and employment dates`, placeholder: "Search caregiver, role or ID",
         search: ["name", "role", "id"], minWidth: "960px",
-        filters: [{ label: "Role", key: "role", options: ["All roles", ...CG_ROLES.map(r => r[0])] }, { label: "Status", key: "status", options: ["All statuses", "Active", "Terminated"] }],
+        filters: [{ label: "Role", key: "role", options: ["All roles", ...roles] }, { label: "Status", key: "status", options: ["All statuses", "Active", "Terminated"] }],
         rows: cgRoster, cols: [{ label: "Caregiver", key: "name", align: "left", bold: true }, { label: "Emp ID", key: "id", mono: true, align: "left" }, { label: "Role", key: "role", align: "left" }, { label: "Pay type", key: "ptype", align: "left" }, { label: "Rate", key: "rate", mono: true, fmt: v => "$" + v.toFixed(2) }, { label: "Hired", key: "hire", mono: true }, { label: "Hours, FY", key: "hrs", mono: true, fmt: v => v.toLocaleString() }, { label: "Status", key: "status", color: r => r.status === "Active" ? "#0c1b31" : "#6c7a8c" }],
         total: rows => `${rows.filter(r => r.status === "Active").length} active`, foot: "Per-visit pay applies to skilled therapy staff"
       }) };
     }
-    if (cur === "missed") return {
+    if (cur === "missed") {
+      const causeCounts = {}; missed.forEach(m => { causeCounts[m.cause] = (causeCounts[m.cause] || 0) + 1; });
+      const leadingCause = Object.entries(causeCounts).sort((a, b) => b[1] - a[1])[0];
+      const totalLost = missed.reduce((a, r) => a + r.lost, 0);
+      return {
       hasCards: true, cards: [
-        { label: "Missed visit rate", value: "2.1%", sub: "Lost revenue as a share of potential revenue", accent: "#c0392b", color: "#98301f" },
-        { label: "Revenue lost, FY", value: usd(missed.reduce((a, r) => a + r.lost, 0) * 12), sub: "Extrapolated from the logged events", accent: "#f0a595", color: "#0c1b31" },
-        { label: "Events logged", value: "312", sub: "26 shown in the log below", accent: "#0c1b31", color: "#0c1b31" },
-        { label: "Leading cause", value: "Call-offs", sub: "Caregiver call-off with no replacement found", accent: "#0c1b31", color: "#0c1b31" }
+        { label: "Missed visit rate, FY", value: pctf(FY_MISSED_RATE), sub: "Lost revenue as a share of potential revenue", accent: "#c0392b", color: "#98301f" },
+        { label: "Revenue lost, FY", value: usd(totalLost), sub: "From every logged missed visit", accent: "#f0a595", color: "#0c1b31" },
+        { label: "Events logged", value: missed.length.toLocaleString(), sub: "All shown in the log below", accent: "#0c1b31", color: "#0c1b31" },
+        { label: "Leading cause", value: leadingCause ? leadingCause[0] : "-", sub: leadingCause ? `${leadingCause[1]} of ${missed.length} events` : "", accent: "#0c1b31", color: "#0c1b31" }
       ],
       ...this.buildTable({
-        title: "Missed visit log", note: "Visits scheduled but not delivered, with the revenue lost per event", placeholder: "Search client, caregiver or cause",
-        search: ["client", "caregiver", "cause", "id"], minWidth: "1000px",
-        filters: [{ label: "Payer", key: "payer", options: ["All payers", ...PAYERS] }, { label: "Cause", key: "cause", options: ["All causes", ...[...new Set(MISS_CAUSE)]] }],
-        rows: missed, cols: [{ label: "Event", key: "id", mono: true, bold: true }, { label: "Date", key: "date", mono: true, align: "left" }, { label: "Client", key: "client", align: "left" }, { label: "Payer", key: "payer", align: "left" }, { label: "Caregiver", key: "caregiver", align: "left" }, { label: "Cause", key: "cause", align: "left" }, { label: "Hours", key: "hours", mono: true }, { label: "Revenue lost", key: "lost", mono: true, fmt: usd, bold: true, color: () => "#98301f" }, { label: "Outcome", key: "replaced", align: "right" }],
+        title: "Missed visit log", note: "Visits scheduled but not delivered, with the revenue lost per event", placeholder: "Search client, payer or cause",
+        search: ["client", "cause", "id"], minWidth: "900px",
+        filters: [{ label: "Payer", key: "payer", options: ["All payers", ...PAYERS] }, { label: "Cause", key: "cause", options: ["All causes", ...Object.keys(causeCounts)] }],
+        rows: missed, cols: [{ label: "Event", key: "id", mono: true, bold: true }, { label: "Date", key: "date", mono: true, align: "left" }, { label: "Client", key: "client", align: "left" }, { label: "Payer", key: "payer", align: "left" }, { label: "Cause", key: "cause", align: "left" }, { label: "Units lost", key: "units", mono: true, fmt: v => v.toFixed(2) }, { label: "Revenue lost", key: "lost", mono: true, fmt: usd, bold: true, color: () => "#98301f" }],
         total: rows => `Revenue lost in view ${usd(rows.reduce((a, r) => a + r.lost, 0))}`, foot: "Most agencies never track this; it is a direct read on operational quality"
       })
     };
+    }
     if (cur === "kpi") return {
       statements: [
         monthStmt("Profitability", "Three headline measures", [
           { label: "Total revenue", vals: REVN }, { label: "Net income", vals: NETI }, { label: "Net margin %", kind: "pct", tot: "avg", vals: MG2 }
         ]),
-        monthStmt("Labor and utilization", "Hours, utilization, overtime, turnover and missed visits", [
+        monthStmt("Labor and utilization", "Hours, utilization and overtime, trended monthly", [
           { label: "Total billable hours", kind: "int", vals: BILL_HRS }, { label: "Total paid caregiver hours", kind: "int", vals: PAID_HRS },
-          { label: "Caregiver utilization %", kind: "pct", tot: "avg", vals: BILL_HRS.map((h, i) => h / PAID_HRS[i] * 100) },
-          { label: "Overtime as % of total payroll", kind: "pct", tot: "avg", vals: OT_PCT },
-          { label: "Turnover rate, annualized %", kind: "pct", tot: "avg", vals: [18, 19, 21, 22, 22, 23, 24, 25, 26, 25, 24, 24] },
-          { label: "Missed visit rate %", kind: "pct", tot: "avg", vals: [2.6, 2.5, 2.4, 2.3, 2.2, 2.2, 2.1, 2.1, 2.0, 2.0, 2.1, 2.1] }
+          { label: "Caregiver utilization %", kind: "pct", tot: "avg", vals: UTIL_PCT },
+          { label: "Overtime as % of total payroll", kind: "pct", tot: "avg", vals: OT_PCT }
         ]),
-        monthStmt("Client and authorization metrics", "Scale, revenue density and authorization exposure", [
+        monthStmt("Client and authorization metrics", "Scale and revenue density", [
           { label: "Active clients, month-end", kind: "int", tot: "last", vals: CLIENTS },
-          { label: "Avg monthly revenue per active client", vals: REVN.map((v, i) => Math.round(v / CLIENTS[i])), tot: "avg" },
-          { label: "Avg authorized-hours utilization %", kind: "pct", tot: "avg", vals: CLIENTS.map((c, i) => 82 + i * 0.42) },
-          { label: "Authorizations expired / expiring", kind: "int", tot: "last", vals: [1, 2, 2, 3, 2, 3, 4, 3, 3, 4, 3, 3] }
+          { label: "Avg monthly revenue per active client", vals: AVG_REV_PER_CLIENT, tot: "avg" },
+          { label: "Client count growth % MoM", kind: "pct", tot: "avg", vals: CLIENT_GROWTH }
         ]),
         monthStmt("AR / AP and liquidity", "Collections, payables and the cushion behind them", [
           { label: "Total AR outstanding", vals: AR_BAL, tot: "last" }, { label: "Days sales outstanding", kind: "d", tot: "last", vals: DSO_M },
           { label: "Claim denial rate %", kind: "pct", tot: "avg", vals: DENIAL_M }, { label: "Total AP outstanding", vals: AP, tot: "last" },
           { label: "Days payable outstanding", kind: "d", tot: "last", vals: DPO_M },
-          { label: "Line of credit utilization %", kind: "pct", tot: "last", vals: LOC.map(v => v / LOC_LIMIT * 100) },
-          { label: "Working capital", vals: CASH_BS.map((c, i) => c + AR_BAL[i] - LIAB_TOT[i]), tot: "last" },
-          { label: "Quick ratio", kind: "x", tot: "last", vals: CASH_BS.map((c, i) => (c + AR_BAL[i]) / LIAB_TOT[i]) },
-          { label: "Cash runway, days", kind: "int", tot: "last", vals: CASH_BS.map((c, i) => Math.round((c + (LOC_LIMIT - LOC[i])) / (OH[i] / 30))) }
+          { label: "Line of credit utilization %", kind: "pct", tot: "last", vals: LOC_UTIL },
+          { label: "Working capital", vals: WORKING_CAPITAL, tot: "last" },
+          { label: "Quick ratio", kind: "x", tot: "last", vals: QUICK_RATIO },
+          { label: "Cash runway, days", kind: "d", tot: "last", vals: CASH_RUNWAY }
         ]),
         monthStmt("Growth", "Month-over-month movement and blended cost per hour", [
-          { label: "Revenue growth % MoM", kind: "pct", tot: "avg", vals: REVN.map((v, i) => i === 0 ? 0 : (v - REVN[i - 1]) / REVN[i - 1] * 100) },
-          { label: "Client count growth % MoM", kind: "pct", tot: "avg", vals: CLIENTS.map((c, i) => i === 0 ? 0 : (c - CLIENTS[i - 1]) / CLIENTS[i - 1] * 100) },
-          { label: "Average cost per visit-hour", kind: "x", tot: "avg", vals: COGS.map((v, i) => v / BILL_HRS[i]) }
-        ])
+          { label: "Revenue growth % MoM", kind: "pct", tot: "avg", vals: REV_GROWTH },
+          { label: "Client count growth % MoM", kind: "pct", tot: "avg", vals: CLIENT_GROWTH },
+          { label: "Average cost per visit-hour", kind: "x", tot: "avg", vals: COST_PER_HR }
+        ]),
+      ],
+      hasNotes: true, notes: [
+        { kicker: "Annual only", dot: "#9aa5b4", title: "Four metrics are FY figures, not trended monthly in the source data", body: `Caregiver turnover ${pctf(FY_TURNOVER)} annualized, missed visit rate ${pctf(FY_MISSED_RATE)}, authorized-hours utilization ${pctf(FY_AUTH_UTIL)}, and ${FY_AUTH_EXPIRING} authorizations expired or expiring within 30 days as of year end.` }
       ]
     };
-    if (cur === "coa") return {
+    if (cur === "coa") {
+      const types = [...new Set(COA.map(a => a.type))];
+      return {
       ...this.buildTable({
-        title: "Chart of accounts", note: "32 accounts across assets, liabilities, equity, revenue, cost of services and operating expenses", placeholder: "Search account name or number",
+        title: "Chart of accounts", note: `${COA.length} accounts across assets, liabilities, equity, revenue, cost of services and operating expenses`, placeholder: "Search account name or number",
         search: ["num", "name", "type"], minWidth: "720px",
-        filters: [{ label: "Type", key: "type", options: ["All types", "Asset", "Liability", "Equity", "Revenue", "Cost of services", "Operating expense"] }],
-        rows: COA.map(([num, name, type]) => ({ num, name, type })),
+        filters: [{ label: "Type", key: "type", options: ["All types", ...types] }],
+        rows: COA.map(({ num, name, type }) => ({ num, name, type })),
         cols: [{ label: "Account", key: "num", mono: true, align: "left", bold: true }, { label: "Name", key: "name", align: "left" }, { label: "Type", key: "type", align: "right" }],
         total: rows => `${rows.length} accounts`, foot: "Account numbers follow the underlying general ledger"
       }),
       statements: [simpleStmt("Rate assumptions", "The inputs every figure in this dashboard is built from", [["Assumption", "left"], ["Value"]],
-        ASSUMPTIONS.map(([k, v]) => ({ cells: [cell(k, { align: "left" }), cell(v, { mono: true, bold: true })] })), { minWidth: "520px" })]
+        ASSUMPTIONS.map(([kk, v]) => ({ cells: [cell(kk, { align: "left" }), cell(v, { mono: true, bold: true })] })), { minWidth: "520px" })]
     };
+    }
     return {};
   }
   renderVals() {
     const cur = this.state.screen, t = T[cur] || T.overview;
     VIEW = PERIODS[this.state.period] || [0, 11];
     VIEW_LABEL = this.state.period === "FY 2025" ? "FY total" : this.state.period + " total";
+    if (!READY) {
+      return {
+        booting: !this.state.locked, locked: this.state.locked, user: "", pass: "", onUser: e => this.setState({ user: e.target.value }), onPass: e => this.setState({ pass: e.target.value }), signIn: () => this.signIn(),
+        screenKey: "loading", period: this.state.period, periodMenu: { items: [] }, crumb: "", title: "", blurb: "",
+        isOverview: false, hasTabs: false, tabs: [], hasGroupTabs: false, groupTabs: [], hasRange: false, hasCards: false, cards: [],
+        statements: [], hasTable: false, hasNotes: false, notes: [], goAlerts: () => {}, menuCls: "", openMenu: () => {}, closeMenu: () => {},
+        navGroups: [], donut: [], hardFlags: [], watchlist: [], kpis: [], payers: [], growthLine: "", growthArea: "", zeroY: "0", bars: [], marginLine: "", dots: [], liquidity: []
+      };
+    }
+    const otIdx = LOC_UTIL.indexOf(Math.max(...LOC_UTIL));
+    const overdueBills = bills.filter(b => b.open && new Date(b.due + "T00:00:00") < new Date("2025-12-31T00:00:00"));
+    const ninetyPlus = AR_AGING_BUCKETS.reduce((s, r) => s + (r["90+ Days"] || 0), 0);
+    const certExpiringSoon = cgRoster.filter(c => c.certState === "Expiring Soon" && c.status === "Active").length;
+    const authExpired = clientRoster.filter(c => c.authState === "EXPIRED").length;
+    const authExpiringSoon = clientRoster.filter(c => c.authState === "Expiring Soon").length;
+    const otPeakIdx = OT_PCT.indexOf(Math.max(...OT_PCT));
+    const revMoM = REVN[11] > 0 ? (REVN[11] - REVN[10]) / REVN[10] * 100 : 0;
+    const netMoM = MG2[11] - MG2[10];
+    const cashMoM = CASH_BS[11] - CASH_BS[10];
+    const dsoMoM = DSO_M[11] - DSO_M[10];
+    const watchWarnCount = 4, watchWatchCount = 2;
+    const hardFlagsCount = 2, openFlagsCount = hardFlagsCount + 6;
     return {
+      openFlagsCount, hardFlagsCount,
+      watchlistCaption: `${watchWarnCount} warning · ${watchWatchCount} watch`,
+      fyRevLabel: usd(FYREV), donutMarginLabel: pctf(FYNET / FYREV * 100),
+      marginCaption: `Margin ran ${pctf(MG2[0])} in January and ${pctf(MG2[11])} in December: ${MG2[11] >= MG2[0] ? "revenue outgrew fixed overhead" : "margin compressed across the year"}.`,
+      clientsCaption: `${CLIENTS[0]} in January to ${CLIENTS[11]} in December`,
+      revPerClientLabel: usd(AVG_REV_PER_CLIENT[11]) + " / mo",
+      authUtilLabel: pctf(FY_AUTH_UTIL), cgUtilLabel: pctf(UTIL_PCT[11]),
       booting: this.state.booting, locked: this.state.locked,
       user: this.state.user, pass: this.state.pass,
       onUser: e => this.setState({ user: e.target.value }), onPass: e => this.setState({ pass: e.target.value }),
@@ -1295,42 +1310,41 @@ class Component extends DCLogic {
           dash: `${(share * C).toFixed(1)} ${(C - share * C).toFixed(1)}`, offset: (-acc * C).toFixed(1) };
           acc += share; return seg; }); })(),
       hardFlags: [
-        { tag: "Certification", title: "Caregiver certifications: 2 of 40 lapsed", detail: "Two active aides show an expired certification and three more expire within 60 days. Visits delivered by a lapsed caregiver cannot be billed to Medicaid Waiver at all - this is booked revenue at risk, not a warning.", go: this.go("caregivers") },
-        { tag: "Authorization", title: "Client authorizations: 1 expired, 2 expiring", detail: "One Medicaid Waiver authorization expired Dec 18 and the client is still being served; two more lapse within 14 days. Units delivered outside an active authorization are not reimbursable.", go: this.go("clients") }
+        { tag: "Certification", title: `Caregiver certifications: ${certExpiringSoon} of ${cgRoster.length} active caregivers expiring soon`, detail: "Most caregivers were hired within the same window, so their one-year certifications cluster around the same renewal date. Visits delivered by a lapsed caregiver cannot be billed - this is booked revenue at risk, not a warning.", go: this.go("caregivers") },
+        { tag: "Authorization", title: `Client authorizations: ${authExpired} expired, ${authExpiringSoon} expiring soon`, detail: `${authExpired} of ${clientRoster.length} client authorizations on file have already lapsed. Units delivered outside an active authorization are not reimbursable - this is the single largest exposure in the book.`, go: this.go("clients") }
       ],
       watchlist: [
-        { title: "$8,240 of AR sits in the 90+ bucket", detail: "Four Medicaid Waiver claims from August with no remittance posted; Medicaid Waiver carries 78% of all balances past 30 days.", where: "Money owed to us", dot: "width:7px;height:7px;border-radius:10px;background:#f0a595;flex:0 0 7px", go: this.go("ar") },
-        { title: "Overtime reached 4.3% of payroll", detail: "Overtime climbed through the second half as the client count grew from 37 to 62 without added headcount - worst month was October.", where: "Payroll", dot: "width:7px;height:7px;border-radius:10px;background:#f0a595;flex:0 0 7px", go: this.go("payroll") },
-        { title: "2 vendor bills are past due", detail: "Vehicle insurance (Net 30, 12 days late) and a state licensing fee (Due on receipt, 6 days late) across 26 vendors on file.", where: "Money we owe", dot: "width:7px;height:7px;border-radius:10px;background:#f0a595;flex:0 0 7px", go: this.go("ap") },
-        { title: "Line of credit peaked at 47% mid-year", detail: "Draws funded the AR lag plus two vehicle purchases in June and July; the balance has been paid down to 31% of the $150,000 facility.", where: "Line of credit", dot: "width:7px;height:7px;border-radius:10px;background:#9aa5b4;flex:0 0 7px", go: this.go("loc") },
-        { title: "Authorized hours utilization is 86%", detail: "Roughly 14% of authorized units went undelivered across the year - unused authorization is revenue left on the table.", where: "Clients", dot: "width:7px;height:7px;border-radius:10px;background:#9aa5b4;flex:0 0 7px", go: this.go("clients") },
-        { title: "Missed visit rate 2.1% of potential revenue", detail: "Caregiver call-offs with no replacement account for just over half the missed visits logged this year.", where: "Missed visits", dot: "width:7px;height:7px;border-radius:10px;background:#9aa5b4;flex:0 0 7px", go: this.go("missed") }
+        { title: `${usd(ninetyPlus)} of AR sits in the 90+ bucket`, detail: "Concentrated in the slowest-paying payer; see the aging table for the payer breakdown.", where: "Money owed to us", dot: "width:7px;height:7px;border-radius:10px;background:#f0a595;flex:0 0 7px", go: this.go("ar") },
+        { title: `Overtime reached ${pctf(Math.max(...OT_PCT))} of payroll`, detail: `Overtime peaked in ${M[otPeakIdx]} as the client base grew without proportional headcount added.`, where: "Payroll", dot: "width:7px;height:7px;border-radius:10px;background:#f0a595;flex:0 0 7px", go: this.go("payroll") },
+        { title: `${overdueBills.length} vendor bills are past due`, detail: `Out of ${bills.filter(b => b.open).length} open bills across ${VENDORS.length} vendors on file.`, where: "Money we owe", dot: "width:7px;height:7px;border-radius:10px;background:#f0a595;flex:0 0 7px", go: this.go("ap") },
+        { title: `Line of credit peaked at ${pctf(Math.max(...LOC_UTIL))} in ${M[otIdx]}`, detail: `Draws funded the AR collection lag plus fixed-asset purchases; the balance closed the year at ${pctf(LOC_UTIL[11])} of the ${usd(LOC_LIMIT)} facility.`, where: "Line of credit", dot: "width:7px;height:7px;border-radius:10px;background:#9aa5b4;flex:0 0 7px", go: this.go("loc") },
+        { title: `Authorized hours utilization is ${pctf(FY_AUTH_UTIL)}`, detail: "Unused authorization across the roster is revenue left on the table.", where: "Clients", dot: "width:7px;height:7px;border-radius:10px;background:#9aa5b4;flex:0 0 7px", go: this.go("clients") },
+        { title: `Missed visit rate ${pctf(FY_MISSED_RATE)} of potential revenue`, detail: `${missed.length} missed-visit events logged across the year.`, where: "Missed visits", dot: "width:7px;height:7px;border-radius:10px;background:#9aa5b4;flex:0 0 7px", go: this.go("missed") }
       ],
       kpis: [
-        { label: "Revenue, FY 2025", value: usd(994000), color: "#0c1b31", sub: "December $99,000 · +70% over January", foot: "Trailing twelve months", spark: spark(REV), chip: "+2.7% MoM", chipStyle: chip("up") },
-        { label: "Net income, FY 2025", value: usd(58646), color: "#0c1b31", sub: "5.9% net margin for the year", foot: "December margin 9.1%", spark: spark(MG), chip: "+0.6 pt", chipStyle: chip("up") },
-        { label: "Cash on hand", value: usd(78900), color: "#0c1b31", sub: "Operating $61,400 · Payroll $17,500", foot: "Both accounts reconciled", spark: spark(CASH), chip: "+$7.6k", chipStyle: chip("up") },
-        { label: "AR outstanding", value: usd(91200), color: "#98301f", sub: "$14,870 past 30 days · DSO 33.5", foot: "$8,240 in the 90+ bucket", spark: spark(AR), chip: "DSO +1.2 d", chipStyle: chip("down") }
+        { label: "Revenue, FY 2025", value: usd(FYREV), color: "#0c1b31", sub: `December ${usd(REVN[11])} · ${pctf((REVN[11]-REVN[0])/REVN[0]*100)} vs January`, foot: "Trailing twelve months", spark: spark(REVN), chip: pctf(revMoM) + " MoM", chipStyle: chip(revMoM >= 0 ? "up" : "down") },
+        { label: "Net income, FY 2025", value: usd(FYNET), color: FYNET >= 0 ? "#0c1b31" : "#98301f", sub: `${pctf(FYNET/FYREV*100)} net margin for the year`, foot: `December margin ${pctf(MG2[11])}`, spark: spark(MG2), chip: pctf(netMoM, 1) + " pt", chipStyle: chip(netMoM >= 0 ? "up" : "down") },
+        { label: "Cash on hand", value: usd(CASH_BS[11]), color: "#0c1b31", sub: `Operating ${usd(CASH_OP[11])} · Payroll ${usd(CASH_PR[11])}`, foot: "Both accounts reconciled", spark: spark(CASH_BS), chip: (cashMoM >= 0 ? "+" : "−") + k(Math.abs(cashMoM)), chipStyle: chip(cashMoM >= 0 ? "up" : "down") },
+        { label: "AR outstanding", value: usd(AR_BAL[11]), color: "#98301f", sub: `${usd(AR_AGING_BUCKETS.reduce((s,r)=>s+(r["61-90 Days"]||0)+(r["90+ Days"]||0),0))} past 60 days · DSO ${DSO_M[11].toFixed(1)}`, foot: `${usd(ninetyPlus)} in the 90+ bucket`, spark: spark(AR_BAL), chip: `DSO ${dsoMoM >= 0 ? "+" : ""}${dsoMoM.toFixed(1)} d`, chipStyle: chip(dsoMoM <= 0 ? "up" : "down") }
       ],
-      payers: [
-        { name: "Medicaid Waiver", amount: usd(521000), share: "52.4%", dso: "38.6 d", denial: "3.1%", denialColor: "#98301f", color: "#0c1b31", go: this.go("ar") },
-        { name: "Private Pay", amount: usd(228000), share: "22.9%", dso: "17.4 d", denial: "0.0%", denialColor: "#0c1b31", color: "#6c7a8c", go: this.go("ar") },
-        { name: "Medicare (Skilled)", amount: usd(166000), share: "16.7%", dso: "29.2 d", denial: "1.8%", denialColor: "#6c7a8c", color: "#dde2ea", go: this.go("ar") },
-        { name: "Private Insurance", amount: usd(79000), share: "8.0%", dso: "26.5 d", denial: "1.4%", denialColor: "#6c7a8c", color: "#dde2ea", go: this.go("ar") }
-      ],
-      growthLine: CLIENTS.map((v, i) => `${(i * (320 / 11)).toFixed(1)},${(124 - ((v - 30) / 36) * 108).toFixed(1)}`).join(" "),
-      growthArea: CLIENTS.map((v, i) => `${(i * (320 / 11)).toFixed(1)},${(124 - ((v - 30) / 36) * 108).toFixed(1)}`).join(" ") + " 320,124 0,124",
-      zeroY: (176 - ((0 + 3) / 13) * 150).toFixed(1),
-      bars: REV.map((v, i) => {
-        const step = 660 / 12, h = (v / Math.max(...REV)) * 150, x = 40 + i * step + step * 0.2;
+      payers: PAYERS.map((p, i) => {
+        const fy = REV_BY_PAYER[i].reduce((a, b) => a + b, 0);
+        const rate = PAYER_RATES.find(r => r.payer === p);
+        return { name: p, amount: usd(fy), share: pctf(fy / FYREV * 100), dso: DSO_BY_PAYER[p][11].toFixed(1) + " d", denial: pctf(rate ? rate.denialPct : 0, 1), denialColor: rate && rate.denialPct > 2 ? "#98301f" : "#6c7a8c", color: ["#0c1b31", "#6c7a8c", "#dde2ea", "#dde2ea"][i], go: this.go("ar") };
+      }),
+      growthLine: CLIENTS.map((v, i) => `${(i * (320 / 11)).toFixed(1)},${(124 - ((v - Math.min(...CLIENTS) + 2) / (Math.max(...CLIENTS) - Math.min(...CLIENTS) + 4)) * 108).toFixed(1)}`).join(" "),
+      growthArea: CLIENTS.map((v, i) => `${(i * (320 / 11)).toFixed(1)},${(124 - ((v - Math.min(...CLIENTS) + 2) / (Math.max(...CLIENTS) - Math.min(...CLIENTS) + 4)) * 108).toFixed(1)}`).join(" ") + " 320,124 0,124",
+      zeroY: (176 - ((0 - Math.min(...MG2) + 1) / (Math.max(...MG2) - Math.min(...MG2) + 2)) * 150).toFixed(1),
+      bars: REVN.map((v, i) => {
+        const step = 660 / 12, h = (v / Math.max(...REVN)) * 150, x = 40 + i * step + step * 0.2;
         return { x: x.toFixed(1), y: (196 - h).toFixed(1), w: (step * 0.6).toFixed(1), h: h.toFixed(1), cx: (x + step * 0.3).toFixed(1), month: M[i], rev: k(v), fill: i >= 9 ? "#0c1b31" : "#9aa5b4", go: this.go("pl") };
       }),
-      marginLine: MG.map((v, i) => `${(40 + i * (660 / 12) + (660 / 12) * 0.5).toFixed(1)},${(176 - ((v + 3) / 13) * 150).toFixed(1)}`).join(" "),
-      dots: MG.map((v, i) => ({ cx: (40 + i * (660 / 12) + (660 / 12) * 0.5).toFixed(1), cy: (176 - ((v + 3) / 13) * 150).toFixed(1) })),
+      marginLine: MG2.map((v, i) => `${(40 + i * (660 / 12) + (660 / 12) * 0.5).toFixed(1)},${(176 - ((v - Math.min(...MG2) + 1) / (Math.max(...MG2) - Math.min(...MG2) + 2)) * 150).toFixed(1)}`).join(" "),
+      dots: MG2.map((v, i) => ({ cx: (40 + i * (660 / 12) + (660 / 12) * 0.5).toFixed(1), cy: (176 - ((v - Math.min(...MG2) + 1) / (Math.max(...MG2) - Math.min(...MG2) + 2)) * 150).toFixed(1) })),
       liquidity: [
-        { label: "Bank accounts", value: usd(78900), cta: "Open bank accounts", go: this.go("bank"), lines: [{ k: "Operating ···4471", v: usd(61400) }, { k: "Payroll ···8823", v: usd(17500) }, { k: "Reconciliation difference", v: "$0" }] },
-        { label: "Line of credit", value: usd(46500), cta: "Open line of credit", go: this.go("loc"), lines: [{ k: "Facility limit", v: usd(150000) }, { k: "Utilization", v: "31.0%" }, { k: "Interest paid YTD", v: usd(4318) }] },
-        { label: "Liquidity", value: "2.43×", cta: "Open KPI command center", go: this.go("kpi"), lines: [{ k: "Working capital", v: usd(100120) }, { k: "Quick ratio", v: "2.43" }, { k: "Cash runway", v: "148 days" }] }
+        { label: "Bank accounts", value: usd(CASH_BS[11]), cta: "Open bank accounts", go: this.go("bank"), lines: [{ k: "Operating ···4821", v: usd(CASH_OP[11]) }, { k: "Payroll ···4839", v: usd(CASH_PR[11]) }, { k: "Reconciliation difference", v: "$0" }] },
+        { label: "Line of credit", value: usd(LOC[11]), cta: "Open line of credit", go: this.go("loc"), lines: [{ k: "Facility limit", v: usd(LOC_LIMIT) }, { k: "Utilization", v: pctf(LOC_UTIL[11]) }, { k: "Interest paid YTD", v: usd(LOC_INT.reduce((a, b) => a + b, 0)) }] },
+        { label: "Liquidity", value: QUICK_RATIO[11].toFixed(2) + "×", cta: "Open KPI command center", go: this.go("kpi"), lines: [{ k: "Working capital", v: usd(WORKING_CAPITAL[11]) }, { k: "Quick ratio", v: QUICK_RATIO[11].toFixed(2) }, { k: "Cash runway", v: Math.round(CASH_RUNWAY[11]) + " days" }] }
       ]
     };
   }
